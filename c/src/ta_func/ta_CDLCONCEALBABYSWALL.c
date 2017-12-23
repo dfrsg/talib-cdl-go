@@ -213,9 +213,9 @@
    
    i = shadowVeryShortTrailingIdx;
    while( i < startIdx ) {
-        shadowVeryShortPeriodTotal[3] += es.rangeOf( ShadowVeryShort, i-3 );
-        shadowVeryShortPeriodTotal[2] += es.rangeOf( ShadowVeryShort, i-2 );
-        shadowVeryShortPeriodTotal[1] += es.rangeOf( ShadowVeryShort, i-1 );
+        shadowVeryShortPeriodTotal[3] += es.rangeOf(settingShadowVeryShort, i-3 );
+        shadowVeryShortPeriodTotal[2] += es.rangeOf(settingShadowVeryShort, i-2 );
+        shadowVeryShortPeriodTotal[1] += es.rangeOf(settingShadowVeryShort, i-1 );
         i++;
    }
    i = startIdx;
@@ -247,14 +247,14 @@
             es.candleColor(i-1) == -1 &&                                    // 3rd black
             es.candleColor(i) == -1 &&                                      // 4th black
                                                                             // 1st: marubozu
-            es.lowerShadow(i-3) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[3], i-3 ) &&
-            es.upperShadow(i-3) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[3], i-3 ) &&
+            es.lowerShadow(i-3) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[3], i-3 ) &&
+            es.upperShadow(i-3) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[3], i-3 ) &&
                                                                             // 2nd: marubozu
-            es.lowerShadow(i-2) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&
-            es.upperShadow(i-2) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&
+            es.lowerShadow(i-2) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&
+            es.upperShadow(i-2) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&
             es.realBodyGAPDOWN(i-1,i-2) &&                                  // 3rd: opens gapping down
                                                                             //      and HAS an upper shadow
-            es.upperShadow(i-1) > es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[1], i-1 ) &&
+            es.upperShadow(i-1) > es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[1], i-1 ) &&
             es.High(i-1) > es.Close(i-2) &&                                   //      that extends into the prior body
             es.High(i) > es.High(i-1) && es.Low(i) < es.Low(i-1)                // 4th: engulfs the 3rd including the shadows
           )
@@ -266,8 +266,8 @@
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
         for (totIdx = 3; totIdx >= 1; --totIdx)
-            shadowVeryShortPeriodTotal[totIdx] += es.rangeOf( ShadowVeryShort, i-totIdx ) 
-                                                - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx-totIdx );
+            shadowVeryShortPeriodTotal[totIdx] += es.rangeOf(settingShadowVeryShort, i-totIdx ) 
+                                                - es.rangeOf(settingShadowVeryShort, shadowVeryShortTrailingIdx-totIdx );
         i++; 
         shadowVeryShortTrailingIdx++;
    } while( i <= endIdx );
@@ -364,9 +364,9 @@
 /* Generated */    shadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
 /* Generated */    i = shadowVeryShortTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         shadowVeryShortPeriodTotal[3] += es.rangeOf( ShadowVeryShort, i-3 );
-/* Generated */         shadowVeryShortPeriodTotal[2] += es.rangeOf( ShadowVeryShort, i-2 );
-/* Generated */         shadowVeryShortPeriodTotal[1] += es.rangeOf( ShadowVeryShort, i-1 );
+/* Generated */         shadowVeryShortPeriodTotal[3] += es.rangeOf(settingShadowVeryShort, i-3 );
+/* Generated */         shadowVeryShortPeriodTotal[2] += es.rangeOf(settingShadowVeryShort, i-2 );
+/* Generated */         shadowVeryShortPeriodTotal[1] += es.rangeOf(settingShadowVeryShort, i-1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -382,14 +382,14 @@
 /* Generated */             es.candleColor(i-1) == -1 &&                                    // 3rd black
 /* Generated */             es.candleColor(i) == -1 &&                                      // 4th black
 /* Generated */                                                                             // 1st: marubozu
-/* Generated */             es.lowerShadow(i-3) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[3], i-3 ) &&
-/* Generated */             es.upperShadow(i-3) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[3], i-3 ) &&
+/* Generated */             es.lowerShadow(i-3) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[3], i-3 ) &&
+/* Generated */             es.upperShadow(i-3) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[3], i-3 ) &&
 /* Generated */                                                                             // 2nd: marubozu
-/* Generated */             es.lowerShadow(i-2) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&
-/* Generated */             es.upperShadow(i-2) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&
+/* Generated */             es.lowerShadow(i-2) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&
+/* Generated */             es.upperShadow(i-2) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&
 /* Generated */             es.realBodyGAPDOWN(i-1,i-2) &&                                  // 3rd: opens gapping down
 /* Generated */                                                                             //      and HAS an upper shadow
-/* Generated */             es.upperShadow(i-1) > es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[1], i-1 ) &&
+/* Generated */             es.upperShadow(i-1) > es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[1], i-1 ) &&
 /* Generated */             es.High(i-1) > es.Close(i-2) &&                                   //      that extends into the prior body
 /* Generated */             es.High(i) > es.High(i-1) && es.Low(i) < es.Low(i-1)                // 4th: engulfs the 3rd including the shadows
 /* Generated */           )
@@ -398,8 +398,8 @@
 /* Generated */             outInteger[outIdx++] = 0;
 /* Generated */ #endif
 /* Generated */         for (totIdx = 3; totIdx >= 1; --totIdx)
-/* Generated */             shadowVeryShortPeriodTotal[totIdx] += es.rangeOf( ShadowVeryShort, i-totIdx ) 
-/* Generated */                                                 - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx-totIdx );
+/* Generated */             shadowVeryShortPeriodTotal[totIdx] += es.rangeOf(settingShadowVeryShort, i-totIdx ) 
+/* Generated */                                                 - es.rangeOf(settingShadowVeryShort, shadowVeryShortTrailingIdx-totIdx );
 /* Generated */         i++; 
 /* Generated */         shadowVeryShortTrailingIdx++;
 /* Generated */    } while( i <= endIdx );

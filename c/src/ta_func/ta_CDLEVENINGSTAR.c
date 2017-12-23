@@ -233,13 +233,13 @@
    
    i = bodyLongTrailingIdx;
    while( i < startIdx-2 ) {
-        bodyLongPeriodTotal += es.rangeOf( BodyLong, i );
+        bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i );
         i++;
    }
    i = bodyShortTrailingIdx;
    while( i < startIdx-1 ) {
-        bodyShortPeriodTotal += es.rangeOf( BodyShort, i );
-        bodyShortPeriodTotal2 += es.rangeOf( BodyShort, i+1 );
+        bodyShortPeriodTotal += es.rangeOf(settingBodyShort, i );
+        bodyShortPeriodTotal2 += es.rangeOf(settingBodyShort, i+1 );
         i++;
    }
    i = startIdx;
@@ -268,11 +268,11 @@
 #ifdef TA_LIB_PRO
       /* Section for code distributed with TA-Lib Pro only. */
 #else
-        if( es.realBody(i-2) > es.average( BodyLong, bodyLongPeriodTotal, i-2 ) &&         // 1st: long
+        if( es.realBody(i-2) > es.average(settingBodyLong, bodyLongPeriodTotal, i-2 ) &&         // 1st: long
             es.candleColor(i-2) == 1 &&                                                             //           white
-            es.realBody(i-1) <= es.average( BodyShort, bodyShortPeriodTotal, i-1 ) &&      // 2nd: short
+            es.realBody(i-1) <= es.average(settingBodyShort, bodyShortPeriodTotal, i-1 ) &&      // 2nd: short
             es.realBodyGAPUP(i-1,i-2) &&                                                            //            gapping up
-            es.realBody(i) > es.average( BodyShort, bodyShortPeriodTotal2, i ) &&          // 3rd: longer than short
+            es.realBody(i) > es.average(settingBodyShort, bodyShortPeriodTotal2, i ) &&          // 3rd: longer than short
             es.candleColor(i) == -1 &&                                                              //          black real body
             es.Close(i) < es.Close(i-2) - es.realBody(i-2) * optInPenetration                         //               closing well within 1st rb
           )
@@ -283,9 +283,9 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        bodyLongPeriodTotal += es.rangeOf( BodyLong, i-2 ) - es.rangeOf( BodyLong, bodyLongTrailingIdx );
-        bodyShortPeriodTotal += es.rangeOf( BodyShort, i-1 ) - es.rangeOf( BodyShort, bodyShortTrailingIdx );
-        bodyShortPeriodTotal2 += es.rangeOf( BodyShort, i ) - es.rangeOf( BodyShort, bodyShortTrailingIdx+1 );
+        bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i-2 ) - es.rangeOf(settingBodyLong, bodyLongTrailingIdx );
+        bodyShortPeriodTotal += es.rangeOf(settingBodyShort, i-1 ) - es.rangeOf(settingBodyShort, bodyShortTrailingIdx );
+        bodyShortPeriodTotal2 += es.rangeOf(settingBodyShort, i ) - es.rangeOf(settingBodyShort, bodyShortTrailingIdx+1 );
         i++; 
         bodyLongTrailingIdx++;
         bodyShortTrailingIdx++;
@@ -390,13 +390,13 @@
 /* Generated */    bodyShortTrailingIdx = startIdx -1 - settingBodyShort.avgPeriod;
 /* Generated */    i = bodyLongTrailingIdx;
 /* Generated */    while( i < startIdx-2 ) {
-/* Generated */         bodyLongPeriodTotal += es.rangeOf( BodyLong, i );
+/* Generated */         bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = bodyShortTrailingIdx;
 /* Generated */    while( i < startIdx-1 ) {
-/* Generated */         bodyShortPeriodTotal += es.rangeOf( BodyShort, i );
-/* Generated */         bodyShortPeriodTotal2 += es.rangeOf( BodyShort, i+1 );
+/* Generated */         bodyShortPeriodTotal += es.rangeOf(settingBodyShort, i );
+/* Generated */         bodyShortPeriodTotal2 += es.rangeOf(settingBodyShort, i+1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -407,11 +407,11 @@
 /* Generated */    {
 /* Generated */ #ifdef TA_LIB_PRO
 /* Generated */ #else
-/* Generated */         if( es.realBody(i-2) > es.average( BodyLong, bodyLongPeriodTotal, i-2 ) &&         // 1st: long
+/* Generated */         if( es.realBody(i-2) > es.average(settingBodyLong, bodyLongPeriodTotal, i-2 ) &&         // 1st: long
 /* Generated */             es.candleColor(i-2) == 1 &&                                                             //           white
-/* Generated */             es.realBody(i-1) <= es.average( BodyShort, bodyShortPeriodTotal, i-1 ) &&      // 2nd: short
+/* Generated */             es.realBody(i-1) <= es.average(settingBodyShort, bodyShortPeriodTotal, i-1 ) &&      // 2nd: short
 /* Generated */             es.realBodyGAPUP(i-1,i-2) &&                                                            //            gapping up
-/* Generated */             es.realBody(i) > es.average( BodyShort, bodyShortPeriodTotal2, i ) &&          // 3rd: longer than short
+/* Generated */             es.realBody(i) > es.average(settingBodyShort, bodyShortPeriodTotal2, i ) &&          // 3rd: longer than short
 /* Generated */             es.candleColor(i) == -1 &&                                                              //          black real body
 /* Generated */             es.Close(i) < es.Close(i-2) - es.realBody(i-2) * optInPenetration                         //               closing well within 1st rb
 /* Generated */           )
@@ -419,9 +419,9 @@
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
 /* Generated */ #endif
-/* Generated */         bodyLongPeriodTotal += es.rangeOf( BodyLong, i-2 ) - es.rangeOf( BodyLong, bodyLongTrailingIdx );
-/* Generated */         bodyShortPeriodTotal += es.rangeOf( BodyShort, i-1 ) - es.rangeOf( BodyShort, bodyShortTrailingIdx );
-/* Generated */         bodyShortPeriodTotal2 += es.rangeOf( BodyShort, i ) - es.rangeOf( BodyShort, bodyShortTrailingIdx+1 );
+/* Generated */         bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i-2 ) - es.rangeOf(settingBodyLong, bodyLongTrailingIdx );
+/* Generated */         bodyShortPeriodTotal += es.rangeOf(settingBodyShort, i-1 ) - es.rangeOf(settingBodyShort, bodyShortTrailingIdx );
+/* Generated */         bodyShortPeriodTotal2 += es.rangeOf(settingBodyShort, i ) - es.rangeOf(settingBodyShort, bodyShortTrailingIdx+1 );
 /* Generated */         i++; 
 /* Generated */         bodyLongTrailingIdx++;
 /* Generated */         bodyShortTrailingIdx++;

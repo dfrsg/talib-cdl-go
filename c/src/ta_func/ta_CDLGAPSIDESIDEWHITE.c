@@ -209,12 +209,12 @@
    
    i = nearTrailingIdx;
    while( i < startIdx ) {
-        nearPeriodTotal += es.rangeOf( Near, i-1 );
+        nearPeriodTotal += es.rangeOf(settingNear, i-1 );
         i++;
    }
    i = EqualTrailingIdx;
    while( i < startIdx ) {
-        EqualPeriodTotal += es.rangeOf( Equal, i-1 );
+        EqualPeriodTotal += es.rangeOf(settingEqual, i-1 );
         i++;
    }
    i = startIdx;
@@ -242,10 +242,10 @@
             ) &&
             es.candleColor(i-1) == 1 &&                                                                 // 2nd: white
             es.candleColor(i) == 1 &&                                                                   // 3rd: white
-            es.realBody(i) >= es.realBody(i-1) - es.average( Near, nearPeriodTotal, i-1 ) &&   // same size 2 and 3
-            es.realBody(i) <= es.realBody(i-1) + es.average( Near, nearPeriodTotal, i-1 ) &&
-            es.Open(i) >= es.Open(i-1) - es.average( Equal, EqualPeriodTotal, i-1 ) &&           // same open 2 and 3
-            es.Open(i) <= es.Open(i-1) + es.average( Equal, EqualPeriodTotal, i-1 )
+            es.realBody(i) >= es.realBody(i-1) - es.average(settingNear, nearPeriodTotal, i-1 ) &&   // same size 2 and 3
+            es.realBody(i) <= es.realBody(i-1) + es.average(settingNear, nearPeriodTotal, i-1 ) &&
+            es.Open(i) >= es.Open(i-1) - es.average(settingEqual, EqualPeriodTotal, i-1 ) &&           // same open 2 and 3
+            es.Open(i) <= es.Open(i-1) + es.average(settingEqual, EqualPeriodTotal, i-1 )
           )
             outInteger[outIdx++] = ( es.realBodyGAPUP(i-1,i-2) ? 100 : -100 );
         else
@@ -253,8 +253,8 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        nearPeriodTotal += es.rangeOf( Near, i-1 ) - es.rangeOf( Near, nearTrailingIdx-1 );
-        EqualPeriodTotal += es.rangeOf( Equal, i-1 ) - es.rangeOf( Equal, EqualTrailingIdx-1 );
+        nearPeriodTotal += es.rangeOf(settingNear, i-1 ) - es.rangeOf(settingNear, nearTrailingIdx-1 );
+        EqualPeriodTotal += es.rangeOf(settingEqual, i-1 ) - es.rangeOf(settingEqual, EqualTrailingIdx-1 );
         i++; 
         nearTrailingIdx++;
         EqualTrailingIdx++;
@@ -350,12 +350,12 @@
 /* Generated */    EqualTrailingIdx = startIdx - settingEqual.avgPeriod;
 /* Generated */    i = nearTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         nearPeriodTotal += es.rangeOf( Near, i-1 );
+/* Generated */         nearPeriodTotal += es.rangeOf(settingNear, i-1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = EqualTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         EqualPeriodTotal += es.rangeOf( Equal, i-1 );
+/* Generated */         EqualPeriodTotal += es.rangeOf(settingEqual, i-1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -370,16 +370,16 @@
 /* Generated */             ) &&
 /* Generated */             es.candleColor(i-1) == 1 &&                                                                 // 2nd: white
 /* Generated */             es.candleColor(i) == 1 &&                                                                   // 3rd: white
-/* Generated */             es.realBody(i) >= es.realBody(i-1) - es.average( Near, nearPeriodTotal, i-1 ) &&   // same size 2 and 3
-/* Generated */             es.realBody(i) <= es.realBody(i-1) + es.average( Near, nearPeriodTotal, i-1 ) &&
-/* Generated */             es.Open(i) >= es.Open(i-1) - es.average( Equal, EqualPeriodTotal, i-1 ) &&           // same open 2 and 3
-/* Generated */             es.Open(i) <= es.Open(i-1) + es.average( Equal, EqualPeriodTotal, i-1 )
+/* Generated */             es.realBody(i) >= es.realBody(i-1) - es.average(settingNear, nearPeriodTotal, i-1 ) &&   // same size 2 and 3
+/* Generated */             es.realBody(i) <= es.realBody(i-1) + es.average(settingNear, nearPeriodTotal, i-1 ) &&
+/* Generated */             es.Open(i) >= es.Open(i-1) - es.average(settingEqual, EqualPeriodTotal, i-1 ) &&           // same open 2 and 3
+/* Generated */             es.Open(i) <= es.Open(i-1) + es.average(settingEqual, EqualPeriodTotal, i-1 )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = ( es.realBodyGAPUP(i-1,i-2) ? 100 : -100 );
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         nearPeriodTotal += es.rangeOf( Near, i-1 ) - es.rangeOf( Near, nearTrailingIdx-1 );
-/* Generated */         EqualPeriodTotal += es.rangeOf( Equal, i-1 ) - es.rangeOf( Equal, EqualTrailingIdx-1 );
+/* Generated */         nearPeriodTotal += es.rangeOf(settingNear, i-1 ) - es.rangeOf(settingNear, nearTrailingIdx-1 );
+/* Generated */         EqualPeriodTotal += es.rangeOf(settingEqual, i-1 ) - es.rangeOf(settingEqual, EqualTrailingIdx-1 );
 /* Generated */         i++; 
 /* Generated */         nearTrailingIdx++;
 /* Generated */         EqualTrailingIdx++;

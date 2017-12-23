@@ -207,7 +207,7 @@
    
    i = shadowVeryShortTrailingIdx;
    while( i < startIdx ) {
-        shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i-1 );
+        shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i-1 );
         i++;
    }
    i = startIdx;
@@ -233,7 +233,7 @@
             inOpen[i-4] > es.Open(i-3) && es.Open(i-3) > es.Open(i-2) &&           // with consecutively lower opens
             inClose[i-4] > es.Close(i-3) && es.Close(i-3) > es.Close(i-2) &&       // and closes
             es.candleColor(i-1) == -1 &&                                        // 4th: black with an upper shadow
-            es.upperShadow(i-1) > es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i-1 ) &&
+            es.upperShadow(i-1) > es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i-1 ) &&
             es.candleColor(i) == 1 &&                                           // 5th: white
             es.Open(i) > es.Open(i-1) &&                                          // that opens above prior candle's body
             es.Close(i) > es.High(i-1)                                            // and closes above prior candle's high
@@ -245,8 +245,8 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i-1 ) 
-                                    - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx-1 );
+        shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i-1 ) 
+                                    - es.rangeOf(settingShadowVeryShort, shadowVeryShortTrailingIdx-1 );
         i++; 
         shadowVeryShortTrailingIdx++;
    } while( i <= endIdx );
@@ -339,7 +339,7 @@
 /* Generated */    shadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
 /* Generated */    i = shadowVeryShortTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i-1 );
+/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i-1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -353,7 +353,7 @@
 /* Generated */             inOpen[i-4] > es.Open(i-3) && es.Open(i-3) > es.Open(i-2) &&           // with consecutively lower opens
 /* Generated */             inClose[i-4] > es.Close(i-3) && es.Close(i-3) > es.Close(i-2) &&       // and closes
 /* Generated */             es.candleColor(i-1) == -1 &&                                        // 4th: black with an upper shadow
-/* Generated */             es.upperShadow(i-1) > es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i-1 ) &&
+/* Generated */             es.upperShadow(i-1) > es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i-1 ) &&
 /* Generated */             es.candleColor(i) == 1 &&                                           // 5th: white
 /* Generated */             es.Open(i) > es.Open(i-1) &&                                          // that opens above prior candle's body
 /* Generated */             es.Close(i) > es.High(i-1)                                            // and closes above prior candle's high
@@ -362,8 +362,8 @@
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
 /* Generated */ #endif
-/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i-1 ) 
-/* Generated */                                     - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx-1 );
+/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i-1 ) 
+/* Generated */                                     - es.rangeOf(settingShadowVeryShort, shadowVeryShortTrailingIdx-1 );
 /* Generated */         i++; 
 /* Generated */         shadowVeryShortTrailingIdx++;
 /* Generated */    } while( i <= endIdx );

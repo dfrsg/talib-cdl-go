@@ -216,13 +216,13 @@
 
    i = EqualTrailingIdx;
    while( i < startIdx ) {
-        EqualPeriodTotal += es.rangeOf( Equal, i-1 );
+        EqualPeriodTotal += es.rangeOf(settingEqual, i-1 );
         i++;
    }
    i = bodyLongTrailingIdx;
    while( i < startIdx ) {
-        bodyLongPeriodTotal[1] += es.rangeOf( BodyLong, i-1 );
-        bodyLongPeriodTotal[0] += es.rangeOf( BodyLong, i );
+        bodyLongPeriodTotal[1] += es.rangeOf(settingBodyLong, i-1 );
+        bodyLongPeriodTotal[0] += es.rangeOf(settingBodyLong, i );
         i++;
    }
    i = startIdx;
@@ -242,10 +242,10 @@
       /* Section for code distributed with TA-Lib Pro only. */
 #else
         if( es.candleColor(i-1) == -es.candleColor(i) &&                                        // opposite candles
-            es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal[1], i-1 ) &&     // 1st long
-            es.realBody(i) > es.average( BodyLong, bodyLongPeriodTotal[0], i ) &&         // 2nd long
-            es.Close(i) <= es.Close(i-1) + es.average( Equal, EqualPeriodTotal, i-1 ) && // equal closes
-            es.Close(i) >= es.Close(i-1) - es.average( Equal, EqualPeriodTotal, i-1 )
+            es.realBody(i-1) > es.average(settingBodyLong, bodyLongPeriodTotal[1], i-1 ) &&     // 1st long
+            es.realBody(i) > es.average(settingBodyLong, bodyLongPeriodTotal[0], i ) &&         // 2nd long
+            es.Close(i) <= es.Close(i-1) + es.average(settingEqual, EqualPeriodTotal, i-1 ) && // equal closes
+            es.Close(i) >= es.Close(i-1) - es.average(settingEqual, EqualPeriodTotal, i-1 )
           )
             outInteger[outIdx++] = es.candleColor(i) * 100;
         else
@@ -254,10 +254,10 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        EqualPeriodTotal += es.rangeOf( Equal, i-1 ) - es.rangeOf( Equal, EqualTrailingIdx-1 );
+        EqualPeriodTotal += es.rangeOf(settingEqual, i-1 ) - es.rangeOf(settingEqual, EqualTrailingIdx-1 );
         for (totIdx = 1; totIdx >= 0; --totIdx)
-            bodyLongPeriodTotal[totIdx] += es.rangeOf( BodyLong, i-totIdx ) 
-                                         - es.rangeOf( BodyLong, bodyLongTrailingIdx-totIdx );
+            bodyLongPeriodTotal[totIdx] += es.rangeOf(settingBodyLong, i-totIdx ) 
+                                         - es.rangeOf(settingBodyLong, bodyLongTrailingIdx-totIdx );
         i++;
         EqualTrailingIdx++;
         bodyLongTrailingIdx++;
@@ -357,13 +357,13 @@
 /* Generated */    bodyLongTrailingIdx = startIdx - settingBodyLong.avgPeriod;
 /* Generated */    i = EqualTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         EqualPeriodTotal += es.rangeOf( Equal, i-1 );
+/* Generated */         EqualPeriodTotal += es.rangeOf(settingEqual, i-1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = bodyLongTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         bodyLongPeriodTotal[1] += es.rangeOf( BodyLong, i-1 );
-/* Generated */         bodyLongPeriodTotal[0] += es.rangeOf( BodyLong, i );
+/* Generated */         bodyLongPeriodTotal[1] += es.rangeOf(settingBodyLong, i-1 );
+/* Generated */         bodyLongPeriodTotal[0] += es.rangeOf(settingBodyLong, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -373,19 +373,19 @@
 /* Generated */ #ifdef TA_LIB_PRO
 /* Generated */ #else
 /* Generated */         if( es.candleColor(i-1) == -es.candleColor(i) &&                                        // opposite candles
-/* Generated */             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal[1], i-1 ) &&     // 1st long
-/* Generated */             es.realBody(i) > es.average( BodyLong, bodyLongPeriodTotal[0], i ) &&         // 2nd long
-/* Generated */             es.Close(i) <= es.Close(i-1) + es.average( Equal, EqualPeriodTotal, i-1 ) && // equal closes
-/* Generated */             es.Close(i) >= es.Close(i-1) - es.average( Equal, EqualPeriodTotal, i-1 )
+/* Generated */             es.realBody(i-1) > es.average(settingBodyLong, bodyLongPeriodTotal[1], i-1 ) &&     // 1st long
+/* Generated */             es.realBody(i) > es.average(settingBodyLong, bodyLongPeriodTotal[0], i ) &&         // 2nd long
+/* Generated */             es.Close(i) <= es.Close(i-1) + es.average(settingEqual, EqualPeriodTotal, i-1 ) && // equal closes
+/* Generated */             es.Close(i) >= es.Close(i-1) - es.average(settingEqual, EqualPeriodTotal, i-1 )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = es.candleColor(i) * 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
 /* Generated */ #endif
-/* Generated */         EqualPeriodTotal += es.rangeOf( Equal, i-1 ) - es.rangeOf( Equal, EqualTrailingIdx-1 );
+/* Generated */         EqualPeriodTotal += es.rangeOf(settingEqual, i-1 ) - es.rangeOf(settingEqual, EqualTrailingIdx-1 );
 /* Generated */         for (totIdx = 1; totIdx >= 0; --totIdx)
-/* Generated */             bodyLongPeriodTotal[totIdx] += es.rangeOf( BodyLong, i-totIdx ) 
-/* Generated */                                          - es.rangeOf( BodyLong, bodyLongTrailingIdx-totIdx );
+/* Generated */             bodyLongPeriodTotal[totIdx] += es.rangeOf(settingBodyLong, i-totIdx ) 
+/* Generated */                                          - es.rangeOf(settingBodyLong, bodyLongTrailingIdx-totIdx );
 /* Generated */         i++;
 /* Generated */         EqualTrailingIdx++;
 /* Generated */         bodyLongTrailingIdx++;

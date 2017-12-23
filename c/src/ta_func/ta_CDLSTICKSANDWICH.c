@@ -207,7 +207,7 @@
 
    i = EqualTrailingIdx;
    while( i < startIdx ) {
-        EqualPeriodTotal += es.rangeOf( Equal, i-2 );
+        EqualPeriodTotal += es.rangeOf(settingEqual, i-2 );
         i++;
    }
    i = startIdx;
@@ -229,8 +229,8 @@
             es.candleColor(i-1) == 1 &&                                                         // second white
             es.candleColor(i) == -1 &&                                                          // third black
             es.Low(i-1) > es.Close(i-2) &&                                                        // 2nd low > prior close
-            es.Close(i) <= es.Close(i-2) + es.average( Equal, EqualPeriodTotal, i-2 ) && // 1st and 3rd same close
-            es.Close(i) >= es.Close(i-2) - es.average( Equal, EqualPeriodTotal, i-2 )
+            es.Close(i) <= es.Close(i-2) + es.average(settingEqual, EqualPeriodTotal, i-2 ) && // 1st and 3rd same close
+            es.Close(i) >= es.Close(i-2) - es.average(settingEqual, EqualPeriodTotal, i-2 )
           )
             outInteger[outIdx++] = 100;
         else
@@ -238,7 +238,7 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        EqualPeriodTotal += es.rangeOf( Equal, i-2 ) - es.rangeOf( Equal, EqualTrailingIdx-2 );
+        EqualPeriodTotal += es.rangeOf(settingEqual, i-2 ) - es.rangeOf(settingEqual, EqualTrailingIdx-2 );
         i++;
         EqualTrailingIdx++;
    } while( i <= endIdx );
@@ -331,7 +331,7 @@
 /* Generated */    EqualTrailingIdx = startIdx - settingEqual.avgPeriod;
 /* Generated */    i = EqualTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         EqualPeriodTotal += es.rangeOf( Equal, i-2 );
+/* Generated */         EqualPeriodTotal += es.rangeOf(settingEqual, i-2 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -342,13 +342,13 @@
 /* Generated */             es.candleColor(i-1) == 1 &&                                                         // second white
 /* Generated */             es.candleColor(i) == -1 &&                                                          // third black
 /* Generated */             es.Low(i-1) > es.Close(i-2) &&                                                        // 2nd low > prior close
-/* Generated */             es.Close(i) <= es.Close(i-2) + es.average( Equal, EqualPeriodTotal, i-2 ) && // 1st and 3rd same close
-/* Generated */             es.Close(i) >= es.Close(i-2) - es.average( Equal, EqualPeriodTotal, i-2 )
+/* Generated */             es.Close(i) <= es.Close(i-2) + es.average(settingEqual, EqualPeriodTotal, i-2 ) && // 1st and 3rd same close
+/* Generated */             es.Close(i) >= es.Close(i-2) - es.average(settingEqual, EqualPeriodTotal, i-2 )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         EqualPeriodTotal += es.rangeOf( Equal, i-2 ) - es.rangeOf( Equal, EqualTrailingIdx-2 );
+/* Generated */         EqualPeriodTotal += es.rangeOf(settingEqual, i-2 ) - es.rangeOf(settingEqual, EqualTrailingIdx-2 );
 /* Generated */         i++;
 /* Generated */         EqualTrailingIdx++;
 /* Generated */    } while( i <= endIdx );

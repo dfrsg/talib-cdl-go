@@ -209,12 +209,12 @@
    
    i = BodyDojiTrailingIdx;
    while( i < startIdx ) {
-        BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i );
+        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
         i++;
    }
    i = shadowLongTrailingIdx;
    while( i < startIdx ) {
-        shadowLongPeriodTotal += es.rangeOf( ShadowLong, i );
+        shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i );
         i++;
    }
 
@@ -229,10 +229,10 @@
    outIdx = 0;
    do
    {
-        if( es.realBody(i) <= es.average( BodyDoji, BodyDojiPeriodTotal, i ) &&
-            ( es.lowerShadow(i) > es.average( ShadowLong, shadowLongPeriodTotal, i ) 
+        if( es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) &&
+            ( es.lowerShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) 
               ||
-              es.upperShadow(i) > es.average( ShadowLong, shadowLongPeriodTotal, i )
+              es.upperShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i )
             )
           )
             outInteger[outIdx++] = 100;
@@ -241,8 +241,8 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i ) - es.rangeOf( BodyDoji, BodyDojiTrailingIdx );
-        shadowLongPeriodTotal += es.rangeOf( ShadowLong, i ) - es.rangeOf( ShadowLong, shadowLongTrailingIdx );
+        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
+        shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i ) - es.rangeOf(settingShadowLong, shadowLongTrailingIdx );
         i++; 
         BodyDojiTrailingIdx++;
         shadowLongTrailingIdx++;
@@ -338,28 +338,28 @@
 /* Generated */    shadowLongTrailingIdx = startIdx - settingShadowLong.avgPeriod;
 /* Generated */    i = BodyDojiTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i );
+/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = shadowLongTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         shadowLongPeriodTotal += es.rangeOf( ShadowLong, i );
+/* Generated */         shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    outIdx = 0;
 /* Generated */    do
 /* Generated */    {
-/* Generated */         if( es.realBody(i) <= es.average( BodyDoji, BodyDojiPeriodTotal, i ) &&
-/* Generated */             ( es.lowerShadow(i) > es.average( ShadowLong, shadowLongPeriodTotal, i ) 
+/* Generated */         if( es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) &&
+/* Generated */             ( es.lowerShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) 
 /* Generated */               ||
-/* Generated */               es.upperShadow(i) > es.average( ShadowLong, shadowLongPeriodTotal, i )
+/* Generated */               es.upperShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i )
 /* Generated */             )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i ) - es.rangeOf( BodyDoji, BodyDojiTrailingIdx );
-/* Generated */         shadowLongPeriodTotal += es.rangeOf( ShadowLong, i ) - es.rangeOf( ShadowLong, shadowLongTrailingIdx );
+/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
+/* Generated */         shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i ) - es.rangeOf(settingShadowLong, shadowLongTrailingIdx );
 /* Generated */         i++; 
 /* Generated */         BodyDojiTrailingIdx++;
 /* Generated */         shadowLongTrailingIdx++;

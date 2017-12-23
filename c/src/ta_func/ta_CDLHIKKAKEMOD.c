@@ -206,7 +206,7 @@
    nearTrailingIdx = startIdx - 3 - settingNear.avgPeriod;
    i = nearTrailingIdx;
    while( i < startIdx - 3 ) {
-        nearPeriodTotal += es.rangeOf( Near, i-2 );
+        nearPeriodTotal += es.rangeOf(settingNear, i-2 );
         i++;
    }
 
@@ -219,12 +219,12 @@
         if( es.High(i-2) < es.High(i-3) && es.Low(i-2) > es.Low(i-3) &&             // 2nd: lower high and higher low than 1st
             es.High(i-1) < es.High(i-2) && es.Low(i-1) > es.Low(i-2) &&             // 3rd: lower high and higher low than 2nd
             ( ( es.High(i) < es.High(i-1) && es.Low(i) < es.Low(i-1) &&             // (bull) 4th: lower high and lower low
-                es.Close(i-2) <= es.Low(i-2) + es.average( Near, nearPeriodTotal, i-2 )  
+                es.Close(i-2) <= es.Low(i-2) + es.average(settingNear, nearPeriodTotal, i-2 )  
                                                                                 // (bull) 2nd: close near the low
               )
               ||
               ( es.High(i) > es.High(i-1) && es.Low(i) > es.Low(i-1) &&             // (bear) 4th: higher high and higher low
-                es.Close(i-2) >= es.High(i-2) - es.average( Near, nearPeriodTotal, i-2 )
+                es.Close(i-2) >= es.High(i-2) - es.average(settingNear, nearPeriodTotal, i-2 )
                                                                                 // (bull) 2nd: close near the top
               )
             )
@@ -240,7 +240,7 @@
                 )
             ) 
                 patternIdx = 0;
-        nearPeriodTotal += es.rangeOf( Near, i-2 ) - es.rangeOf( Near, nearTrailingIdx-2 );
+        nearPeriodTotal += es.rangeOf(settingNear, i-2 ) - es.rangeOf(settingNear, nearTrailingIdx-2 );
         nearTrailingIdx++;
         i++; 
    }
@@ -269,12 +269,12 @@
         if( es.High(i-2) < es.High(i-3) && es.Low(i-2) > es.Low(i-3) &&             // 2nd: lower high and higher low than 1st
             es.High(i-1) < es.High(i-2) && es.Low(i-1) > es.Low(i-2) &&             // 3rd: lower high and higher low than 2nd
             ( ( es.High(i) < es.High(i-1) && es.Low(i) < es.Low(i-1) &&             // (bull) 4th: lower high and lower low
-                es.Close(i-2) <= es.Low(i-2) + es.average( Near, nearPeriodTotal, i-2 )  
+                es.Close(i-2) <= es.Low(i-2) + es.average(settingNear, nearPeriodTotal, i-2 )  
                                                                                 // (bull) 2nd: close near the low
               )
               ||
               ( es.High(i) > es.High(i-1) && es.Low(i) > es.Low(i-1) &&             // (bear) 4th: higher high and higher low
-                es.Close(i-2) >= es.High(i-2) - es.average( Near, nearPeriodTotal, i-2 )
+                es.Close(i-2) >= es.High(i-2) - es.average(settingNear, nearPeriodTotal, i-2 )
                                                                                 // (bull) 2nd: close near the top
               )
             )
@@ -294,7 +294,7 @@
                 patternIdx = 0;
             } else
                 outInteger[outIdx++] = 0;
-        nearPeriodTotal += es.rangeOf( Near, i-2 ) - es.rangeOf( Near, nearTrailingIdx-2 );
+        nearPeriodTotal += es.rangeOf(settingNear, i-2 ) - es.rangeOf(settingNear, nearTrailingIdx-2 );
         nearTrailingIdx++;
         i++; 
    } while( i <= endIdx );
@@ -387,7 +387,7 @@
 /* Generated */    nearTrailingIdx = startIdx - 3 - settingNear.avgPeriod;
 /* Generated */    i = nearTrailingIdx;
 /* Generated */    while( i < startIdx - 3 ) {
-/* Generated */         nearPeriodTotal += es.rangeOf( Near, i-2 );
+/* Generated */         nearPeriodTotal += es.rangeOf(settingNear, i-2 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    patternIdx = 0;
@@ -397,12 +397,12 @@
 /* Generated */         if( es.High(i-2) < es.High(i-3) && es.Low(i-2) > es.Low(i-3) &&             // 2nd: lower high and higher low than 1st
 /* Generated */             es.High(i-1) < es.High(i-2) && es.Low(i-1) > es.Low(i-2) &&             // 3rd: lower high and higher low than 2nd
 /* Generated */             ( ( es.High(i) < es.High(i-1) && es.Low(i) < es.Low(i-1) &&             // (bull) 4th: lower high and lower low
-/* Generated */                 es.Close(i-2) <= es.Low(i-2) + es.average( Near, nearPeriodTotal, i-2 )  
+/* Generated */                 es.Close(i-2) <= es.Low(i-2) + es.average(settingNear, nearPeriodTotal, i-2 )  
 /* Generated */                                                                                 // (bull) 2nd: close near the low
 /* Generated */               )
 /* Generated */               ||
 /* Generated */               ( es.High(i) > es.High(i-1) && es.Low(i) > es.Low(i-1) &&             // (bear) 4th: higher high and higher low
-/* Generated */                 es.Close(i-2) >= es.High(i-2) - es.average( Near, nearPeriodTotal, i-2 )
+/* Generated */                 es.Close(i-2) >= es.High(i-2) - es.average(settingNear, nearPeriodTotal, i-2 )
 /* Generated */                                                                                 // (bull) 2nd: close near the top
 /* Generated */               )
 /* Generated */             )
@@ -417,7 +417,7 @@
 /* Generated */                 )
 /* Generated */             ) 
 /* Generated */                 patternIdx = 0;
-/* Generated */         nearPeriodTotal += es.rangeOf( Near, i-2 ) - es.rangeOf( Near, nearTrailingIdx-2 );
+/* Generated */         nearPeriodTotal += es.rangeOf(settingNear, i-2 ) - es.rangeOf(settingNear, nearTrailingIdx-2 );
 /* Generated */         nearTrailingIdx++;
 /* Generated */         i++; 
 /* Generated */    }
@@ -428,12 +428,12 @@
 /* Generated */         if( es.High(i-2) < es.High(i-3) && es.Low(i-2) > es.Low(i-3) &&             // 2nd: lower high and higher low than 1st
 /* Generated */             es.High(i-1) < es.High(i-2) && es.Low(i-1) > es.Low(i-2) &&             // 3rd: lower high and higher low than 2nd
 /* Generated */             ( ( es.High(i) < es.High(i-1) && es.Low(i) < es.Low(i-1) &&             // (bull) 4th: lower high and lower low
-/* Generated */                 es.Close(i-2) <= es.Low(i-2) + es.average( Near, nearPeriodTotal, i-2 )  
+/* Generated */                 es.Close(i-2) <= es.Low(i-2) + es.average(settingNear, nearPeriodTotal, i-2 )  
 /* Generated */                                                                                 // (bull) 2nd: close near the low
 /* Generated */               )
 /* Generated */               ||
 /* Generated */               ( es.High(i) > es.High(i-1) && es.Low(i) > es.Low(i-1) &&             // (bear) 4th: higher high and higher low
-/* Generated */                 es.Close(i-2) >= es.High(i-2) - es.average( Near, nearPeriodTotal, i-2 )
+/* Generated */                 es.Close(i-2) >= es.High(i-2) - es.average(settingNear, nearPeriodTotal, i-2 )
 /* Generated */                                                                                 // (bull) 2nd: close near the top
 /* Generated */               )
 /* Generated */             )
@@ -452,7 +452,7 @@
 /* Generated */                 patternIdx = 0;
 /* Generated */             } else
 /* Generated */                 outInteger[outIdx++] = 0;
-/* Generated */         nearPeriodTotal += es.rangeOf( Near, i-2 ) - es.rangeOf( Near, nearTrailingIdx-2 );
+/* Generated */         nearPeriodTotal += es.rangeOf(settingNear, i-2 ) - es.rangeOf(settingNear, nearTrailingIdx-2 );
 /* Generated */         nearTrailingIdx++;
 /* Generated */         i++; 
 /* Generated */    } while( i <= endIdx );

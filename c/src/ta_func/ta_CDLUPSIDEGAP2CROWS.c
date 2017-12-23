@@ -209,12 +209,12 @@
    
    i = bodyLongTrailingIdx;
    while( i < startIdx-2 ) {
-        bodyLongPeriodTotal += es.rangeOf( BodyLong, i );
+        bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i );
         i++;
    }
    i = bodyShortTrailingIdx;
    while( i < startIdx-1 ) {
-        bodyShortPeriodTotal += es.rangeOf( BodyShort, i );
+        bodyShortPeriodTotal += es.rangeOf(settingBodyShort, i );
         i++;
    }
    i = startIdx;
@@ -238,9 +238,9 @@
    do
    {
         if( es.candleColor(i-2) == 1 &&                                                             // 1st: white
-            es.realBody(i-2) > es.average( BodyLong, bodyLongPeriodTotal, i-2 ) &&         //      long
+            es.realBody(i-2) > es.average(settingBodyLong, bodyLongPeriodTotal, i-2 ) &&         //      long
             es.candleColor(i-1) == -1 &&                                                            // 2nd: black
-            es.realBody(i-1) <= es.average( BodyShort, bodyShortPeriodTotal, i-1 ) &&      //      short
+            es.realBody(i-1) <= es.average(settingBodyShort, bodyShortPeriodTotal, i-1 ) &&      //      short
             es.realBodyGAPUP(i-1,i-2) &&                                                            //      gapping up
             es.candleColor(i) == -1 &&                                                              // 3rd: black
             es.Open(i) > es.Open(i-1) && es.Close(i) < es.Close(i-1) &&                                 // 3rd: engulfing prior rb
@@ -252,8 +252,8 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        bodyLongPeriodTotal += es.rangeOf( BodyLong, i-2 ) - es.rangeOf( BodyLong, bodyLongTrailingIdx );
-        bodyShortPeriodTotal += es.rangeOf( BodyShort, i-1 ) - es.rangeOf( BodyShort, bodyShortTrailingIdx );
+        bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i-2 ) - es.rangeOf(settingBodyLong, bodyLongTrailingIdx );
+        bodyShortPeriodTotal += es.rangeOf(settingBodyShort, i-1 ) - es.rangeOf(settingBodyShort, bodyShortTrailingIdx );
         i++; 
         bodyLongTrailingIdx++;
         bodyShortTrailingIdx++;
@@ -350,12 +350,12 @@
 /* Generated */    bodyShortTrailingIdx = startIdx -1 - settingBodyShort.avgPeriod;
 /* Generated */    i = bodyLongTrailingIdx;
 /* Generated */    while( i < startIdx-2 ) {
-/* Generated */         bodyLongPeriodTotal += es.rangeOf( BodyLong, i );
+/* Generated */         bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = bodyShortTrailingIdx;
 /* Generated */    while( i < startIdx-1 ) {
-/* Generated */         bodyShortPeriodTotal += es.rangeOf( BodyShort, i );
+/* Generated */         bodyShortPeriodTotal += es.rangeOf(settingBodyShort, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -365,9 +365,9 @@
 /* Generated */    do
 /* Generated */    {
 /* Generated */         if( es.candleColor(i-2) == 1 &&                                                             // 1st: white
-/* Generated */             es.realBody(i-2) > es.average( BodyLong, bodyLongPeriodTotal, i-2 ) &&         //      long
+/* Generated */             es.realBody(i-2) > es.average(settingBodyLong, bodyLongPeriodTotal, i-2 ) &&         //      long
 /* Generated */             es.candleColor(i-1) == -1 &&                                                            // 2nd: black
-/* Generated */             es.realBody(i-1) <= es.average( BodyShort, bodyShortPeriodTotal, i-1 ) &&      //      short
+/* Generated */             es.realBody(i-1) <= es.average(settingBodyShort, bodyShortPeriodTotal, i-1 ) &&      //      short
 /* Generated */             es.realBodyGAPUP(i-1,i-2) &&                                                            //      gapping up
 /* Generated */             es.candleColor(i) == -1 &&                                                              // 3rd: black
 /* Generated */             es.Open(i) > es.Open(i-1) && es.Close(i) < es.Close(i-1) &&                                 // 3rd: engulfing prior rb
@@ -376,8 +376,8 @@
 /* Generated */             outInteger[outIdx++] = -100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         bodyLongPeriodTotal += es.rangeOf( BodyLong, i-2 ) - es.rangeOf( BodyLong, bodyLongTrailingIdx );
-/* Generated */         bodyShortPeriodTotal += es.rangeOf( BodyShort, i-1 ) - es.rangeOf( BodyShort, bodyShortTrailingIdx );
+/* Generated */         bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i-2 ) - es.rangeOf(settingBodyLong, bodyLongTrailingIdx );
+/* Generated */         bodyShortPeriodTotal += es.rangeOf(settingBodyShort, i-1 ) - es.rangeOf(settingBodyShort, bodyShortTrailingIdx );
 /* Generated */         i++; 
 /* Generated */         bodyLongTrailingIdx++;
 /* Generated */         bodyShortTrailingIdx++;

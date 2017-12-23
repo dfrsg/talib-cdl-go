@@ -217,17 +217,17 @@
    
    i = BodyDojiTrailingIdx;
    while( i < startIdx ) {
-        BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i );
+        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
         i++;
    }
    i = shadowLongTrailingIdx;
    while( i < startIdx ) {
-        shadowLongPeriodTotal += es.rangeOf( ShadowLong, i );
+        shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i );
         i++;
    }
    i = nearTrailingIdx;
    while( i < startIdx ) {
-        nearPeriodTotal += es.rangeOf( Near, i );
+        nearPeriodTotal += es.rangeOf(settingNear, i );
         i++;
    }
 
@@ -246,15 +246,15 @@
 #ifdef TA_LIB_PRO
       /* Section for code distributed with TA-Lib Pro only. */
 #else
-        if( es.realBody(i) <= es.average( BodyDoji, BodyDojiPeriodTotal, i ) &&            // doji
-            es.lowerShadow(i) > es.average( ShadowLong, shadowLongPeriodTotal, i ) &&      // long shadow
-            es.upperShadow(i) > es.average( ShadowLong, shadowLongPeriodTotal, i ) &&      // long shadow
+        if( es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) &&            // doji
+            es.lowerShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) &&      // long shadow
+            es.upperShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) &&      // long shadow
             (                                                                                       // body near midpoint
                 math.Min( es.Open(i), es.Close(i) ) 
-                    <= es.Low(i) + TA_HIGHLOWRANGE(i) / 2 + es.average( Near, nearPeriodTotal, i )
+                    <= es.Low(i) + TA_HIGHLOWRANGE(i) / 2 + es.average(settingNear, nearPeriodTotal, i )
                 &&
                 math.Max( es.Open(i), es.Close(i) ) 
-                    >= es.Low(i) + TA_HIGHLOWRANGE(i) / 2 - es.average( Near, nearPeriodTotal, i )
+                    >= es.Low(i) + TA_HIGHLOWRANGE(i) / 2 - es.average(settingNear, nearPeriodTotal, i )
             )
           )
             outInteger[outIdx++] = 100;
@@ -264,9 +264,9 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i ) - es.rangeOf( BodyDoji, BodyDojiTrailingIdx );
-        shadowLongPeriodTotal += es.rangeOf( ShadowLong, i ) - es.rangeOf( ShadowLong, shadowLongTrailingIdx );
-        nearPeriodTotal += es.rangeOf( Near, i ) - es.rangeOf( Near, nearTrailingIdx );
+        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
+        shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i ) - es.rangeOf(settingShadowLong, shadowLongTrailingIdx );
+        nearPeriodTotal += es.rangeOf(settingNear, i ) - es.rangeOf(settingNear, nearTrailingIdx );
 #endif
 
         i++; 
@@ -369,17 +369,17 @@
 /* Generated */    nearTrailingIdx = startIdx - settingNear.avgPeriod;
 /* Generated */    i = BodyDojiTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i );
+/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = shadowLongTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         shadowLongPeriodTotal += es.rangeOf( ShadowLong, i );
+/* Generated */         shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = nearTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         nearPeriodTotal += es.rangeOf( Near, i );
+/* Generated */         nearPeriodTotal += es.rangeOf(settingNear, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    outIdx = 0;
@@ -387,23 +387,23 @@
 /* Generated */    {
 /* Generated */ #ifdef TA_LIB_PRO
 /* Generated */ #else
-/* Generated */         if( es.realBody(i) <= es.average( BodyDoji, BodyDojiPeriodTotal, i ) &&            // doji
-/* Generated */             es.lowerShadow(i) > es.average( ShadowLong, shadowLongPeriodTotal, i ) &&      // long shadow
-/* Generated */             es.upperShadow(i) > es.average( ShadowLong, shadowLongPeriodTotal, i ) &&      // long shadow
+/* Generated */         if( es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) &&            // doji
+/* Generated */             es.lowerShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) &&      // long shadow
+/* Generated */             es.upperShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) &&      // long shadow
 /* Generated */             (                                                                                       // body near midpoint
 /* Generated */                 math.Min( es.Open(i), es.Close(i) ) 
-/* Generated */                     <= es.Low(i) + TA_HIGHLOWRANGE(i) / 2 + es.average( Near, nearPeriodTotal, i )
+/* Generated */                     <= es.Low(i) + TA_HIGHLOWRANGE(i) / 2 + es.average(settingNear, nearPeriodTotal, i )
 /* Generated */                 &&
 /* Generated */                 math.Max( es.Open(i), es.Close(i) ) 
-/* Generated */                     >= es.Low(i) + TA_HIGHLOWRANGE(i) / 2 - es.average( Near, nearPeriodTotal, i )
+/* Generated */                     >= es.Low(i) + TA_HIGHLOWRANGE(i) / 2 - es.average(settingNear, nearPeriodTotal, i )
 /* Generated */             )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i ) - es.rangeOf( BodyDoji, BodyDojiTrailingIdx );
-/* Generated */         shadowLongPeriodTotal += es.rangeOf( ShadowLong, i ) - es.rangeOf( ShadowLong, shadowLongTrailingIdx );
-/* Generated */         nearPeriodTotal += es.rangeOf( Near, i ) - es.rangeOf( Near, nearTrailingIdx );
+/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
+/* Generated */         shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i ) - es.rangeOf(settingShadowLong, shadowLongTrailingIdx );
+/* Generated */         nearPeriodTotal += es.rangeOf(settingNear, i ) - es.rangeOf(settingNear, nearTrailingIdx );
 /* Generated */ #endif
 /* Generated */         i++; 
 /* Generated */         BodyDojiTrailingIdx++;

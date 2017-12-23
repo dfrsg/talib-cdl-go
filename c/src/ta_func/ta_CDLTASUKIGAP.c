@@ -207,7 +207,7 @@
 
    i = nearTrailingIdx;
    while( i < startIdx ) {
-        nearPeriodTotal += es.rangeOf( Near, i-1 );
+        nearPeriodTotal += es.rangeOf(settingNear, i-1 );
         i++;
    }
    i = startIdx;
@@ -236,7 +236,7 @@
                 es.Close(i) < es.Open(i-1) &&                                 //      and closes under the white rb
                 es.Close(i) > math.Max(es.Close(i-2), es.Open(i-2)) &&              //      inside the gap
                                                                             // size of 2 rb near the same
-                std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average( Near, nearPeriodTotal, i-1 )
+                std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average(settingNear, nearPeriodTotal, i-1 )
             ) ||
             (
                 es.realBodyGAPDOWN(i-1,i-2) &&                              // downside gap
@@ -246,7 +246,7 @@
                 es.Close(i) > es.Open(i-1) &&                                 //      and closes above the black rb
                 es.Close(i) < math.Min(es.Close(i-2), es.Open(i-2)) &&              //      inside the gap
                                                                             // size of 2 rb near the same
-                std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average( Near, nearPeriodTotal, i-1 )
+                std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average(settingNear, nearPeriodTotal, i-1 )
             )
         )
             outInteger[outIdx++] = es.candleColor(i-1) * 100;
@@ -255,7 +255,7 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        nearPeriodTotal += es.rangeOf( Near, i-1 ) - es.rangeOf( Near, nearTrailingIdx-1 );
+        nearPeriodTotal += es.rangeOf(settingNear, i-1 ) - es.rangeOf(settingNear, nearTrailingIdx-1 );
         i++; 
         nearTrailingIdx++;
    } while( i <= endIdx );
@@ -348,7 +348,7 @@
 /* Generated */    nearTrailingIdx = startIdx - settingNear.avgPeriod;
 /* Generated */    i = nearTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         nearPeriodTotal += es.rangeOf( Near, i-1 );
+/* Generated */         nearPeriodTotal += es.rangeOf(settingNear, i-1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -364,7 +364,7 @@
 /* Generated */                 es.Close(i) < es.Open(i-1) &&                                 //      and closes under the white rb
 /* Generated */                 es.Close(i) > math.Max(es.Close(i-2), es.Open(i-2)) &&              //      inside the gap
 /* Generated */                                                                             // size of 2 rb near the same
-/* Generated */                 std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average( Near, nearPeriodTotal, i-1 )
+/* Generated */                 std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average(settingNear, nearPeriodTotal, i-1 )
 /* Generated */             ) ||
 /* Generated */             (
 /* Generated */                 es.realBodyGAPDOWN(i-1,i-2) &&                              // downside gap
@@ -374,13 +374,13 @@
 /* Generated */                 es.Close(i) > es.Open(i-1) &&                                 //      and closes above the black rb
 /* Generated */                 es.Close(i) < math.Min(es.Close(i-2), es.Open(i-2)) &&              //      inside the gap
 /* Generated */                                                                             // size of 2 rb near the same
-/* Generated */                 std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average( Near, nearPeriodTotal, i-1 )
+/* Generated */                 std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average(settingNear, nearPeriodTotal, i-1 )
 /* Generated */             )
 /* Generated */         )
 /* Generated */             outInteger[outIdx++] = es.candleColor(i-1) * 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         nearPeriodTotal += es.rangeOf( Near, i-1 ) - es.rangeOf( Near, nearTrailingIdx-1 );
+/* Generated */         nearPeriodTotal += es.rangeOf(settingNear, i-1 ) - es.rangeOf(settingNear, nearTrailingIdx-1 );
 /* Generated */         i++; 
 /* Generated */         nearTrailingIdx++;
 /* Generated */    } while( i <= endIdx );

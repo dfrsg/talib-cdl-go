@@ -210,7 +210,7 @@
    
    i = BodyDojiTrailingIdx;
    while( i < startIdx ) {
-        BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i );
+        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
         i++;
    }
 
@@ -232,14 +232,14 @@
 #else
    do
    {
-        if( es.realBody(i) <= es.average( BodyDoji, BodyDojiPeriodTotal, i ) )
+        if( es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) )
             outInteger[outIdx++] = 100;
         else
             outInteger[outIdx++] = 0;
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i ) - es.rangeOf( BodyDoji, BodyDojiTrailingIdx );
+        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
         i++; 
         BodyDojiTrailingIdx++;
    } while( i <= endIdx );
@@ -335,7 +335,7 @@
 /* Generated */    BodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
 /* Generated */    i = BodyDojiTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i );
+/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */ #ifdef TA_LIB_PRO
@@ -345,11 +345,11 @@
 /* Generated */ #else
 /* Generated */    do
 /* Generated */    {
-/* Generated */         if( es.realBody(i) <= es.average( BodyDoji, BodyDojiPeriodTotal, i ) )
+/* Generated */         if( es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i ) - es.rangeOf( BodyDoji, BodyDojiTrailingIdx );
+/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
 /* Generated */         i++; 
 /* Generated */         BodyDojiTrailingIdx++;
 /* Generated */    } while( i <= endIdx );

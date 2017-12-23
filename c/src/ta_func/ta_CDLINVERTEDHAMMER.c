@@ -213,17 +213,17 @@
    
    i = BodyTrailingIdx;
    while( i < startIdx ) {
-        BodyPeriodTotal += es.rangeOf( BodyShort, i );
+        BodyPeriodTotal += es.rangeOf(settingBodyShort, i );
         i++;
    }
    i = shadowLongTrailingIdx;
    while( i < startIdx ) {
-        shadowLongPeriodTotal += es.rangeOf( ShadowLong, i );
+        shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i );
         i++;
    }
    i = shadowVeryShortTrailingIdx;
    while( i < startIdx ) {
-        shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i );
+        shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i );
         i++;
    }
 
@@ -247,9 +247,9 @@
 #ifdef TA_LIB_PRO
       /* Section for code distributed with TA-Lib Pro only. */
 #else
-        if( es.realBody(i) < es.average( BodyShort, BodyPeriodTotal, i ) &&                        // small rb
-            es.upperShadow(i) > es.average( ShadowLong, shadowLongPeriodTotal, i ) &&              // long upper shadow
-            es.lowerShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i ) &&    // very short lower shadow
+        if( es.realBody(i) < es.average(settingBodyShort, BodyPeriodTotal, i ) &&                        // small rb
+            es.upperShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) &&              // long upper shadow
+            es.lowerShadow(i) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i ) &&    // very short lower shadow
             es.realBodyGAPDOWN(i, i-1) )                                                                    // gap down
             outInteger[outIdx++] = 100;
         else
@@ -258,12 +258,12 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        BodyPeriodTotal += es.rangeOf( BodyShort, i ) 
-            - es.rangeOf( BodyShort, BodyTrailingIdx );
-        shadowLongPeriodTotal += es.rangeOf( ShadowLong, i ) 
-            - es.rangeOf( ShadowLong, shadowLongTrailingIdx );
-        shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i ) 
-            - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx );
+        BodyPeriodTotal += es.rangeOf(settingBodyShort, i ) 
+            - es.rangeOf(settingBodyShort, BodyTrailingIdx );
+        shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i ) 
+            - es.rangeOf(settingShadowLong, shadowLongTrailingIdx );
+        shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i ) 
+            - es.rangeOf(settingShadowVeryShort, shadowVeryShortTrailingIdx );
         i++; 
         BodyTrailingIdx++;
         shadowLongTrailingIdx++;
@@ -362,17 +362,17 @@
 /* Generated */    shadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
 /* Generated */    i = BodyTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         BodyPeriodTotal += es.rangeOf( BodyShort, i );
+/* Generated */         BodyPeriodTotal += es.rangeOf(settingBodyShort, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = shadowLongTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         shadowLongPeriodTotal += es.rangeOf( ShadowLong, i );
+/* Generated */         shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = shadowVeryShortTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i );
+/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */ #ifdef TA_LIB_PRO
@@ -382,20 +382,20 @@
 /* Generated */    {
 /* Generated */ #ifdef TA_LIB_PRO
 /* Generated */ #else
-/* Generated */         if( es.realBody(i) < es.average( BodyShort, BodyPeriodTotal, i ) &&                        // small rb
-/* Generated */             es.upperShadow(i) > es.average( ShadowLong, shadowLongPeriodTotal, i ) &&              // long upper shadow
-/* Generated */             es.lowerShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i ) &&    // very short lower shadow
+/* Generated */         if( es.realBody(i) < es.average(settingBodyShort, BodyPeriodTotal, i ) &&                        // small rb
+/* Generated */             es.upperShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) &&              // long upper shadow
+/* Generated */             es.lowerShadow(i) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i ) &&    // very short lower shadow
 /* Generated */             es.realBodyGAPDOWN(i, i-1) )                                                                    // gap down
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
 /* Generated */ #endif
-/* Generated */         BodyPeriodTotal += es.rangeOf( BodyShort, i ) 
-/* Generated */             - es.rangeOf( BodyShort, BodyTrailingIdx );
-/* Generated */         shadowLongPeriodTotal += es.rangeOf( ShadowLong, i ) 
-/* Generated */             - es.rangeOf( ShadowLong, shadowLongTrailingIdx );
-/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i ) 
-/* Generated */             - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx );
+/* Generated */         BodyPeriodTotal += es.rangeOf(settingBodyShort, i ) 
+/* Generated */             - es.rangeOf(settingBodyShort, BodyTrailingIdx );
+/* Generated */         shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i ) 
+/* Generated */             - es.rangeOf(settingShadowLong, shadowLongTrailingIdx );
+/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i ) 
+/* Generated */             - es.rangeOf(settingShadowVeryShort, shadowVeryShortTrailingIdx );
 /* Generated */         i++; 
 /* Generated */         BodyTrailingIdx++;
 /* Generated */         shadowLongTrailingIdx++;

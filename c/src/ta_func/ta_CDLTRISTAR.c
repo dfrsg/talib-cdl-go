@@ -212,7 +212,7 @@
    
    i = BodyTrailingIdx;
    while( i < startIdx-2 ) {
-        BodyPeriodTotal += es.rangeOf( BodyDoji, i );
+        BodyPeriodTotal += es.rangeOf(settingBodyDoji, i );
         i++;
    }
 
@@ -230,9 +230,9 @@
 #else
    do
    {
-        if( es.realBody(i-2) <= es.average( BodyDoji, BodyPeriodTotal, i-2 ) &&    // 1st: doji
-            es.realBody(i-1) <= es.average( BodyDoji, BodyPeriodTotal, i-2 ) &&    // 2nd: doji
-            es.realBody(i) <= es.average( BodyDoji, BodyPeriodTotal, i-2 ) ) {     // 3rd: doji
+        if( es.realBody(i-2) <= es.average(settingBodyDoji, BodyPeriodTotal, i-2 ) &&    // 1st: doji
+            es.realBody(i-1) <= es.average(settingBodyDoji, BodyPeriodTotal, i-2 ) &&    // 2nd: doji
+            es.realBody(i) <= es.average(settingBodyDoji, BodyPeriodTotal, i-2 ) ) {     // 3rd: doji
             outInteger[outIdx] = 0;
             if ( es.realBodyGAPUP(i-1,i-2)                                                  // 2nd gaps up
                  &&
@@ -251,7 +251,7 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        BodyPeriodTotal += es.rangeOf( BodyDoji, i-2 ) - es.rangeOf( BodyDoji, BodyTrailingIdx );
+        BodyPeriodTotal += es.rangeOf(settingBodyDoji, i-2 ) - es.rangeOf(settingBodyDoji, BodyTrailingIdx );
         i++;
         BodyTrailingIdx++;
    } while( i <= endIdx );
@@ -347,7 +347,7 @@
 /* Generated */    BodyTrailingIdx = startIdx -2 - settingBodyDoji.avgPeriod;
 /* Generated */    i = BodyTrailingIdx;
 /* Generated */    while( i < startIdx-2 ) {
-/* Generated */         BodyPeriodTotal += es.rangeOf( BodyDoji, i );
+/* Generated */         BodyPeriodTotal += es.rangeOf(settingBodyDoji, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -356,9 +356,9 @@
 /* Generated */ #else
 /* Generated */    do
 /* Generated */    {
-/* Generated */         if( es.realBody(i-2) <= es.average( BodyDoji, BodyPeriodTotal, i-2 ) &&    // 1st: doji
-/* Generated */             es.realBody(i-1) <= es.average( BodyDoji, BodyPeriodTotal, i-2 ) &&    // 2nd: doji
-/* Generated */             es.realBody(i) <= es.average( BodyDoji, BodyPeriodTotal, i-2 ) ) {     // 3rd: doji
+/* Generated */         if( es.realBody(i-2) <= es.average(settingBodyDoji, BodyPeriodTotal, i-2 ) &&    // 1st: doji
+/* Generated */             es.realBody(i-1) <= es.average(settingBodyDoji, BodyPeriodTotal, i-2 ) &&    // 2nd: doji
+/* Generated */             es.realBody(i) <= es.average(settingBodyDoji, BodyPeriodTotal, i-2 ) ) {     // 3rd: doji
 /* Generated */             outInteger[outIdx] = 0;
 /* Generated */             if ( es.realBodyGAPUP(i-1,i-2)                                                  // 2nd gaps up
 /* Generated */                  &&
@@ -374,7 +374,7 @@
 /* Generated */         }
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         BodyPeriodTotal += es.rangeOf( BodyDoji, i-2 ) - es.rangeOf( BodyDoji, BodyTrailingIdx );
+/* Generated */         BodyPeriodTotal += es.rangeOf(settingBodyDoji, i-2 ) - es.rangeOf(settingBodyDoji, BodyTrailingIdx );
 /* Generated */         i++;
 /* Generated */         BodyTrailingIdx++;
 /* Generated */    } while( i <= endIdx );

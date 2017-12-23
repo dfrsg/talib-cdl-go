@@ -207,7 +207,7 @@
    
    i = BodyTrailingIdx;
    while( i < startIdx ) {
-        BodyPeriodTotal += es.rangeOf( BodyShort, i );
+        BodyPeriodTotal += es.rangeOf(settingBodyShort, i );
         i++;
    }
 
@@ -222,7 +222,7 @@
    outIdx = 0;
    do
    {
-        if( es.realBody(i) < es.average( BodyShort, BodyPeriodTotal, i ) && 
+        if( es.realBody(i) < es.average(settingBodyShort, BodyPeriodTotal, i ) && 
             es.upperShadow(i) > es.realBody(i) &&
             es.lowerShadow(i) > es.realBody(i)
           )
@@ -232,7 +232,7 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        BodyPeriodTotal += es.rangeOf( BodyShort, i ) - es.rangeOf( BodyShort, BodyTrailingIdx );
+        BodyPeriodTotal += es.rangeOf(settingBodyShort, i ) - es.rangeOf(settingBodyShort, BodyTrailingIdx );
         i++; 
         BodyTrailingIdx++;
    } while( i <= endIdx );
@@ -325,20 +325,20 @@
 /* Generated */    BodyTrailingIdx = startIdx - settingBodyShort.avgPeriod;
 /* Generated */    i = BodyTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         BodyPeriodTotal += es.rangeOf( BodyShort, i );
+/* Generated */         BodyPeriodTotal += es.rangeOf(settingBodyShort, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    outIdx = 0;
 /* Generated */    do
 /* Generated */    {
-/* Generated */         if( es.realBody(i) < es.average( BodyShort, BodyPeriodTotal, i ) && 
+/* Generated */         if( es.realBody(i) < es.average(settingBodyShort, BodyPeriodTotal, i ) && 
 /* Generated */             es.upperShadow(i) > es.realBody(i) &&
 /* Generated */             es.lowerShadow(i) > es.realBody(i)
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = es.candleColor(i) * 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         BodyPeriodTotal += es.rangeOf( BodyShort, i ) - es.rangeOf( BodyShort, BodyTrailingIdx );
+/* Generated */         BodyPeriodTotal += es.rangeOf(settingBodyShort, i ) - es.rangeOf(settingBodyShort, BodyTrailingIdx );
 /* Generated */         i++; 
 /* Generated */         BodyTrailingIdx++;
 /* Generated */    } while( i <= endIdx );

@@ -230,7 +230,7 @@
 
    i = bodyLongTrailingIdx;
    while( i < startIdx ) {
-        bodyLongPeriodTotal += es.rangeOf( BodyLong, i-1 );
+        bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i-1 );
         i++;
    }
    i = startIdx;
@@ -253,7 +253,7 @@
       /* Section for code distributed with TA-Lib Pro only. */
 #else
         if( es.candleColor(i-1) == 1 &&                                                     // 1st: white
-            es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal, i-1 ) && //      long
+            es.realBody(i-1) > es.average(settingBodyLong, bodyLongPeriodTotal, i-1 ) && //      long
             es.candleColor(i) == -1 &&                                                      // 2nd: black
             es.Open(i) > es.High(i-1) &&                                                      //      open above prior high
             es.Close(i) > es.Open(i-1) &&                                                     //      close within prior body
@@ -266,7 +266,7 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        bodyLongPeriodTotal += es.rangeOf( BodyLong, i-1 ) - es.rangeOf( BodyLong, bodyLongTrailingIdx-1 );
+        bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i-1 ) - es.rangeOf(settingBodyLong, bodyLongTrailingIdx-1 );
         i++; 
         bodyLongTrailingIdx++;
    } while( i <= endIdx );
@@ -367,7 +367,7 @@
 /* Generated */    bodyLongTrailingIdx = startIdx - settingBodyLong.avgPeriod;
 /* Generated */    i = bodyLongTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         bodyLongPeriodTotal += es.rangeOf( BodyLong, i-1 );
+/* Generated */         bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i-1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -377,7 +377,7 @@
 /* Generated */ #ifdef TA_LIB_PRO
 /* Generated */ #else
 /* Generated */         if( es.candleColor(i-1) == 1 &&                                                     // 1st: white
-/* Generated */             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal, i-1 ) && //      long
+/* Generated */             es.realBody(i-1) > es.average(settingBodyLong, bodyLongPeriodTotal, i-1 ) && //      long
 /* Generated */             es.candleColor(i) == -1 &&                                                      // 2nd: black
 /* Generated */             es.Open(i) > es.High(i-1) &&                                                      //      open above prior high
 /* Generated */             es.Close(i) > es.Open(i-1) &&                                                     //      close within prior body
@@ -387,7 +387,7 @@
 /* Generated */             outInteger[outIdx++] = -100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         bodyLongPeriodTotal += es.rangeOf( BodyLong, i-1 ) - es.rangeOf( BodyLong, bodyLongTrailingIdx-1 );
+/* Generated */         bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i-1 ) - es.rangeOf(settingBodyLong, bodyLongTrailingIdx-1 );
 /* Generated */         i++; 
 /* Generated */         bodyLongTrailingIdx++;
 /* Generated */    } while( i <= endIdx );

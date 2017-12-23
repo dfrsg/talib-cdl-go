@@ -222,24 +222,24 @@
    
    i = bodyLongTrailingIdx;
    while( i < startIdx ) {
-        bodyLongPeriodTotal[2] += es.rangeOf( BodyLong, i-2 );
-        bodyLongPeriodTotal[1] += es.rangeOf( BodyLong, i-1 );
+        bodyLongPeriodTotal[2] += es.rangeOf(settingBodyLong, i-2 );
+        bodyLongPeriodTotal[1] += es.rangeOf(settingBodyLong, i-1 );
         i++;
    }
    i = bodyShortTrailingIdx;
    while( i < startIdx ) {
-        bodyShortPeriodTotal += es.rangeOf( BodyShort, i );
+        bodyShortPeriodTotal += es.rangeOf(settingBodyShort, i );
         i++;
    }
    i = shadowVeryShortTrailingIdx;
    while( i < startIdx ) {
-        shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i-1 );
+        shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i-1 );
         i++;
    }
    i = nearTrailingIdx;
    while( i < startIdx ) {
-        nearPeriodTotal[2] += es.rangeOf( Near, i-2 );
-        nearPeriodTotal[1] += es.rangeOf( Near, i-1 );
+        nearPeriodTotal[2] += es.rangeOf(settingNear, i-2 );
+        nearPeriodTotal[1] += es.rangeOf(settingNear, i-1 );
         i++;
    }
    i = startIdx;
@@ -267,16 +267,16 @@
             es.candleColor(i-1) == 1 &&                                             // 2nd white
             es.candleColor(i) == 1 &&                                               // 3rd white
             es.Close(i) > es.Close(i-1) && es.Close(i-1) > es.Close(i-2) &&             // consecutive higher closes
-            es.realBody(i-2) > es.average( BodyLong, bodyLongPeriodTotal[2], i-2 ) &&  // 1st: long real body
-            es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal[1], i-1 ) &&  // 2nd: long real body
+            es.realBody(i-2) > es.average(settingBodyLong, bodyLongPeriodTotal[2], i-2 ) &&  // 1st: long real body
+            es.realBody(i-1) > es.average(settingBodyLong, bodyLongPeriodTotal[1], i-1 ) &&  // 2nd: long real body
                                                                                     // very short upper shadow 
-            es.upperShadow(i-1) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i-1 ) &&
+            es.upperShadow(i-1) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i-1 ) &&
                                                                                     // opens within/near 1st real body
             es.Open(i-1) > es.Open(i-2) &&                                                    
-            es.Open(i-1) <= es.Close(i-2) + es.average( Near, nearPeriodTotal[2], i-2 ) &&
-            es.realBody(i) < es.average( BodyShort, bodyShortPeriodTotal, i ) &&       // 3rd: small real body
+            es.Open(i-1) <= es.Close(i-2) + es.average(settingNear, nearPeriodTotal[2], i-2 ) &&
+            es.realBody(i) < es.average(settingBodyShort, bodyShortPeriodTotal, i ) &&       // 3rd: small real body
                                                                                     // rides on the shoulder of 2nd real body
-            es.Open(i) >= es.Close(i-1) - es.realBody(i) - es.average( Near, nearPeriodTotal[1], i-1 )
+            es.Open(i) >= es.Close(i-1) - es.realBody(i) - es.average(settingNear, nearPeriodTotal[1], i-1 )
           )
             outInteger[outIdx++] = -100;
         else
@@ -285,14 +285,14 @@
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
         for (totIdx = 2; totIdx >= 1; --totIdx) {
-            bodyLongPeriodTotal[totIdx] += es.rangeOf( BodyLong, i-totIdx ) 
-                                         - es.rangeOf( BodyLong, bodyLongTrailingIdx-totIdx );
-            nearPeriodTotal[totIdx] += es.rangeOf( Near, i-totIdx ) 
-                                     - es.rangeOf( Near, nearTrailingIdx-totIdx );
+            bodyLongPeriodTotal[totIdx] += es.rangeOf(settingBodyLong, i-totIdx ) 
+                                         - es.rangeOf(settingBodyLong, bodyLongTrailingIdx-totIdx );
+            nearPeriodTotal[totIdx] += es.rangeOf(settingNear, i-totIdx ) 
+                                     - es.rangeOf(settingNear, nearTrailingIdx-totIdx );
         }
-        bodyShortPeriodTotal += es.rangeOf( BodyShort, i ) - es.rangeOf( BodyShort, bodyShortTrailingIdx );
-        shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i-1 ) 
-                                    - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx-1 );
+        bodyShortPeriodTotal += es.rangeOf(settingBodyShort, i ) - es.rangeOf(settingBodyShort, bodyShortTrailingIdx );
+        shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i-1 ) 
+                                    - es.rangeOf(settingShadowVeryShort, shadowVeryShortTrailingIdx-1 );
         i++; 
         bodyLongTrailingIdx++;
         bodyShortTrailingIdx++;
@@ -402,24 +402,24 @@
 /* Generated */    nearTrailingIdx = startIdx - settingNear.avgPeriod;
 /* Generated */    i = bodyLongTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         bodyLongPeriodTotal[2] += es.rangeOf( BodyLong, i-2 );
-/* Generated */         bodyLongPeriodTotal[1] += es.rangeOf( BodyLong, i-1 );
+/* Generated */         bodyLongPeriodTotal[2] += es.rangeOf(settingBodyLong, i-2 );
+/* Generated */         bodyLongPeriodTotal[1] += es.rangeOf(settingBodyLong, i-1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = bodyShortTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         bodyShortPeriodTotal += es.rangeOf( BodyShort, i );
+/* Generated */         bodyShortPeriodTotal += es.rangeOf(settingBodyShort, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = shadowVeryShortTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i-1 );
+/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i-1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = nearTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         nearPeriodTotal[2] += es.rangeOf( Near, i-2 );
-/* Generated */         nearPeriodTotal[1] += es.rangeOf( Near, i-1 );
+/* Generated */         nearPeriodTotal[2] += es.rangeOf(settingNear, i-2 );
+/* Generated */         nearPeriodTotal[1] += es.rangeOf(settingNear, i-1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -432,29 +432,29 @@
 /* Generated */             es.candleColor(i-1) == 1 &&                                             // 2nd white
 /* Generated */             es.candleColor(i) == 1 &&                                               // 3rd white
 /* Generated */             es.Close(i) > es.Close(i-1) && es.Close(i-1) > es.Close(i-2) &&             // consecutive higher closes
-/* Generated */             es.realBody(i-2) > es.average( BodyLong, bodyLongPeriodTotal[2], i-2 ) &&  // 1st: long real body
-/* Generated */             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal[1], i-1 ) &&  // 2nd: long real body
+/* Generated */             es.realBody(i-2) > es.average(settingBodyLong, bodyLongPeriodTotal[2], i-2 ) &&  // 1st: long real body
+/* Generated */             es.realBody(i-1) > es.average(settingBodyLong, bodyLongPeriodTotal[1], i-1 ) &&  // 2nd: long real body
 /* Generated */                                                                                     // very short upper shadow 
-/* Generated */             es.upperShadow(i-1) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i-1 ) &&
+/* Generated */             es.upperShadow(i-1) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i-1 ) &&
 /* Generated */                                                                                     // opens within/near 1st real body
 /* Generated */             es.Open(i-1) > es.Open(i-2) &&                                                    
-/* Generated */             es.Open(i-1) <= es.Close(i-2) + es.average( Near, nearPeriodTotal[2], i-2 ) &&
-/* Generated */             es.realBody(i) < es.average( BodyShort, bodyShortPeriodTotal, i ) &&       // 3rd: small real body
+/* Generated */             es.Open(i-1) <= es.Close(i-2) + es.average(settingNear, nearPeriodTotal[2], i-2 ) &&
+/* Generated */             es.realBody(i) < es.average(settingBodyShort, bodyShortPeriodTotal, i ) &&       // 3rd: small real body
 /* Generated */                                                                                     // rides on the shoulder of 2nd real body
-/* Generated */             es.Open(i) >= es.Close(i-1) - es.realBody(i) - es.average( Near, nearPeriodTotal[1], i-1 )
+/* Generated */             es.Open(i) >= es.Close(i-1) - es.realBody(i) - es.average(settingNear, nearPeriodTotal[1], i-1 )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = -100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
 /* Generated */         for (totIdx = 2; totIdx >= 1; --totIdx) {
-/* Generated */             bodyLongPeriodTotal[totIdx] += es.rangeOf( BodyLong, i-totIdx ) 
-/* Generated */                                          - es.rangeOf( BodyLong, bodyLongTrailingIdx-totIdx );
-/* Generated */             nearPeriodTotal[totIdx] += es.rangeOf( Near, i-totIdx ) 
-/* Generated */                                      - es.rangeOf( Near, nearTrailingIdx-totIdx );
+/* Generated */             bodyLongPeriodTotal[totIdx] += es.rangeOf(settingBodyLong, i-totIdx ) 
+/* Generated */                                          - es.rangeOf(settingBodyLong, bodyLongTrailingIdx-totIdx );
+/* Generated */             nearPeriodTotal[totIdx] += es.rangeOf(settingNear, i-totIdx ) 
+/* Generated */                                      - es.rangeOf(settingNear, nearTrailingIdx-totIdx );
 /* Generated */         }
-/* Generated */         bodyShortPeriodTotal += es.rangeOf( BodyShort, i ) - es.rangeOf( BodyShort, bodyShortTrailingIdx );
-/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i-1 ) 
-/* Generated */                                     - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx-1 );
+/* Generated */         bodyShortPeriodTotal += es.rangeOf(settingBodyShort, i ) - es.rangeOf(settingBodyShort, bodyShortTrailingIdx );
+/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i-1 ) 
+/* Generated */                                     - es.rangeOf(settingShadowVeryShort, shadowVeryShortTrailingIdx-1 );
 /* Generated */         i++; 
 /* Generated */         bodyLongTrailingIdx++;
 /* Generated */         bodyShortTrailingIdx++;

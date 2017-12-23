@@ -211,12 +211,12 @@
    
    i = bodyLongTrailingIdx;
    while( i < startIdx-1 ) {
-        bodyLongPeriodTotal += es.rangeOf( BodyLong, i );
+        bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i );
         i++;
    }
    i = BodyDojiTrailingIdx;
    while( i < startIdx ) {
-        BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i );
+        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
         i++;
    }
    i = startIdx;
@@ -240,8 +240,8 @@
 #ifdef TA_LIB_PRO
       /* Section for code distributed with TA-Lib Pro only. */
 #else
-        if( es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal, i-1 ) &&         // 1st: long
-            es.realBody(i) <= es.average( BodyDoji, BodyDojiPeriodTotal, i ) )             // 2nd: doji
+        if( es.realBody(i-1) > es.average(settingBodyLong, bodyLongPeriodTotal, i-1 ) &&         // 1st: long
+            es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) )             // 2nd: doji
             if ( math.Max( es.Close(i), es.Open(i) ) < math.Max( es.Close(i-1), es.Open(i-1) ) &&              // 2nd is engulfed by 1st
                  math.Min( es.Close(i), es.Open(i) ) > math.Min( es.Close(i-1), es.Open(i-1) )
                )
@@ -259,8 +259,8 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        bodyLongPeriodTotal += es.rangeOf( BodyLong, i-1 ) - es.rangeOf( BodyLong, bodyLongTrailingIdx );
-        BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i ) - es.rangeOf( BodyDoji, BodyDojiTrailingIdx );
+        bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i-1 ) - es.rangeOf(settingBodyLong, bodyLongTrailingIdx );
+        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
         i++; 
         bodyLongTrailingIdx++;
         BodyDojiTrailingIdx++;
@@ -356,12 +356,12 @@
 /* Generated */    BodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
 /* Generated */    i = bodyLongTrailingIdx;
 /* Generated */    while( i < startIdx-1 ) {
-/* Generated */         bodyLongPeriodTotal += es.rangeOf( BodyLong, i );
+/* Generated */         bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = BodyDojiTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i );
+/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -372,8 +372,8 @@
 /* Generated */    {
 /* Generated */ #ifdef TA_LIB_PRO
 /* Generated */ #else
-/* Generated */         if( es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal, i-1 ) &&         // 1st: long
-/* Generated */             es.realBody(i) <= es.average( BodyDoji, BodyDojiPeriodTotal, i ) )             // 2nd: doji
+/* Generated */         if( es.realBody(i-1) > es.average(settingBodyLong, bodyLongPeriodTotal, i-1 ) &&         // 1st: long
+/* Generated */             es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) )             // 2nd: doji
 /* Generated */             if ( math.Max( es.Close(i), es.Open(i) ) < math.Max( es.Close(i-1), es.Open(i-1) ) &&              // 2nd is engulfed by 1st
 /* Generated */                  math.Min( es.Close(i), es.Open(i) ) > math.Min( es.Close(i-1), es.Open(i-1) )
 /* Generated */                )
@@ -388,8 +388,8 @@
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
 /* Generated */ #endif
-/* Generated */         bodyLongPeriodTotal += es.rangeOf( BodyLong, i-1 ) - es.rangeOf( BodyLong, bodyLongTrailingIdx );
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i ) - es.rangeOf( BodyDoji, BodyDojiTrailingIdx );
+/* Generated */         bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i-1 ) - es.rangeOf(settingBodyLong, bodyLongTrailingIdx );
+/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
 /* Generated */         i++; 
 /* Generated */         bodyLongTrailingIdx++;
 /* Generated */         BodyDojiTrailingIdx++;

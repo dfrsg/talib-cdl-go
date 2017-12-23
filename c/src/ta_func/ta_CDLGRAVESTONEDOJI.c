@@ -209,12 +209,12 @@
    
    i = BodyDojiTrailingIdx;
    while( i < startIdx ) {
-        BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i );
+        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
         i++;
    }
    i = shadowVeryShortTrailingIdx;
    while( i < startIdx ) {
-        shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i );
+        shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i );
         i++;
    }
 
@@ -231,9 +231,9 @@
    outIdx = 0;
    do
    {
-        if( es.realBody(i) <= es.average( BodyDoji, BodyDojiPeriodTotal, i ) &&
-            es.lowerShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i ) &&
-            es.upperShadow(i) > es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i )
+        if( es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) &&
+            es.lowerShadow(i) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i ) &&
+            es.upperShadow(i) > es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i )
           )
             outInteger[outIdx++] = 100;
         else
@@ -241,9 +241,9 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i ) - es.rangeOf( BodyDoji, BodyDojiTrailingIdx );
-        shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i ) 
-                                    - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx );
+        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
+        shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i ) 
+                                    - es.rangeOf(settingShadowVeryShort, shadowVeryShortTrailingIdx );
         i++; 
         BodyDojiTrailingIdx++;
         shadowVeryShortTrailingIdx++;
@@ -339,27 +339,27 @@
 /* Generated */    shadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
 /* Generated */    i = BodyDojiTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i );
+/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = shadowVeryShortTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i );
+/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    outIdx = 0;
 /* Generated */    do
 /* Generated */    {
-/* Generated */         if( es.realBody(i) <= es.average( BodyDoji, BodyDojiPeriodTotal, i ) &&
-/* Generated */             es.lowerShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i ) &&
-/* Generated */             es.upperShadow(i) > es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i )
+/* Generated */         if( es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) &&
+/* Generated */             es.lowerShadow(i) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i ) &&
+/* Generated */             es.upperShadow(i) > es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf( BodyDoji, i ) - es.rangeOf( BodyDoji, BodyDojiTrailingIdx );
-/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i ) 
-/* Generated */                                     - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx );
+/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
+/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf(settingShadowVeryShort, i ) 
+/* Generated */                                     - es.rangeOf(settingShadowVeryShort, shadowVeryShortTrailingIdx );
 /* Generated */         i++; 
 /* Generated */         BodyDojiTrailingIdx++;
 /* Generated */         shadowVeryShortTrailingIdx++;
