@@ -154,8 +154,8 @@
 /**** END GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
 {
    /* Insert local variables here. */
-    double ShadowVeryShortPeriodTotal, bodyLongPeriodTotal, EqualPeriodTotal;
-    int i, outIdx, ShadowVeryShortTrailingIdx, bodyLongTrailingIdx, EqualTrailingIdx, lookbackTotal;
+    double shadowVeryShortPeriodTotal, bodyLongPeriodTotal, EqualPeriodTotal;
+    int i, outIdx, shadowVeryShortTrailingIdx, bodyLongTrailingIdx, EqualTrailingIdx, lookbackTotal;
 
 /**** START GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 /* Generated */ 
@@ -204,16 +204,16 @@
 
    /* Do the calculation using tight loops. */
    /* Add-up the initial period, except for the last value. */
-   ShadowVeryShortPeriodTotal = 0;
-   ShadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
+   shadowVeryShortPeriodTotal = 0;
+   shadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
    bodyLongPeriodTotal = 0;
    bodyLongTrailingIdx = startIdx - settingBodyLong.avgPeriod;
    EqualPeriodTotal = 0;
    EqualTrailingIdx = startIdx - settingEqual.avgPeriod;
 
-   i = ShadowVeryShortTrailingIdx;
+   i = shadowVeryShortTrailingIdx;
    while( i < startIdx ) {
-        ShadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i );
+        shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i );
         i++;
    }
    i = bodyLongTrailingIdx;
@@ -246,11 +246,11 @@
             es.realBody(i) > es.average( BodyLong, bodyLongPeriodTotal, i ) &&         // belt hold: long body
             ( 
               ( es.candleColor(i) == 1 &&                                               // with no lower shadow if bullish
-                TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal, i )
+                es.lowerShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i )
               )
               ||
               ( es.candleColor(i) == -1 &&                                              // with no upper shadow if bearish
-                TA_UPPERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal, i )
+                es.upperShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i )
               )
             )
           )
@@ -260,12 +260,12 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        ShadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i ) 
-                                    - es.rangeOf( ShadowVeryShort, ShadowVeryShortTrailingIdx );
+        shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i ) 
+                                    - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx );
         bodyLongPeriodTotal += es.rangeOf( BodyLong, i ) - es.rangeOf( BodyLong, bodyLongTrailingIdx );
         EqualPeriodTotal += es.rangeOf( Equal, i-1 ) - es.rangeOf( Equal, EqualTrailingIdx-1 );
         i++;
-        ShadowVeryShortTrailingIdx++;
+        shadowVeryShortTrailingIdx++;
         bodyLongTrailingIdx++;
         EqualTrailingIdx++;
    } while( i <= endIdx );
@@ -329,8 +329,8 @@
 /* Generated */                                     int           outInteger[] )
 /* Generated */ #endif
 /* Generated */ {
-/* Generated */     double ShadowVeryShortPeriodTotal, bodyLongPeriodTotal, EqualPeriodTotal;
-/* Generated */     int i, outIdx, ShadowVeryShortTrailingIdx, bodyLongTrailingIdx, EqualTrailingIdx, lookbackTotal;
+/* Generated */     double shadowVeryShortPeriodTotal, bodyLongPeriodTotal, EqualPeriodTotal;
+/* Generated */     int i, outIdx, shadowVeryShortTrailingIdx, bodyLongTrailingIdx, EqualTrailingIdx, lookbackTotal;
 /* Generated */  #ifndef TA_FUNC_NO_RANGE_CHECK
 /* Generated */     if( startIdx < 0 )
 /* Generated */        return ENUM_VALUE(RetCode,TA_OUT_OF_RANGE_START_INDEX,OutOfRangeStartIndex);
@@ -354,15 +354,15 @@
 /* Generated */       VALUE_HANDLE_DEREF_TO_ZERO(outNBElement);
 /* Generated */       return ENUM_VALUE(RetCode,TA_SUCCESS,Success);
 /* Generated */    }
-/* Generated */    ShadowVeryShortPeriodTotal = 0;
-/* Generated */    ShadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
+/* Generated */    shadowVeryShortPeriodTotal = 0;
+/* Generated */    shadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
 /* Generated */    bodyLongPeriodTotal = 0;
 /* Generated */    bodyLongTrailingIdx = startIdx - settingBodyLong.avgPeriod;
 /* Generated */    EqualPeriodTotal = 0;
 /* Generated */    EqualTrailingIdx = startIdx - settingEqual.avgPeriod;
-/* Generated */    i = ShadowVeryShortTrailingIdx;
+/* Generated */    i = shadowVeryShortTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         ShadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i );
+/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = bodyLongTrailingIdx;
@@ -385,23 +385,23 @@
 /* Generated */             es.realBody(i) > es.average( BodyLong, bodyLongPeriodTotal, i ) &&         // belt hold: long body
 /* Generated */             ( 
 /* Generated */               ( es.candleColor(i) == 1 &&                                               // with no lower shadow if bullish
-/* Generated */                 TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal, i )
+/* Generated */                 es.lowerShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i )
 /* Generated */               )
 /* Generated */               ||
 /* Generated */               ( es.candleColor(i) == -1 &&                                              // with no upper shadow if bearish
-/* Generated */                 TA_UPPERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal, i )
+/* Generated */                 es.upperShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i )
 /* Generated */               )
 /* Generated */             )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = es.candleColor(i) * 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         ShadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i ) 
-/* Generated */                                     - es.rangeOf( ShadowVeryShort, ShadowVeryShortTrailingIdx );
+/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i ) 
+/* Generated */                                     - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx );
 /* Generated */         bodyLongPeriodTotal += es.rangeOf( BodyLong, i ) - es.rangeOf( BodyLong, bodyLongTrailingIdx );
 /* Generated */         EqualPeriodTotal += es.rangeOf( Equal, i-1 ) - es.rangeOf( Equal, EqualTrailingIdx-1 );
 /* Generated */         i++;
-/* Generated */         ShadowVeryShortTrailingIdx++;
+/* Generated */         shadowVeryShortTrailingIdx++;
 /* Generated */         bodyLongTrailingIdx++;
 /* Generated */         EqualTrailingIdx++;
 /* Generated */    } while( i <= endIdx );

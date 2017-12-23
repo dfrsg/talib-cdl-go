@@ -152,8 +152,8 @@
 /**** END GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
 {
    /* Insert local variables here. */
-    ARRAY_LOCAL(ShadowVeryShortPeriodTotal,3);
-    int i, outIdx, totIdx, ShadowVeryShortTrailingIdx, lookbackTotal;
+    ARRAY_LOCAL(shadowVeryShortPeriodTotal,3);
+    int i, outIdx, totIdx, shadowVeryShortTrailingIdx, lookbackTotal;
 
 /**** START GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 /* Generated */ 
@@ -202,16 +202,16 @@
 
    /* Do the calculation using tight loops. */
    /* Add-up the initial period, except for the last value. */
-   ShadowVeryShortPeriodTotal[2] = 0;
-   ShadowVeryShortPeriodTotal[1] = 0;
-   ShadowVeryShortPeriodTotal[0] = 0;
-   ShadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
+   shadowVeryShortPeriodTotal[2] = 0;
+   shadowVeryShortPeriodTotal[1] = 0;
+   shadowVeryShortPeriodTotal[0] = 0;
+   shadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
    
-   i = ShadowVeryShortTrailingIdx;
+   i = shadowVeryShortTrailingIdx;
    while( i < startIdx ) {
-        ShadowVeryShortPeriodTotal[2] += es.rangeOf( ShadowVeryShort, i-2 );
-        ShadowVeryShortPeriodTotal[1] += es.rangeOf( ShadowVeryShort, i-1 );
-        ShadowVeryShortPeriodTotal[0] += es.rangeOf( ShadowVeryShort, i );
+        shadowVeryShortPeriodTotal[2] += es.rangeOf( ShadowVeryShort, i-2 );
+        shadowVeryShortPeriodTotal[1] += es.rangeOf( ShadowVeryShort, i-1 );
+        shadowVeryShortPeriodTotal[0] += es.rangeOf( ShadowVeryShort, i );
         i++;
    }
    i = startIdx;
@@ -235,13 +235,13 @@
 #else
         if( es.candleColor(i-3) == 1 &&                                         // white
             es.candleColor(i-2) == -1 &&                                        // 1st black
-            TA_LOWERSHADOW(i-2) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[2], i-2 ) &&     
+            es.lowerShadow(i-2) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&     
                                                                                 // very short lower shadow
             es.candleColor(i-1) == -1 &&                                        // 2nd black
-            TA_LOWERSHADOW(i-1) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[1], i-1 ) &&     
+            es.lowerShadow(i-1) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[1], i-1 ) &&     
                                                                                 // very short lower shadow
             es.candleColor(i) == -1 &&                                          // 3rd black
-            TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&         
+            es.lowerShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[0], i ) &&         
                                                                                 // very short lower shadow
             es.Open(i-1) < es.Open(i-2) && es.Open(i-1) > es.Close(i-2) &&          // 2nd black opens within 1st black's rb
             es.Open(i) < es.Open(i-1) && es.Open(i) > es.Close(i-1) &&              // 3rd black opens within 2nd black's rb
@@ -257,10 +257,10 @@
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
         for (totIdx = 2; totIdx >= 0; --totIdx)
-            ShadowVeryShortPeriodTotal[totIdx] += es.rangeOf( ShadowVeryShort, i-totIdx ) 
-                                                - es.rangeOf( ShadowVeryShort, ShadowVeryShortTrailingIdx-totIdx );
+            shadowVeryShortPeriodTotal[totIdx] += es.rangeOf( ShadowVeryShort, i-totIdx ) 
+                                                - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx-totIdx );
         i++; 
-        ShadowVeryShortTrailingIdx++;
+        shadowVeryShortTrailingIdx++;
    } while( i <= endIdx );
 
    /* All done. Indicate the output limits and return. */
@@ -322,8 +322,8 @@
 /* Generated */                                 int           outInteger[] )
 /* Generated */ #endif
 /* Generated */ {
-/* Generated */     ARRAY_LOCAL(ShadowVeryShortPeriodTotal,3);
-/* Generated */     int i, outIdx, totIdx, ShadowVeryShortTrailingIdx, lookbackTotal;
+/* Generated */     ARRAY_LOCAL(shadowVeryShortPeriodTotal,3);
+/* Generated */     int i, outIdx, totIdx, shadowVeryShortTrailingIdx, lookbackTotal;
 /* Generated */  #ifndef TA_FUNC_NO_RANGE_CHECK
 /* Generated */     if( startIdx < 0 )
 /* Generated */        return ENUM_VALUE(RetCode,TA_OUT_OF_RANGE_START_INDEX,OutOfRangeStartIndex);
@@ -347,15 +347,15 @@
 /* Generated */       VALUE_HANDLE_DEREF_TO_ZERO(outNBElement);
 /* Generated */       return ENUM_VALUE(RetCode,TA_SUCCESS,Success);
 /* Generated */    }
-/* Generated */    ShadowVeryShortPeriodTotal[2] = 0;
-/* Generated */    ShadowVeryShortPeriodTotal[1] = 0;
-/* Generated */    ShadowVeryShortPeriodTotal[0] = 0;
-/* Generated */    ShadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
-/* Generated */    i = ShadowVeryShortTrailingIdx;
+/* Generated */    shadowVeryShortPeriodTotal[2] = 0;
+/* Generated */    shadowVeryShortPeriodTotal[1] = 0;
+/* Generated */    shadowVeryShortPeriodTotal[0] = 0;
+/* Generated */    shadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
+/* Generated */    i = shadowVeryShortTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         ShadowVeryShortPeriodTotal[2] += es.rangeOf( ShadowVeryShort, i-2 );
-/* Generated */         ShadowVeryShortPeriodTotal[1] += es.rangeOf( ShadowVeryShort, i-1 );
-/* Generated */         ShadowVeryShortPeriodTotal[0] += es.rangeOf( ShadowVeryShort, i );
+/* Generated */         shadowVeryShortPeriodTotal[2] += es.rangeOf( ShadowVeryShort, i-2 );
+/* Generated */         shadowVeryShortPeriodTotal[1] += es.rangeOf( ShadowVeryShort, i-1 );
+/* Generated */         shadowVeryShortPeriodTotal[0] += es.rangeOf( ShadowVeryShort, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -366,13 +366,13 @@
 /* Generated */ #else
 /* Generated */         if( es.candleColor(i-3) == 1 &&                                         // white
 /* Generated */             es.candleColor(i-2) == -1 &&                                        // 1st black
-/* Generated */             TA_LOWERSHADOW(i-2) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[2], i-2 ) &&     
+/* Generated */             es.lowerShadow(i-2) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&     
 /* Generated */                                                                                 // very short lower shadow
 /* Generated */             es.candleColor(i-1) == -1 &&                                        // 2nd black
-/* Generated */             TA_LOWERSHADOW(i-1) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[1], i-1 ) &&     
+/* Generated */             es.lowerShadow(i-1) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[1], i-1 ) &&     
 /* Generated */                                                                                 // very short lower shadow
 /* Generated */             es.candleColor(i) == -1 &&                                          // 3rd black
-/* Generated */             TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&         
+/* Generated */             es.lowerShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[0], i ) &&         
 /* Generated */                                                                                 // very short lower shadow
 /* Generated */             es.Open(i-1) < es.Open(i-2) && es.Open(i-1) > es.Close(i-2) &&          // 2nd black opens within 1st black's rb
 /* Generated */             es.Open(i) < es.Open(i-1) && es.Open(i) > es.Close(i-1) &&              // 3rd black opens within 2nd black's rb
@@ -385,10 +385,10 @@
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
 /* Generated */         for (totIdx = 2; totIdx >= 0; --totIdx)
-/* Generated */             ShadowVeryShortPeriodTotal[totIdx] += es.rangeOf( ShadowVeryShort, i-totIdx ) 
-/* Generated */                                                 - es.rangeOf( ShadowVeryShort, ShadowVeryShortTrailingIdx-totIdx );
+/* Generated */             shadowVeryShortPeriodTotal[totIdx] += es.rangeOf( ShadowVeryShort, i-totIdx ) 
+/* Generated */                                                 - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx-totIdx );
 /* Generated */         i++; 
-/* Generated */         ShadowVeryShortTrailingIdx++;
+/* Generated */         shadowVeryShortTrailingIdx++;
 /* Generated */    } while( i <= endIdx );
 /* Generated */    VALUE_HANDLE_DEREF(outNBElement) = outIdx;
 /* Generated */    VALUE_HANDLE_DEREF(outBegIdx)    = startIdx;

@@ -152,8 +152,8 @@
 /**** END GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
 {
    /* Insert local variables here. */
-    double bodyLongPeriodTotal, ShadowVeryShortPeriodTotal;
-    int i, outIdx, bodyLongTrailingIdx, ShadowVeryShortTrailingIdx, lookbackTotal;
+    double bodyLongPeriodTotal, shadowVeryShortPeriodTotal;
+    int i, outIdx, bodyLongTrailingIdx, shadowVeryShortTrailingIdx, lookbackTotal;
 
 /**** START GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 /* Generated */ 
@@ -204,17 +204,17 @@
    /* Add-up the initial period, except for the last value. */
    bodyLongPeriodTotal = 0;
    bodyLongTrailingIdx = startIdx - settingBodyLong.avgPeriod;
-   ShadowVeryShortPeriodTotal = 0;
-   ShadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
+   shadowVeryShortPeriodTotal = 0;
+   shadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
    
    i = bodyLongTrailingIdx;
    while( i < startIdx ) {
         bodyLongPeriodTotal += es.rangeOf( BodyLong, i );
         i++;
    }
-   i = ShadowVeryShortTrailingIdx;
+   i = shadowVeryShortTrailingIdx;
    while( i < startIdx ) {
-        ShadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i );
+        shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i );
         i++;
    }
 
@@ -232,11 +232,11 @@
             ( 
               ( // white body and very short lower shadow
                 es.candleColor(i) == 1 && 
-                TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal, i ) 
+                es.lowerShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i ) 
               ) ||
               ( // black body and very short upper shadow
                 es.candleColor(i) == -1 && 
-                TA_UPPERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal, i )
+                es.upperShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i )
               ) 
             ) )
             outInteger[outIdx++] = es.candleColor(i) * 100;
@@ -246,11 +246,11 @@
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
         bodyLongPeriodTotal += es.rangeOf( BodyLong, i ) - es.rangeOf( BodyLong, bodyLongTrailingIdx );
-        ShadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i ) 
-                                    - es.rangeOf( ShadowVeryShort, ShadowVeryShortTrailingIdx );
+        shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i ) 
+                                    - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx );
         i++; 
         bodyLongTrailingIdx++;
-        ShadowVeryShortTrailingIdx++;
+        shadowVeryShortTrailingIdx++;
    } while( i <= endIdx );
 
    /* All done. Indicate the output limits and return. */
@@ -312,8 +312,8 @@
 /* Generated */                              int           outInteger[] )
 /* Generated */ #endif
 /* Generated */ {
-/* Generated */     double bodyLongPeriodTotal, ShadowVeryShortPeriodTotal;
-/* Generated */     int i, outIdx, bodyLongTrailingIdx, ShadowVeryShortTrailingIdx, lookbackTotal;
+/* Generated */     double bodyLongPeriodTotal, shadowVeryShortPeriodTotal;
+/* Generated */     int i, outIdx, bodyLongTrailingIdx, shadowVeryShortTrailingIdx, lookbackTotal;
 /* Generated */  #ifndef TA_FUNC_NO_RANGE_CHECK
 /* Generated */     if( startIdx < 0 )
 /* Generated */        return ENUM_VALUE(RetCode,TA_OUT_OF_RANGE_START_INDEX,OutOfRangeStartIndex);
@@ -339,16 +339,16 @@
 /* Generated */    }
 /* Generated */    bodyLongPeriodTotal = 0;
 /* Generated */    bodyLongTrailingIdx = startIdx - settingBodyLong.avgPeriod;
-/* Generated */    ShadowVeryShortPeriodTotal = 0;
-/* Generated */    ShadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
+/* Generated */    shadowVeryShortPeriodTotal = 0;
+/* Generated */    shadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
 /* Generated */    i = bodyLongTrailingIdx;
 /* Generated */    while( i < startIdx ) {
 /* Generated */         bodyLongPeriodTotal += es.rangeOf( BodyLong, i );
 /* Generated */         i++;
 /* Generated */    }
-/* Generated */    i = ShadowVeryShortTrailingIdx;
+/* Generated */    i = shadowVeryShortTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         ShadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i );
+/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    outIdx = 0;
@@ -358,22 +358,22 @@
 /* Generated */             ( 
 /* Generated */               ( // white body and very short lower shadow
 /* Generated */                 es.candleColor(i) == 1 && 
-/* Generated */                 TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal, i ) 
+/* Generated */                 es.lowerShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i ) 
 /* Generated */               ) ||
 /* Generated */               ( // black body and very short upper shadow
 /* Generated */                 es.candleColor(i) == -1 && 
-/* Generated */                 TA_UPPERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal, i )
+/* Generated */                 es.upperShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal, i )
 /* Generated */               ) 
 /* Generated */             ) )
 /* Generated */             outInteger[outIdx++] = es.candleColor(i) * 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
 /* Generated */         bodyLongPeriodTotal += es.rangeOf( BodyLong, i ) - es.rangeOf( BodyLong, bodyLongTrailingIdx );
-/* Generated */         ShadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i ) 
-/* Generated */                                     - es.rangeOf( ShadowVeryShort, ShadowVeryShortTrailingIdx );
+/* Generated */         shadowVeryShortPeriodTotal += es.rangeOf( ShadowVeryShort, i ) 
+/* Generated */                                     - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx );
 /* Generated */         i++; 
 /* Generated */         bodyLongTrailingIdx++;
-/* Generated */         ShadowVeryShortTrailingIdx++;
+/* Generated */         shadowVeryShortTrailingIdx++;
 /* Generated */    } while( i <= endIdx );
 /* Generated */    VALUE_HANDLE_DEREF(outNBElement) = outIdx;
 /* Generated */    VALUE_HANDLE_DEREF(outBegIdx)    = startIdx;

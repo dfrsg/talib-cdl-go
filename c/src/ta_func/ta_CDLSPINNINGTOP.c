@@ -223,8 +223,8 @@
    do
    {
         if( es.realBody(i) < es.average( BodyShort, BodyPeriodTotal, i ) && 
-            TA_UPPERSHADOW(i) > es.realBody(i) &&
-            TA_LOWERSHADOW(i) > es.realBody(i)
+            es.upperShadow(i) > es.realBody(i) &&
+            es.lowerShadow(i) > es.realBody(i)
           )
             outInteger[outIdx++] = es.candleColor(i) * 100;
         else
@@ -332,8 +332,8 @@
 /* Generated */    do
 /* Generated */    {
 /* Generated */         if( es.realBody(i) < es.average( BodyShort, BodyPeriodTotal, i ) && 
-/* Generated */             TA_UPPERSHADOW(i) > es.realBody(i) &&
-/* Generated */             TA_LOWERSHADOW(i) > es.realBody(i)
+/* Generated */             es.upperShadow(i) > es.realBody(i) &&
+/* Generated */             es.lowerShadow(i) > es.realBody(i)
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = es.candleColor(i) * 100;
 /* Generated */         else

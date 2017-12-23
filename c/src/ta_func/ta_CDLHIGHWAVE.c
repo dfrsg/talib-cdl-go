@@ -230,8 +230,8 @@
    do
    {
         if( es.realBody(i) < es.average( BodyShort, BodyPeriodTotal, i ) && 
-            TA_UPPERSHADOW(i) > es.average( ShadowVeryLong, ShadowPeriodTotal, i ) &&
-            TA_LOWERSHADOW(i) > es.average( ShadowVeryLong, ShadowPeriodTotal, i ) )
+            es.upperShadow(i) > es.average( ShadowVeryLong, ShadowPeriodTotal, i ) &&
+            es.lowerShadow(i) > es.average( ShadowVeryLong, ShadowPeriodTotal, i ) )
             outInteger[outIdx++] = es.candleColor(i) * 100;
         else
             outInteger[outIdx++] = 0;
@@ -347,8 +347,8 @@
 /* Generated */    do
 /* Generated */    {
 /* Generated */         if( es.realBody(i) < es.average( BodyShort, BodyPeriodTotal, i ) && 
-/* Generated */             TA_UPPERSHADOW(i) > es.average( ShadowVeryLong, ShadowPeriodTotal, i ) &&
-/* Generated */             TA_LOWERSHADOW(i) > es.average( ShadowVeryLong, ShadowPeriodTotal, i ) )
+/* Generated */             es.upperShadow(i) > es.average( ShadowVeryLong, ShadowPeriodTotal, i ) &&
+/* Generated */             es.lowerShadow(i) > es.average( ShadowVeryLong, ShadowPeriodTotal, i ) )
 /* Generated */             outInteger[outIdx++] = es.candleColor(i) * 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;

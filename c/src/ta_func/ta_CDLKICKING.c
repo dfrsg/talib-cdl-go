@@ -153,9 +153,9 @@
 /**** END GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
 {
    /* Insert local variables here. */
-    ARRAY_LOCAL(ShadowVeryShortPeriodTotal,2);
+    ARRAY_LOCAL(shadowVeryShortPeriodTotal,2);
 	ARRAY_LOCAL(bodyLongPeriodTotal,2);
-    int i, outIdx, totIdx, ShadowVeryShortTrailingIdx, bodyLongTrailingIdx, lookbackTotal;
+    int i, outIdx, totIdx, shadowVeryShortTrailingIdx, bodyLongTrailingIdx, lookbackTotal;
 
 /**** START GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 /* Generated */ 
@@ -204,17 +204,17 @@
 
    /* Do the calculation using tight loops. */
    /* Add-up the initial period, except for the last value. */
-   ShadowVeryShortPeriodTotal[1] = 0;
-   ShadowVeryShortPeriodTotal[0] = 0;
-   ShadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
+   shadowVeryShortPeriodTotal[1] = 0;
+   shadowVeryShortPeriodTotal[0] = 0;
+   shadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
    bodyLongPeriodTotal[1] = 0;
    bodyLongPeriodTotal[0] = 0;
    bodyLongTrailingIdx = startIdx - settingBodyLong.avgPeriod;
 
-   i = ShadowVeryShortTrailingIdx;
+   i = shadowVeryShortTrailingIdx;
    while( i < startIdx ) {
-        ShadowVeryShortPeriodTotal[1] += es.rangeOf( ShadowVeryShort, i-1 );
-        ShadowVeryShortPeriodTotal[0] += es.rangeOf( ShadowVeryShort, i );
+        shadowVeryShortPeriodTotal[1] += es.rangeOf( ShadowVeryShort, i-1 );
+        shadowVeryShortPeriodTotal[0] += es.rangeOf( ShadowVeryShort, i );
         i++;
    }
    i = bodyLongTrailingIdx;
@@ -242,12 +242,12 @@
         if( es.candleColor(i-1) == -es.candleColor(i) &&                                        // opposite candles
             // 1st marubozu
             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal[1], i-1 ) &&
-            TA_UPPERSHADOW(i-1) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[1], i-1 ) &&
-            TA_LOWERSHADOW(i-1) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[1], i-1 ) &&
+            es.upperShadow(i-1) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[1], i-1 ) &&
+            es.lowerShadow(i-1) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[1], i-1 ) &&
             // 2nd marubozu
             es.realBody(i) > es.average( BodyLong, bodyLongPeriodTotal[0], i ) &&
-            TA_UPPERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&
-            TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&
+            es.upperShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[0], i ) &&
+            es.lowerShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[0], i ) &&
             // gap
             ( 
               ( es.candleColor(i-1) == -1 && TA_CANDLEGAPUP(i,i-1) )
@@ -265,11 +265,11 @@
         for (totIdx = 1; totIdx >= 0; --totIdx) {
             bodyLongPeriodTotal[totIdx] += es.rangeOf( BodyLong, i-totIdx ) 
                                          - es.rangeOf( BodyLong, bodyLongTrailingIdx-totIdx );
-            ShadowVeryShortPeriodTotal[totIdx] += es.rangeOf( ShadowVeryShort, i-totIdx ) 
-                                                - es.rangeOf( ShadowVeryShort, ShadowVeryShortTrailingIdx-totIdx );
+            shadowVeryShortPeriodTotal[totIdx] += es.rangeOf( ShadowVeryShort, i-totIdx ) 
+                                                - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx-totIdx );
         }
         i++;
-        ShadowVeryShortTrailingIdx++;
+        shadowVeryShortTrailingIdx++;
         bodyLongTrailingIdx++;
    } while( i <= endIdx );
 
@@ -332,9 +332,9 @@
 /* Generated */                             int           outInteger[] )
 /* Generated */ #endif
 /* Generated */ {
-/* Generated */     ARRAY_LOCAL(ShadowVeryShortPeriodTotal,2);
+/* Generated */     ARRAY_LOCAL(shadowVeryShortPeriodTotal,2);
 /* Generated */ 	ARRAY_LOCAL(bodyLongPeriodTotal,2);
-/* Generated */     int i, outIdx, totIdx, ShadowVeryShortTrailingIdx, bodyLongTrailingIdx, lookbackTotal;
+/* Generated */     int i, outIdx, totIdx, shadowVeryShortTrailingIdx, bodyLongTrailingIdx, lookbackTotal;
 /* Generated */  #ifndef TA_FUNC_NO_RANGE_CHECK
 /* Generated */     if( startIdx < 0 )
 /* Generated */        return ENUM_VALUE(RetCode,TA_OUT_OF_RANGE_START_INDEX,OutOfRangeStartIndex);
@@ -358,16 +358,16 @@
 /* Generated */       VALUE_HANDLE_DEREF_TO_ZERO(outNBElement);
 /* Generated */       return ENUM_VALUE(RetCode,TA_SUCCESS,Success);
 /* Generated */    }
-/* Generated */    ShadowVeryShortPeriodTotal[1] = 0;
-/* Generated */    ShadowVeryShortPeriodTotal[0] = 0;
-/* Generated */    ShadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
+/* Generated */    shadowVeryShortPeriodTotal[1] = 0;
+/* Generated */    shadowVeryShortPeriodTotal[0] = 0;
+/* Generated */    shadowVeryShortTrailingIdx = startIdx - settingShadowVeryShort.avgPeriod;
 /* Generated */    bodyLongPeriodTotal[1] = 0;
 /* Generated */    bodyLongPeriodTotal[0] = 0;
 /* Generated */    bodyLongTrailingIdx = startIdx - settingBodyLong.avgPeriod;
-/* Generated */    i = ShadowVeryShortTrailingIdx;
+/* Generated */    i = shadowVeryShortTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         ShadowVeryShortPeriodTotal[1] += es.rangeOf( ShadowVeryShort, i-1 );
-/* Generated */         ShadowVeryShortPeriodTotal[0] += es.rangeOf( ShadowVeryShort, i );
+/* Generated */         shadowVeryShortPeriodTotal[1] += es.rangeOf( ShadowVeryShort, i-1 );
+/* Generated */         shadowVeryShortPeriodTotal[0] += es.rangeOf( ShadowVeryShort, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = bodyLongTrailingIdx;
@@ -385,12 +385,12 @@
 /* Generated */         if( es.candleColor(i-1) == -es.candleColor(i) &&                                        // opposite candles
 /* Generated */             // 1st marubozu
 /* Generated */             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal[1], i-1 ) &&
-/* Generated */             TA_UPPERSHADOW(i-1) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[1], i-1 ) &&
-/* Generated */             TA_LOWERSHADOW(i-1) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[1], i-1 ) &&
+/* Generated */             es.upperShadow(i-1) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[1], i-1 ) &&
+/* Generated */             es.lowerShadow(i-1) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[1], i-1 ) &&
 /* Generated */             // 2nd marubozu
 /* Generated */             es.realBody(i) > es.average( BodyLong, bodyLongPeriodTotal[0], i ) &&
-/* Generated */             TA_UPPERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&
-/* Generated */             TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&
+/* Generated */             es.upperShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[0], i ) &&
+/* Generated */             es.lowerShadow(i) < es.average( ShadowVeryShort, shadowVeryShortPeriodTotal[0], i ) &&
 /* Generated */             // gap
 /* Generated */             ( 
 /* Generated */               ( es.candleColor(i-1) == -1 && TA_CANDLEGAPUP(i,i-1) )
@@ -405,11 +405,11 @@
 /* Generated */         for (totIdx = 1; totIdx >= 0; --totIdx) {
 /* Generated */             bodyLongPeriodTotal[totIdx] += es.rangeOf( BodyLong, i-totIdx ) 
 /* Generated */                                          - es.rangeOf( BodyLong, bodyLongTrailingIdx-totIdx );
-/* Generated */             ShadowVeryShortPeriodTotal[totIdx] += es.rangeOf( ShadowVeryShort, i-totIdx ) 
-/* Generated */                                                 - es.rangeOf( ShadowVeryShort, ShadowVeryShortTrailingIdx-totIdx );
+/* Generated */             shadowVeryShortPeriodTotal[totIdx] += es.rangeOf( ShadowVeryShort, i-totIdx ) 
+/* Generated */                                                 - es.rangeOf( ShadowVeryShort, shadowVeryShortTrailingIdx-totIdx );
 /* Generated */         }
 /* Generated */         i++;
-/* Generated */         ShadowVeryShortTrailingIdx++;
+/* Generated */         shadowVeryShortTrailingIdx++;
 /* Generated */         bodyLongTrailingIdx++;
 /* Generated */    } while( i <= endIdx );
 /* Generated */    VALUE_HANDLE_DEREF(outNBElement) = outIdx;
