@@ -104,7 +104,7 @@
    /* insert lookback code here. */
     UNUSED_VARIABLE(optInPenetration);
 
-    return max( max( settingBodyDoji.avgPeriod, settingBodyLong.avgPeriod ), 
+    return math.Max( math.Max( settingBodyDoji.avgPeriod, settingBodyLong.avgPeriod ), 
                 settingBodyShort.avgPeriod 
             ) + 2;
 }
@@ -205,7 +205,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -277,7 +277,7 @@
             es.realBody(i) > es.average( BodyShort, bodyShortPeriodTotal, i ) &&           // 3rd: longer than short
             ( ( es.candleColor(i-2) == 1 &&                                                         // 1st white
                 es.candleColor(i) == -1 &&                                                          // 3rd black
-                inClose[i] < inClose[i-2] - es.realBody(i-2) * optInPenetration &&                  // 3rd closes well within 1st rb
+                es.Close(i) < es.Close(i-2) - es.realBody(i-2) * optInPenetration &&                  // 3rd closes well within 1st rb
                 TA_CANDLEGAPUP(i-1,i-2) &&                                                          // upside gap between 1st and 2nd
                 TA_CANDLEGAPDOWN(i,i-1)                                                             // downside gap between 2nd and 3rd
               ) 
@@ -285,7 +285,7 @@
               (
                 es.candleColor(i-2) == -1 &&                                                        // 1st black
                 es.candleColor(i) == 1 &&                                                           // 3rd white
-                inClose[i] > inClose[i-2] + es.realBody(i-2) * optInPenetration &&                  // 3rd closes well within 1st rb
+                es.Close(i) > es.Close(i-2) + es.realBody(i-2) * optInPenetration &&                  // 3rd closes well within 1st rb
                 TA_CANDLEGAPDOWN(i-1,i-2) &&                                                        // downside gap between 1st and 2nd
                 TA_CANDLEGAPUP(i,i-1)                                                               // upside gap between 2nd and 3rd
               )
@@ -435,7 +435,7 @@
 /* Generated */             es.realBody(i) > es.average( BodyShort, bodyShortPeriodTotal, i ) &&           // 3rd: longer than short
 /* Generated */             ( ( es.candleColor(i-2) == 1 &&                                                         // 1st white
 /* Generated */                 es.candleColor(i) == -1 &&                                                          // 3rd black
-/* Generated */                 inClose[i] < inClose[i-2] - es.realBody(i-2) * optInPenetration &&                  // 3rd closes well within 1st rb
+/* Generated */                 es.Close(i) < es.Close(i-2) - es.realBody(i-2) * optInPenetration &&                  // 3rd closes well within 1st rb
 /* Generated */                 TA_CANDLEGAPUP(i-1,i-2) &&                                                          // upside gap between 1st and 2nd
 /* Generated */                 TA_CANDLEGAPDOWN(i,i-1)                                                             // downside gap between 2nd and 3rd
 /* Generated */               ) 
@@ -443,7 +443,7 @@
 /* Generated */               (
 /* Generated */                 es.candleColor(i-2) == -1 &&                                                        // 1st black
 /* Generated */                 es.candleColor(i) == 1 &&                                                           // 3rd white
-/* Generated */                 inClose[i] > inClose[i-2] + es.realBody(i-2) * optInPenetration &&                  // 3rd closes well within 1st rb
+/* Generated */                 es.Close(i) > es.Close(i-2) + es.realBody(i-2) * optInPenetration &&                  // 3rd closes well within 1st rb
 /* Generated */                 TA_CANDLEGAPDOWN(i-1,i-2) &&                                                        // downside gap between 1st and 2nd
 /* Generated */                 TA_CANDLEGAPUP(i,i-1)                                                               // upside gap between 2nd and 3rd
 /* Generated */               )

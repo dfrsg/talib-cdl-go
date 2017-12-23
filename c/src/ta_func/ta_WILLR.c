@@ -94,7 +94,7 @@
 
 /**** START GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 /* Generated */ #ifndef TA_FUNC_NO_RANGE_CHECK
-/* Generated */    /* min/max are checked for optInTimePeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod. */
 /* Generated */    if( (int)optInTimePeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod = 14;
 /* Generated */    else if( ((int)optInTimePeriod < 2) || ((int)optInTimePeriod > 100000) )
@@ -188,7 +188,7 @@
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
 /* Generated */    #endif /* !defined(_JAVA)*/
-/* Generated */    /* min/max are checked for optInTimePeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod. */
 /* Generated */    if( (int)optInTimePeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod = 14;
 /* Generated */    else if( ((int)optInTimePeriod < 2) || ((int)optInTimePeriod > 100000) )
@@ -205,7 +205,7 @@
 
    /* Insert TA function code here. */
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to identify at least one output over the specified
     * period.
     */
@@ -249,7 +249,7 @@
          i = lowestIdx;
          while( ++i<=today )
          {
-            tmp = inLow[i];
+            tmp = es.Low(i);
             if( tmp < lowest )
             {
                lowestIdx = i;
@@ -274,7 +274,7 @@
          i = highestIdx;
          while( ++i<=today )
          {
-            tmp = inHigh[i];
+            tmp = es.High(i);
             if( tmp > highest )
             {
                highestIdx = i;
@@ -407,7 +407,7 @@
 /* Generated */          i = lowestIdx;
 /* Generated */          while( ++i<=today )
 /* Generated */          {
-/* Generated */             tmp = inLow[i];
+/* Generated */             tmp = es.Low(i);
 /* Generated */             if( tmp < lowest )
 /* Generated */             {
 /* Generated */                lowestIdx = i;
@@ -430,7 +430,7 @@
 /* Generated */          i = highestIdx;
 /* Generated */          while( ++i<=today )
 /* Generated */          {
-/* Generated */             tmp = inHigh[i];
+/* Generated */             tmp = es.High(i);
 /* Generated */             if( tmp > highest )
 /* Generated */             {
 /* Generated */                highestIdx = i;

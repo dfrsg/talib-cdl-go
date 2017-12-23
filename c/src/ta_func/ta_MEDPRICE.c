@@ -188,7 +188,7 @@
 
    for( i=startIdx; i <= endIdx; i++ )
    {
-      outReal[outIdx++] = (inHigh[i]+inLow[i])/2.0;
+      outReal[outIdx++] = (es.High(i)+es.Low(i))/2.0;
    }
 
    VALUE_HANDLE_DEREF(outNBElement) = outIdx;
@@ -259,7 +259,7 @@
 /* Generated */    outIdx = 0;
 /* Generated */    for( i=startIdx; i <= endIdx; i++ )
 /* Generated */    {
-/* Generated */       outReal[outIdx++] = (inHigh[i]+inLow[i])/2.0;
+/* Generated */       outReal[outIdx++] = (es.High(i)+es.Low(i))/2.0;
 /* Generated */    }
 /* Generated */    VALUE_HANDLE_DEREF(outNBElement) = outIdx;
 /* Generated */    VALUE_HANDLE_DEREF(outBegIdx)    = startIdx;

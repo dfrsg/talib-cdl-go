@@ -96,8 +96,8 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( max( max( settingShadowLong.avgPeriod, settingShadowShort.avgPeriod ),
-                     max( settingFar.avgPeriod, settingNear.avgPeriod ) ),
+    return math.Max( math.Max( math.Max( settingShadowLong.avgPeriod, settingShadowShort.avgPeriod ),
+                     math.Max( settingFar.avgPeriod, settingNear.avgPeriod ) ),
                 settingBodyLong.avgPeriod
             ) + 2;
 }
@@ -157,10 +157,10 @@
    /* Insert local variables here. */
 	ARRAY_LOCAL(ShadowShortPeriodTotal,3);
 	ARRAY_LOCAL(ShadowLongPeriodTotal,2);
-	ARRAY_LOCAL(NearPeriodTotal,3);
+	ARRAY_LOCAL(nearPeriodTotal,3);
 	ARRAY_LOCAL(FarPeriodTotal,3);
     double bodyLongPeriodTotal;
-    int i, outIdx, totIdx, bodyLongTrailingIdx, ShadowShortTrailingIdx, ShadowLongTrailingIdx, NearTrailingIdx, 
+    int i, outIdx, totIdx, bodyLongTrailingIdx, ShadowShortTrailingIdx, ShadowLongTrailingIdx, nearTrailingIdx, 
         FarTrailingIdx, lookbackTotal;
 
 /**** START GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
@@ -188,7 +188,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -217,10 +217,10 @@
    ShadowLongPeriodTotal[1] = 0;
    ShadowLongPeriodTotal[0] = 0;
    ShadowLongTrailingIdx = startIdx - settingShadowLong.avgPeriod;
-   NearPeriodTotal[2] = 0;
-   NearPeriodTotal[1] = 0;
-   NearPeriodTotal[0] = 0;
-   NearTrailingIdx = startIdx - settingNear.avgPeriod;
+   nearPeriodTotal[2] = 0;
+   nearPeriodTotal[1] = 0;
+   nearPeriodTotal[0] = 0;
+   nearTrailingIdx = startIdx - settingNear.avgPeriod;
    FarPeriodTotal[2] = 0;
    FarPeriodTotal[1] = 0;
    FarPeriodTotal[0] = 0;
@@ -241,10 +241,10 @@
         ShadowLongPeriodTotal[0] += es.rangeOf( ShadowLong, i );
         i++;
    }
-   i = NearTrailingIdx;
+   i = nearTrailingIdx;
    while( i < startIdx ) {
-        NearPeriodTotal[2] += es.rangeOf( Near, i-2 );
-        NearPeriodTotal[1] += es.rangeOf( Near, i-1 );
+        nearPeriodTotal[2] += es.rangeOf( Near, i-2 );
+        nearPeriodTotal[1] += es.rangeOf( Near, i-1 );
         i++;
    }
    i = FarTrailingIdx;
@@ -278,15 +278,15 @@
         if( es.candleColor(i-2) == 1 &&                                                     // 1st white
             es.candleColor(i-1) == 1 &&                                                     // 2nd white
             es.candleColor(i) == 1 &&                                                       // 3rd white
-            inClose[i] > inClose[i-1] && inClose[i-1] > inClose[i-2] &&                     // consecutive higher closes
-            inOpen[i-1] > inOpen[i-2] &&                                                    // 2nd opens within/near 1st real body
+            es.Close(i) > es.Close(i-1) && es.Close(i-1) > es.Close(i-2) &&                     // consecutive higher closes
+            es.Open(i-1) > es.Open(i-2) &&                                                    // 2nd opens within/near 1st real body
 #ifdef TA_LIB_PRO
       /* Section for code distributed with TA-Lib Pro only. */
 #else
-            inOpen[i-1] <= inClose[i-2] + es.average( Near, NearPeriodTotal[2], i-2 ) &&
-            inOpen[i] > inOpen[i-1] &&                                                      // 3rd opens within/near 2nd real body
+            es.Open(i-1) <= es.Close(i-2) + es.average( Near, nearPeriodTotal[2], i-2 ) &&
+            es.Open(i) > es.Open(i-1) &&                                                      // 3rd opens within/near 2nd real body
 #endif
-            inOpen[i] <= inClose[i-1] + es.average( Near, NearPeriodTotal[1], i-1 ) &&
+            es.Open(i) <= es.Close(i-1) + es.average( Near, nearPeriodTotal[1], i-1 ) &&
             es.realBody(i-2) > es.average( BodyLong, bodyLongPeriodTotal, i-2 ) && // 1st: long real body
             TA_UPPERSHADOW(i-2) < es.average( ShadowShort, ShadowShortPeriodTotal[2], i-2 ) &&
                                                                                             // 1st: short upper shadow
@@ -295,7 +295,7 @@
                 // advance blocked with the 2nd, 3rd must not carry on the advance
                 (   
                     es.realBody(i-1) < es.realBody(i-2) - es.average( Far, FarPeriodTotal[2], i-2 ) &&
-                    es.realBody(i) < es.realBody(i-1) + es.average( Near, NearPeriodTotal[1], i-1 )
+                    es.realBody(i) < es.realBody(i-1) + es.average( Near, nearPeriodTotal[1], i-1 )
                 ) ||
                 // 3 far smaller than 2
                 // advance blocked with the 3rd
@@ -335,14 +335,14 @@
         for (totIdx = 2; totIdx >= 1; --totIdx) {
             FarPeriodTotal[totIdx] += es.rangeOf( Far, i-totIdx ) 
                                     - es.rangeOf( Far, FarTrailingIdx-totIdx );
-            NearPeriodTotal[totIdx] += es.rangeOf( Near, i-totIdx ) 
-                                     - es.rangeOf( Near, NearTrailingIdx-totIdx );
+            nearPeriodTotal[totIdx] += es.rangeOf( Near, i-totIdx ) 
+                                     - es.rangeOf( Near, nearTrailingIdx-totIdx );
         }
         bodyLongPeriodTotal += es.rangeOf( BodyLong, i-2 ) - es.rangeOf( BodyLong, bodyLongTrailingIdx-2 );
         i++; 
         ShadowShortTrailingIdx++;
         ShadowLongTrailingIdx++;
-        NearTrailingIdx++;
+        nearTrailingIdx++;
         FarTrailingIdx++;
         bodyLongTrailingIdx++;
    } while( i <= endIdx );
@@ -408,10 +408,10 @@
 /* Generated */ {
 /* Generated */ 	ARRAY_LOCAL(ShadowShortPeriodTotal,3);
 /* Generated */ 	ARRAY_LOCAL(ShadowLongPeriodTotal,2);
-/* Generated */ 	ARRAY_LOCAL(NearPeriodTotal,3);
+/* Generated */ 	ARRAY_LOCAL(nearPeriodTotal,3);
 /* Generated */ 	ARRAY_LOCAL(FarPeriodTotal,3);
 /* Generated */     double bodyLongPeriodTotal;
-/* Generated */     int i, outIdx, totIdx, bodyLongTrailingIdx, ShadowShortTrailingIdx, ShadowLongTrailingIdx, NearTrailingIdx, 
+/* Generated */     int i, outIdx, totIdx, bodyLongTrailingIdx, ShadowShortTrailingIdx, ShadowLongTrailingIdx, nearTrailingIdx, 
 /* Generated */         FarTrailingIdx, lookbackTotal;
 /* Generated */  #ifndef TA_FUNC_NO_RANGE_CHECK
 /* Generated */     if( startIdx < 0 )
@@ -443,10 +443,10 @@
 /* Generated */    ShadowLongPeriodTotal[1] = 0;
 /* Generated */    ShadowLongPeriodTotal[0] = 0;
 /* Generated */    ShadowLongTrailingIdx = startIdx - settingShadowLong.avgPeriod;
-/* Generated */    NearPeriodTotal[2] = 0;
-/* Generated */    NearPeriodTotal[1] = 0;
-/* Generated */    NearPeriodTotal[0] = 0;
-/* Generated */    NearTrailingIdx = startIdx - settingNear.avgPeriod;
+/* Generated */    nearPeriodTotal[2] = 0;
+/* Generated */    nearPeriodTotal[1] = 0;
+/* Generated */    nearPeriodTotal[0] = 0;
+/* Generated */    nearTrailingIdx = startIdx - settingNear.avgPeriod;
 /* Generated */    FarPeriodTotal[2] = 0;
 /* Generated */    FarPeriodTotal[1] = 0;
 /* Generated */    FarPeriodTotal[0] = 0;
@@ -466,10 +466,10 @@
 /* Generated */         ShadowLongPeriodTotal[0] += es.rangeOf( ShadowLong, i );
 /* Generated */         i++;
 /* Generated */    }
-/* Generated */    i = NearTrailingIdx;
+/* Generated */    i = nearTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         NearPeriodTotal[2] += es.rangeOf( Near, i-2 );
-/* Generated */         NearPeriodTotal[1] += es.rangeOf( Near, i-1 );
+/* Generated */         nearPeriodTotal[2] += es.rangeOf( Near, i-2 );
+/* Generated */         nearPeriodTotal[1] += es.rangeOf( Near, i-1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = FarTrailingIdx;
@@ -490,14 +490,14 @@
 /* Generated */         if( es.candleColor(i-2) == 1 &&                                                     // 1st white
 /* Generated */             es.candleColor(i-1) == 1 &&                                                     // 2nd white
 /* Generated */             es.candleColor(i) == 1 &&                                                       // 3rd white
-/* Generated */             inClose[i] > inClose[i-1] && inClose[i-1] > inClose[i-2] &&                     // consecutive higher closes
-/* Generated */             inOpen[i-1] > inOpen[i-2] &&                                                    // 2nd opens within/near 1st real body
+/* Generated */             es.Close(i) > es.Close(i-1) && es.Close(i-1) > es.Close(i-2) &&                     // consecutive higher closes
+/* Generated */             es.Open(i-1) > es.Open(i-2) &&                                                    // 2nd opens within/near 1st real body
 /* Generated */ #ifdef TA_LIB_PRO
 /* Generated */ #else
-/* Generated */             inOpen[i-1] <= inClose[i-2] + es.average( Near, NearPeriodTotal[2], i-2 ) &&
-/* Generated */             inOpen[i] > inOpen[i-1] &&                                                      // 3rd opens within/near 2nd real body
+/* Generated */             es.Open(i-1) <= es.Close(i-2) + es.average( Near, nearPeriodTotal[2], i-2 ) &&
+/* Generated */             es.Open(i) > es.Open(i-1) &&                                                      // 3rd opens within/near 2nd real body
 /* Generated */ #endif
-/* Generated */             inOpen[i] <= inClose[i-1] + es.average( Near, NearPeriodTotal[1], i-1 ) &&
+/* Generated */             es.Open(i) <= es.Close(i-1) + es.average( Near, nearPeriodTotal[1], i-1 ) &&
 /* Generated */             es.realBody(i-2) > es.average( BodyLong, bodyLongPeriodTotal, i-2 ) && // 1st: long real body
 /* Generated */             TA_UPPERSHADOW(i-2) < es.average( ShadowShort, ShadowShortPeriodTotal[2], i-2 ) &&
 /* Generated */                                                                                             // 1st: short upper shadow
@@ -506,7 +506,7 @@
 /* Generated */                 // advance blocked with the 2nd, 3rd must not carry on the advance
 /* Generated */                 (   
 /* Generated */                     es.realBody(i-1) < es.realBody(i-2) - es.average( Far, FarPeriodTotal[2], i-2 ) &&
-/* Generated */                     es.realBody(i) < es.realBody(i-1) + es.average( Near, NearPeriodTotal[1], i-1 )
+/* Generated */                     es.realBody(i) < es.realBody(i-1) + es.average( Near, nearPeriodTotal[1], i-1 )
 /* Generated */                 ) ||
 /* Generated */                 // 3 far smaller than 2
 /* Generated */                 // advance blocked with the 3rd
@@ -543,14 +543,14 @@
 /* Generated */         for (totIdx = 2; totIdx >= 1; --totIdx) {
 /* Generated */             FarPeriodTotal[totIdx] += es.rangeOf( Far, i-totIdx ) 
 /* Generated */                                     - es.rangeOf( Far, FarTrailingIdx-totIdx );
-/* Generated */             NearPeriodTotal[totIdx] += es.rangeOf( Near, i-totIdx ) 
-/* Generated */                                      - es.rangeOf( Near, NearTrailingIdx-totIdx );
+/* Generated */             nearPeriodTotal[totIdx] += es.rangeOf( Near, i-totIdx ) 
+/* Generated */                                      - es.rangeOf( Near, nearTrailingIdx-totIdx );
 /* Generated */         }
 /* Generated */         bodyLongPeriodTotal += es.rangeOf( BodyLong, i-2 ) - es.rangeOf( BodyLong, bodyLongTrailingIdx-2 );
 /* Generated */         i++; 
 /* Generated */         ShadowShortTrailingIdx++;
 /* Generated */         ShadowLongTrailingIdx++;
-/* Generated */         NearTrailingIdx++;
+/* Generated */         nearTrailingIdx++;
 /* Generated */         FarTrailingIdx++;
 /* Generated */         bodyLongTrailingIdx++;
 /* Generated */    } while( i <= endIdx );

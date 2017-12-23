@@ -78,10 +78,10 @@
 /* Generated */ #define INPUT_TYPE   double
 /* Generated */ 
 /* Generated */ #if defined( _MANAGED )
-/* Generated */ int Core::CdlHomingPigeonLookback( void )
+/* Generated */ int Core::CdlHomath.MingPigeonLookback( void )
 /* Generated */ 
 /* Generated */ #elif defined( _JAVA )
-/* Generated */ public int cdlHomingPigeonLookback(  )
+/* Generated */ public int cdlHomath.MingPigeonLookback(  )
 /* Generated */ 
 /* Generated */ #else
 /* Generated */ TA_LIB_API int TA_CDLHOMINGPIGEON_Lookback( void )
@@ -96,12 +96,12 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 1;
+    return math.Max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 1;
 }
 
 /**** START GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
 /*
- * TA_CDLHOMINGPIGEON - Homing Pigeon
+ * TA_CDLHOMINGPIGEON - Homath.Ming Pigeon
  * 
  * Input  = Open, High, Low, Close
  * Output = int
@@ -109,7 +109,7 @@
  */
 /* Generated */ 
 /* Generated */ #if defined( _MANAGED ) && defined( USE_SUBARRAY )
-/* Generated */ enum class Core::RetCode Core::CdlHomingPigeon( int    startIdx,
+/* Generated */ enum class Core::RetCode Core::CdlHomath.MingPigeon( int    startIdx,
 /* Generated */                                                 int    endIdx,
 /* Generated */                                                 SubArray<double>^ inOpen,
 /* Generated */                                                 SubArray<double>^ inHigh,
@@ -119,7 +119,7 @@
 /* Generated */                                                 [Out]int%    outNBElement,
 /* Generated */                                                 SubArray<int>^  outInteger )
 /* Generated */ #elif defined( _MANAGED )
-/* Generated */ enum class Core::RetCode Core::CdlHomingPigeon( int    startIdx,
+/* Generated */ enum class Core::RetCode Core::CdlHomath.MingPigeon( int    startIdx,
 /* Generated */                                                 int    endIdx,
 /* Generated */                                                 cli::array<double>^ inOpen,
 /* Generated */                                                 cli::array<double>^ inHigh,
@@ -129,7 +129,7 @@
 /* Generated */                                                 [Out]int%    outNBElement,
 /* Generated */                                                 cli::array<int>^  outInteger )
 /* Generated */ #elif defined( _JAVA )
-/* Generated */ public RetCode cdlHomingPigeon( int    startIdx,
+/* Generated */ public RetCode cdlHomath.MingPigeon( int    startIdx,
 /* Generated */                                 int    endIdx,
 /* Generated */                                 double       inOpen[],
 /* Generated */                                 double       inHigh[],
@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -228,8 +228,8 @@
     * - first candle: long black candle
     * - second candle: short black real body completely inside the previous day's body
     * The meaning of "short" and "long" is specified with TA_SetCandleSettings
-    * outInteger is positive (1 to 100): homing pigeon is always bullish; 
-    * the user should consider that homing pigeon is significant when it appears in a downtrend,
+    * outInteger is positive (1 to 100): homath.Ming pigeon is always bullish; 
+    * the user should consider that homath.Ming pigeon is significant when it appears in a downtrend,
     * while this function does not consider the trend
     */
    outIdx = 0;
@@ -242,8 +242,8 @@
             es.candleColor(i) == -1 &&                                                              // 2nd black
             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal, i-1 ) &&         // 1st long
             es.realBody(i) <= es.average( BodyShort, bodyShortPeriodTotal, i ) &&          // 2nd short
-            inOpen[i] < inOpen[i-1] &&                                                              // 2nd engulfed by 1st
-            inClose[i] > inClose[i-1]
+            es.Open(i) < es.Open(i-1) &&                                                              // 2nd engulfed by 1st
+            es.Close(i) > es.Close(i-1)
           )
             outInteger[outIdx++] = 100;
         else
@@ -278,7 +278,7 @@
 /* Generated */ #undef   INPUT_TYPE
 /* Generated */ #define  INPUT_TYPE float
 /* Generated */ #if defined( _MANAGED ) && defined( USE_SUBARRAY )
-/* Generated */ enum class Core::RetCode Core::CdlHomingPigeon( int    startIdx,
+/* Generated */ enum class Core::RetCode Core::CdlHomath.MingPigeon( int    startIdx,
 /* Generated */                                                 int    endIdx,
 /* Generated */                                                 SubArray<float>^ inOpen,
 /* Generated */                                                 SubArray<float>^ inHigh,
@@ -288,7 +288,7 @@
 /* Generated */                                                 [Out]int%    outNBElement,
 /* Generated */                                                 SubArray<int>^  outInteger )
 /* Generated */ #elif defined( _MANAGED )
-/* Generated */ enum class Core::RetCode Core::CdlHomingPigeon( int    startIdx,
+/* Generated */ enum class Core::RetCode Core::CdlHomath.MingPigeon( int    startIdx,
 /* Generated */                                                 int    endIdx,
 /* Generated */                                                 cli::array<float>^ inOpen,
 /* Generated */                                                 cli::array<float>^ inHigh,
@@ -298,7 +298,7 @@
 /* Generated */                                                 [Out]int%    outNBElement,
 /* Generated */                                                 cli::array<int>^  outInteger )
 /* Generated */ #elif defined( _JAVA )
-/* Generated */ public RetCode cdlHomingPigeon( int    startIdx,
+/* Generated */ public RetCode cdlHomath.MingPigeon( int    startIdx,
 /* Generated */                                 int    endIdx,
 /* Generated */                                 float        inOpen[],
 /* Generated */                                 float        inHigh[],
@@ -370,8 +370,8 @@
 /* Generated */             es.candleColor(i) == -1 &&                                                              // 2nd black
 /* Generated */             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal, i-1 ) &&         // 1st long
 /* Generated */             es.realBody(i) <= es.average( BodyShort, bodyShortPeriodTotal, i ) &&          // 2nd short
-/* Generated */             inOpen[i] < inOpen[i-1] &&                                                              // 2nd engulfed by 1st
-/* Generated */             inClose[i] > inClose[i-1]
+/* Generated */             es.Open(i) < es.Open(i-1) &&                                                              // 2nd engulfed by 1st
+/* Generated */             es.Close(i) > es.Close(i-1)
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else

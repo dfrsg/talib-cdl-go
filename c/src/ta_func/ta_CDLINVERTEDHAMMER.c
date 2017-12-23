@@ -96,7 +96,7 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( max( settingBodyShort.avgPeriod, settingShadowLong.avgPeriod ),
+    return math.Max( math.Max( settingBodyShort.avgPeriod, settingShadowLong.avgPeriod ),
                 settingShadowVeryShort.avgPeriod
             ) + 1;
 }
@@ -182,7 +182,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 

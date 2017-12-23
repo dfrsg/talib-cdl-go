@@ -184,7 +184,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -255,8 +255,8 @@
             es.realBodyGAPDOWN(i-1,i-2) &&                                  // 3rd: opens gapping down
                                                                             //      and HAS an upper shadow
             TA_UPPERSHADOW(i-1) > es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[1], i-1 ) &&
-            inHigh[i-1] > inClose[i-2] &&                                   //      that extends into the prior body
-            inHigh[i] > inHigh[i-1] && inLow[i] < inLow[i-1]                // 4th: engulfs the 3rd including the shadows
+            es.High(i-1) > es.Close(i-2) &&                                   //      that extends into the prior body
+            es.High(i) > es.High(i-1) && es.Low(i) < es.Low(i-1)                // 4th: engulfs the 3rd including the shadows
           )
             outInteger[outIdx++] = 100;
         else
@@ -390,8 +390,8 @@
 /* Generated */             es.realBodyGAPDOWN(i-1,i-2) &&                                  // 3rd: opens gapping down
 /* Generated */                                                                             //      and HAS an upper shadow
 /* Generated */             TA_UPPERSHADOW(i-1) > es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[1], i-1 ) &&
-/* Generated */             inHigh[i-1] > inClose[i-2] &&                                   //      that extends into the prior body
-/* Generated */             inHigh[i] > inHigh[i-1] && inLow[i] < inLow[i-1]                // 4th: engulfs the 3rd including the shadows
+/* Generated */             es.High(i-1) > es.Close(i-2) &&                                   //      that extends into the prior body
+/* Generated */             es.High(i) > es.High(i-1) && es.Low(i) < es.Low(i-1)                // 4th: engulfs the 3rd including the shadows
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else

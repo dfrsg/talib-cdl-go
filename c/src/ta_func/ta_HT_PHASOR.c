@@ -209,7 +209,7 @@
    /* Constant */
    rad2Deg = 180.0 / (4.0 * std_atan(1));
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
    lookbackTotal = 32 + TA_GLOBALS_UNSTABLE_PERIOD(TA_FUNC_UNST_HT_PHASOR,HtPhasor);
@@ -275,7 +275,7 @@
    /* Initialize the circular buffers used by the hilbert
     * transform logic. 
     * A buffer is used for odd day and another for even days.
-    * This minimize the number of memory access and floating point
+    * This math.Minimize the number of memory access and floating point
     * operations needed (note also that by using static circular buffer, 
     * no large dynamic memory allocation is needed for storing
     * intermediate calculation!).

@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -219,7 +219,7 @@
     * - third candle: black candle with the close equal to the first candle's close
     * The meaning of "equal" is specified with TA_SetCandleSettings
     * outInteger is always positive (1 to 100): stick sandwich is always bullish;
-    * the user should consider that stick sandwich is significant when coming in a downtrend, 
+    * the user should consider that stick sandwich is significant when comath.Ming in a downtrend, 
     * while this function does not consider it
     */
    outIdx = 0;
@@ -228,9 +228,9 @@
         if( es.candleColor(i-2) == -1 &&                                                        // first black
             es.candleColor(i-1) == 1 &&                                                         // second white
             es.candleColor(i) == -1 &&                                                          // third black
-            inLow[i-1] > inClose[i-2] &&                                                        // 2nd low > prior close
-            inClose[i] <= inClose[i-2] + es.average( Equal, EqualPeriodTotal, i-2 ) && // 1st and 3rd same close
-            inClose[i] >= inClose[i-2] - es.average( Equal, EqualPeriodTotal, i-2 )
+            es.Low(i-1) > es.Close(i-2) &&                                                        // 2nd low > prior close
+            es.Close(i) <= es.Close(i-2) + es.average( Equal, EqualPeriodTotal, i-2 ) && // 1st and 3rd same close
+            es.Close(i) >= es.Close(i-2) - es.average( Equal, EqualPeriodTotal, i-2 )
           )
             outInteger[outIdx++] = 100;
         else
@@ -341,9 +341,9 @@
 /* Generated */         if( es.candleColor(i-2) == -1 &&                                                        // first black
 /* Generated */             es.candleColor(i-1) == 1 &&                                                         // second white
 /* Generated */             es.candleColor(i) == -1 &&                                                          // third black
-/* Generated */             inLow[i-1] > inClose[i-2] &&                                                        // 2nd low > prior close
-/* Generated */             inClose[i] <= inClose[i-2] + es.average( Equal, EqualPeriodTotal, i-2 ) && // 1st and 3rd same close
-/* Generated */             inClose[i] >= inClose[i-2] - es.average( Equal, EqualPeriodTotal, i-2 )
+/* Generated */             es.Low(i-1) > es.Close(i-2) &&                                                        // 2nd low > prior close
+/* Generated */             es.Close(i) <= es.Close(i-2) + es.average( Equal, EqualPeriodTotal, i-2 ) && // 1st and 3rd same close
+/* Generated */             es.Close(i) >= es.Close(i-2) - es.average( Equal, EqualPeriodTotal, i-2 )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else

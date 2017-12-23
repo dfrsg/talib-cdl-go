@@ -104,13 +104,13 @@
 
 /**** START GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 /* Generated */ #ifndef TA_FUNC_NO_RANGE_CHECK
-/* Generated */    /* min/max are checked for optInFastK_Period. */
+/* Generated */    /* math.Min/math.Max are checked for optInFastK_Period. */
 /* Generated */    if( (int)optInFastK_Period == TA_INTEGER_DEFAULT )
 /* Generated */       optInFastK_Period = 5;
 /* Generated */    else if( ((int)optInFastK_Period < 1) || ((int)optInFastK_Period > 100000) )
 /* Generated */       return -1;
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInSlowK_Period. */
+/* Generated */    /* math.Min/math.Max are checked for optInSlowK_Period. */
 /* Generated */    if( (int)optInSlowK_Period == TA_INTEGER_DEFAULT )
 /* Generated */       optInSlowK_Period = 3;
 /* Generated */    else if( ((int)optInSlowK_Period < 1) || ((int)optInSlowK_Period > 100000) )
@@ -123,7 +123,7 @@
 /* Generated */       return -1;
 /* Generated */ 
 /* Generated */    #endif /* !defined(_MANAGED) && !defined(_JAVA)*/
-/* Generated */    /* min/max are checked for optInSlowD_Period. */
+/* Generated */    /* math.Min/math.Max are checked for optInSlowD_Period. */
 /* Generated */    if( (int)optInSlowD_Period == TA_INTEGER_DEFAULT )
 /* Generated */       optInSlowD_Period = 3;
 /* Generated */    else if( ((int)optInSlowD_Period < 1) || ((int)optInSlowD_Period > 100000) )
@@ -270,13 +270,13 @@
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
 /* Generated */    #endif /* !defined(_JAVA)*/
-/* Generated */    /* min/max are checked for optInFastK_Period. */
+/* Generated */    /* math.Min/math.Max are checked for optInFastK_Period. */
 /* Generated */    if( (int)optInFastK_Period == TA_INTEGER_DEFAULT )
 /* Generated */       optInFastK_Period = 5;
 /* Generated */    else if( ((int)optInFastK_Period < 1) || ((int)optInFastK_Period > 100000) )
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInSlowK_Period. */
+/* Generated */    /* math.Min/math.Max are checked for optInSlowK_Period. */
 /* Generated */    if( (int)optInSlowK_Period == TA_INTEGER_DEFAULT )
 /* Generated */       optInSlowK_Period = 3;
 /* Generated */    else if( ((int)optInSlowK_Period < 1) || ((int)optInSlowK_Period > 100000) )
@@ -289,7 +289,7 @@
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
 /* Generated */    #endif /* !defined(_MANAGED) && !defined(_JAVA)*/
-/* Generated */    /* min/max are checked for optInSlowD_Period. */
+/* Generated */    /* math.Min/math.Max are checked for optInSlowD_Period. */
 /* Generated */    if( (int)optInSlowD_Period == TA_INTEGER_DEFAULT )
 /* Generated */       optInSlowD_Period = 3;
 /* Generated */    else if( ((int)optInSlowD_Period < 1) || ((int)optInSlowD_Period > 100000) )
@@ -443,7 +443,7 @@
          i = lowestIdx;
          while( ++i<=today )
          {
-            tmp = inLow[i];
+            tmp = es.Low(i);
             if( tmp < lowest )
             {
                lowestIdx = i;
@@ -468,7 +468,7 @@
          i = highestIdx;
          while( ++i<=today )
          {
-            tmp = inHigh[i];
+            tmp = es.High(i);
             if( tmp > highest )
             {
                highestIdx = i;
@@ -731,7 +731,7 @@
 /* Generated */          i = lowestIdx;
 /* Generated */          while( ++i<=today )
 /* Generated */          {
-/* Generated */             tmp = inLow[i];
+/* Generated */             tmp = es.Low(i);
 /* Generated */             if( tmp < lowest )
 /* Generated */             {
 /* Generated */                lowestIdx = i;
@@ -754,7 +754,7 @@
 /* Generated */          i = highestIdx;
 /* Generated */          while( ++i<=today )
 /* Generated */          {
-/* Generated */             tmp = inHigh[i];
+/* Generated */             tmp = es.High(i);
 /* Generated */             if( tmp > highest )
 /* Generated */             {
 /* Generated */                highestIdx = i;

@@ -96,22 +96,22 @@
 /**** END GENCODE SECTION 1 - DO NOT DELETE THIS LINE ****/
 {   
    /* insert local variable here */
-   int maxPeriod;
+   int math.MaxPeriod;
 /**** START GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 /* Generated */ #ifndef TA_FUNC_NO_RANGE_CHECK
-/* Generated */    /* min/max are checked for optInTimePeriod1. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod1. */
 /* Generated */    if( (int)optInTimePeriod1 == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod1 = 7;
 /* Generated */    else if( ((int)optInTimePeriod1 < 1) || ((int)optInTimePeriod1 > 100000) )
 /* Generated */       return -1;
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInTimePeriod2. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod2. */
 /* Generated */    if( (int)optInTimePeriod2 == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod2 = 14;
 /* Generated */    else if( ((int)optInTimePeriod2 < 1) || ((int)optInTimePeriod2 > 100000) )
 /* Generated */       return -1;
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInTimePeriod3. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod3. */
 /* Generated */    if( (int)optInTimePeriod3 == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod3 = 28;
 /* Generated */    else if( ((int)optInTimePeriod3 < 1) || ((int)optInTimePeriod3 > 100000) )
@@ -123,8 +123,8 @@
    /* Lookback for the Ultimate Oscillator is the lookback of the SMA with the longest
     * time period, plus 1 for the True Range.
     */
-    maxPeriod = max( max(optInTimePeriod1, optInTimePeriod2), optInTimePeriod3);
-    return LOOKBACK_CALL(SMA)( maxPeriod ) + 1;
+    math.MaxPeriod = math.Max( math.Max(optInTimePeriod1, optInTimePeriod2), optInTimePeriod3);
+    return LOOKBACK_CALL(SMA)( math.MaxPeriod ) + 1;
 }
 
 /**** START GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
@@ -229,19 +229,19 @@
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
 /* Generated */    #endif /* !defined(_JAVA)*/
-/* Generated */    /* min/max are checked for optInTimePeriod1. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod1. */
 /* Generated */    if( (int)optInTimePeriod1 == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod1 = 7;
 /* Generated */    else if( ((int)optInTimePeriod1 < 1) || ((int)optInTimePeriod1 > 100000) )
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInTimePeriod2. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod2. */
 /* Generated */    if( (int)optInTimePeriod2 == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod2 = 14;
 /* Generated */    else if( ((int)optInTimePeriod2 < 1) || ((int)optInTimePeriod2 > 100000) )
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInTimePeriod3. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod3. */
 /* Generated */    if( (int)optInTimePeriod3 == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod3 = 28;
 /* Generated */    else if( ((int)optInTimePeriod3 < 1) || ((int)optInTimePeriod3 > 100000) )
@@ -299,7 +299,7 @@
       tempLT = inLow[day];                        \
       tempHT = inHigh[day];                       \
       tempCY = inClose[day-1];                    \
-      trueLow = min( tempLT, tempCY );            \
+      trueLow = math.Min( tempLT, tempCY );            \
       closeMinusTrueLow = inClose[day] - trueLow; \
       trueRange = tempHT - tempLT;                \
       tempDouble = std_fabs( tempCY - tempHT );       \
@@ -520,7 +520,7 @@
 /* Generated */       tempLT = inLow[day];                        \
 /* Generated */       tempHT = inHigh[day];                       \
 /* Generated */       tempCY = inClose[day-1];                    \
-/* Generated */       trueLow = min( tempLT, tempCY );            \
+/* Generated */       trueLow = math.Min( tempLT, tempCY );            \
 /* Generated */       closeMinusTrueLow = inClose[day] - trueLow; \
 /* Generated */       trueRange = tempHT - tempLT;                \
 /* Generated */       tempDouble = std_fabs( tempCY - tempHT );       \

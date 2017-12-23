@@ -181,7 +181,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -223,18 +223,18 @@
    do
    {
         if( ( es.candleColor(i) == 1 && es.candleColor(i-1) == -1 &&            // white engulfs black
-              ( ( inClose[i] >= inOpen[i-1] && inOpen[i] < inClose[i-1] ) ||
-                ( inClose[i] > inOpen[i-1] && inOpen[i] <= inClose[i-1] )
+              ( ( es.Close(i) >= es.Open(i-1) && es.Open(i) < es.Close(i-1) ) ||
+                ( es.Close(i) > es.Open(i-1) && es.Open(i) <= es.Close(i-1) )
               )
             )
             ||
             ( es.candleColor(i) == -1 && es.candleColor(i-1) == 1 &&            // black engulfs white
-              ( ( inOpen[i] >= inClose[i-1] && inClose[i] < inOpen[i-1] ) ||
-                ( inOpen[i] > inClose[i-1] && inClose[i] <= inOpen[i-1] )
+              ( ( es.Open(i) >= es.Close(i-1) && es.Close(i) < es.Open(i-1) ) ||
+                ( es.Open(i) > es.Close(i-1) && es.Close(i) <= es.Open(i-1) )
               )
             )
           )
-            if( inOpen[i] != inClose[i-1] && inClose[i] != inOpen[i-1] )
+            if( es.Open(i) != es.Close(i-1) && es.Close(i) != es.Open(i-1) )
                 outInteger[outIdx++] = es.candleColor(i) * 100;
             else
                 outInteger[outIdx++] = es.candleColor(i) * 80;
@@ -333,18 +333,18 @@
 /* Generated */    do
 /* Generated */    {
 /* Generated */         if( ( es.candleColor(i) == 1 && es.candleColor(i-1) == -1 &&            // white engulfs black
-/* Generated */               ( ( inClose[i] >= inOpen[i-1] && inOpen[i] < inClose[i-1] ) ||
-/* Generated */                 ( inClose[i] > inOpen[i-1] && inOpen[i] <= inClose[i-1] )
+/* Generated */               ( ( es.Close(i) >= es.Open(i-1) && es.Open(i) < es.Close(i-1) ) ||
+/* Generated */                 ( es.Close(i) > es.Open(i-1) && es.Open(i) <= es.Close(i-1) )
 /* Generated */               )
 /* Generated */             )
 /* Generated */             ||
 /* Generated */             ( es.candleColor(i) == -1 && es.candleColor(i-1) == 1 &&            // black engulfs white
-/* Generated */               ( ( inOpen[i] >= inClose[i-1] && inClose[i] < inOpen[i-1] ) ||
-/* Generated */                 ( inOpen[i] > inClose[i-1] && inClose[i] <= inOpen[i-1] )
+/* Generated */               ( ( es.Open(i) >= es.Close(i-1) && es.Close(i) < es.Open(i-1) ) ||
+/* Generated */                 ( es.Open(i) > es.Close(i-1) && es.Close(i) <= es.Open(i-1) )
 /* Generated */               )
 /* Generated */             )
 /* Generated */           )
-/* Generated */             if( inOpen[i] != inClose[i-1] && inClose[i] != inOpen[i-1] )
+/* Generated */             if( es.Open(i) != es.Close(i-1) && es.Close(i) != es.Open(i-1) )
 /* Generated */                 outInteger[outIdx++] = es.candleColor(i) * 100;
 /* Generated */             else
 /* Generated */                 outInteger[outIdx++] = es.candleColor(i) * 80;

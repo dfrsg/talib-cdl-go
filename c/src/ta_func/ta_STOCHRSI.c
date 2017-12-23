@@ -103,19 +103,19 @@
 
 /**** START GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 /* Generated */ #ifndef TA_FUNC_NO_RANGE_CHECK
-/* Generated */    /* min/max are checked for optInTimePeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod. */
 /* Generated */    if( (int)optInTimePeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod = 14;
 /* Generated */    else if( ((int)optInTimePeriod < 2) || ((int)optInTimePeriod > 100000) )
 /* Generated */       return -1;
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInFastK_Period. */
+/* Generated */    /* math.Min/math.Max are checked for optInFastK_Period. */
 /* Generated */    if( (int)optInFastK_Period == TA_INTEGER_DEFAULT )
 /* Generated */       optInFastK_Period = 5;
 /* Generated */    else if( ((int)optInFastK_Period < 1) || ((int)optInFastK_Period > 100000) )
 /* Generated */       return -1;
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInFastD_Period. */
+/* Generated */    /* math.Min/math.Max are checked for optInFastD_Period. */
 /* Generated */    if( (int)optInFastD_Period == TA_INTEGER_DEFAULT )
 /* Generated */       optInFastD_Period = 3;
 /* Generated */    else if( ((int)optInFastD_Period < 1) || ((int)optInFastD_Period > 100000) )
@@ -234,19 +234,19 @@
 /* Generated */    #if !defined(_JAVA)
 /* Generated */    if( !inReal ) return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */    #endif /* !defined(_JAVA)*/
-/* Generated */    /* min/max are checked for optInTimePeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod. */
 /* Generated */    if( (int)optInTimePeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod = 14;
 /* Generated */    else if( ((int)optInTimePeriod < 2) || ((int)optInTimePeriod > 100000) )
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInFastK_Period. */
+/* Generated */    /* math.Min/math.Max are checked for optInFastK_Period. */
 /* Generated */    if( (int)optInFastK_Period == TA_INTEGER_DEFAULT )
 /* Generated */       optInFastK_Period = 5;
 /* Generated */    else if( ((int)optInFastK_Period < 1) || ((int)optInFastK_Period > 100000) )
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInFastD_Period. */
+/* Generated */    /* math.Min/math.Max are checked for optInFastD_Period. */
 /* Generated */    if( (int)optInFastD_Period == TA_INTEGER_DEFAULT )
 /* Generated */       optInFastD_Period = 3;
 /* Generated */    else if( ((int)optInFastD_Period < 1) || ((int)optInFastD_Period > 100000) )

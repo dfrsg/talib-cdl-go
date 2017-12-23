@@ -179,7 +179,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -218,10 +218,10 @@
    {
         if( es.candleColor(i-2) == es.candleColor(i-1) &&                   // 1st and 2nd of same color
             es.candleColor(i-1) == -es.candleColor(i) &&                    // 3rd opposite color
-            inOpen[i] < max(inClose[i-1], inOpen[i-1]) &&                   // 3rd opens within 2nd rb
-            inOpen[i] > min(inClose[i-1], inOpen[i-1]) &&
-            inClose[i] < max(inClose[i-2], inOpen[i-2]) &&                  // 3rd closes within 1st rb
-            inClose[i] > min(inClose[i-2], inOpen[i-2]) &&
+            es.Open(i) < math.Max(es.Close(i-1), es.Open(i-1)) &&                   // 3rd opens within 2nd rb
+            es.Open(i) > math.Min(es.Close(i-1), es.Open(i-1)) &&
+            es.Close(i) < math.Max(es.Close(i-2), es.Open(i-2)) &&                  // 3rd closes within 1st rb
+            es.Close(i) > math.Min(es.Close(i-2), es.Open(i-2)) &&
             ( ( 
                 es.candleColor(i-2) == 1 &&                                 // when 1st is white
                 es.realBodyGAPUP(i-1,i-2)                                   // upside gap
@@ -330,10 +330,10 @@
 /* Generated */    {
 /* Generated */         if( es.candleColor(i-2) == es.candleColor(i-1) &&                   // 1st and 2nd of same color
 /* Generated */             es.candleColor(i-1) == -es.candleColor(i) &&                    // 3rd opposite color
-/* Generated */             inOpen[i] < max(inClose[i-1], inOpen[i-1]) &&                   // 3rd opens within 2nd rb
-/* Generated */             inOpen[i] > min(inClose[i-1], inOpen[i-1]) &&
-/* Generated */             inClose[i] < max(inClose[i-2], inOpen[i-2]) &&                  // 3rd closes within 1st rb
-/* Generated */             inClose[i] > min(inClose[i-2], inOpen[i-2]) &&
+/* Generated */             es.Open(i) < math.Max(es.Close(i-1), es.Open(i-1)) &&                   // 3rd opens within 2nd rb
+/* Generated */             es.Open(i) > math.Min(es.Close(i-1), es.Open(i-1)) &&
+/* Generated */             es.Close(i) < math.Max(es.Close(i-2), es.Open(i-2)) &&                  // 3rd closes within 1st rb
+/* Generated */             es.Close(i) > math.Min(es.Close(i-2), es.Open(i-2)) &&
 /* Generated */             ( ( 
 /* Generated */                 es.candleColor(i-2) == 1 &&                                 // when 1st is white
 /* Generated */                 es.realBodyGAPUP(i-1,i-2)                                   // upside gap

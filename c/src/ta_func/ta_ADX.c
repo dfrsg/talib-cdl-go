@@ -98,7 +98,7 @@
 
 /**** START GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 /* Generated */ #ifndef TA_FUNC_NO_RANGE_CHECK
-/* Generated */    /* min/max are checked for optInTimePeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod. */
 /* Generated */    if( (int)optInTimePeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod = 14;
 /* Generated */    else if( ((int)optInTimePeriod < 2) || ((int)optInTimePeriod > 100000) )
@@ -174,7 +174,7 @@
    double prevHigh, prevLow, prevClose;
    double prevMinusDM, prevPlusDM, prevTR;
    double tempReal, tempReal2, diffP, diffM;
-   double minusDI, plusDI, sumDX, prevADX;
+   double math.MinusDI, plusDI, sumDX, prevADX;
 
    int i;
 
@@ -204,7 +204,7 @@
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
 /* Generated */    #endif /* !defined(_JAVA)*/
-/* Generated */    /* min/max are checked for optInTimePeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod. */
 /* Generated */    if( (int)optInTimePeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod = 14;
 /* Generated */    else if( ((int)optInTimePeriod < 2) || ((int)optInTimePeriod > 100000) )
@@ -264,7 +264,7 @@
     *    D|
     *
     * In case 3 and 4, the rule is that the smallest delta between
-    * (C-A) and (B-D) determine which of +DM or -DM is zero.
+    * (C-A) and (B-D) determath.Mine which of +DM or -DM is zero.
     *
     * In case 7, (C-A) and (B-D) are equal, so both +DM and -DM are
     * zero.
@@ -433,12 +433,12 @@
       /* Calculate the DX. The value is rounded (see Wilder book). */
       if( !TA_IS_ZERO(prevTR) )
       {
-         minusDI = round_pos(100.0*(prevMinusDM/prevTR));
+         math.MinusDI = round_pos(100.0*(prevMinusDM/prevTR));
          plusDI  = round_pos(100.0*(prevPlusDM/prevTR));
          /* This loop is just to accumulate the initial DX */
-         tempReal = minusDI+plusDI;
+         tempReal = math.MinusDI+plusDI;
          if( !TA_IS_ZERO(tempReal) )
-            sumDX  += round_pos( 100.0 * (std_fabs(minusDI-plusDI)/tempReal) );
+            sumDX  += round_pos( 100.0 * (std_fabs(math.MinusDI-plusDI)/tempReal) );
       }
    }
 
@@ -481,12 +481,12 @@
       if( !TA_IS_ZERO(prevTR) )
       {
          /* Calculate the DX. The value is rounded (see Wilder book). */
-         minusDI  = round_pos(100.0*(prevMinusDM/prevTR));
+         math.MinusDI  = round_pos(100.0*(prevMinusDM/prevTR));
          plusDI   = round_pos(100.0*(prevPlusDM/prevTR));
-         tempReal = minusDI+plusDI;
+         tempReal = math.MinusDI+plusDI;
          if( !TA_IS_ZERO(tempReal) )
          {
-            tempReal = round_pos(100.0*(std_fabs(minusDI-plusDI)/tempReal));
+            tempReal = round_pos(100.0*(std_fabs(math.MinusDI-plusDI)/tempReal));
             /* Calculate the ADX */
             prevADX = round_pos(((prevADX*(optInTimePeriod-1))+tempReal)/optInTimePeriod);
          }
@@ -532,12 +532,12 @@
       if( !TA_IS_ZERO(prevTR) )
       {
          /* Calculate the DX. The value is rounded (see Wilder book). */
-         minusDI  = round_pos(100.0*(prevMinusDM/prevTR));
+         math.MinusDI  = round_pos(100.0*(prevMinusDM/prevTR));
          plusDI   = round_pos(100.0*(prevPlusDM/prevTR));
-         tempReal = minusDI+plusDI;
+         tempReal = math.MinusDI+plusDI;
          if( !TA_IS_ZERO(tempReal) )
          {
-            tempReal = round_pos(100.0*(std_fabs(minusDI-plusDI)/tempReal));
+            tempReal = round_pos(100.0*(std_fabs(math.MinusDI-plusDI)/tempReal));
             /* Calculate the ADX */
             prevADX = round_pos(((prevADX*(optInTimePeriod-1))+tempReal)/optInTimePeriod);
          }
@@ -608,7 +608,7 @@
 /* Generated */    double prevHigh, prevLow, prevClose;
 /* Generated */    double prevMinusDM, prevPlusDM, prevTR;
 /* Generated */    double tempReal, tempReal2, diffP, diffM;
-/* Generated */    double minusDI, plusDI, sumDX, prevADX;
+/* Generated */    double math.MinusDI, plusDI, sumDX, prevADX;
 /* Generated */    int i;
 /* Generated */    #define TRUE_RANGE(TH,TL,YC,OUT) {\
 /* Generated */       OUT = TH-TL; \
@@ -705,11 +705,11 @@
 /* Generated */       prevClose = inClose[today];
 /* Generated */       if( !TA_IS_ZERO(prevTR) )
 /* Generated */       {
-/* Generated */          minusDI = round_pos(100.0*(prevMinusDM/prevTR));
+/* Generated */          math.MinusDI = round_pos(100.0*(prevMinusDM/prevTR));
 /* Generated */          plusDI  = round_pos(100.0*(prevPlusDM/prevTR));
-/* Generated */          tempReal = minusDI+plusDI;
+/* Generated */          tempReal = math.MinusDI+plusDI;
 /* Generated */          if( !TA_IS_ZERO(tempReal) )
-/* Generated */             sumDX  += round_pos( 100.0 * (std_fabs(minusDI-plusDI)/tempReal) );
+/* Generated */             sumDX  += round_pos( 100.0 * (std_fabs(math.MinusDI-plusDI)/tempReal) );
 /* Generated */       }
 /* Generated */    }
 /* Generated */    prevADX = round_pos( sumDX / optInTimePeriod );
@@ -738,12 +738,12 @@
 /* Generated */       prevClose = inClose[today];
 /* Generated */       if( !TA_IS_ZERO(prevTR) )
 /* Generated */       {
-/* Generated */          minusDI  = round_pos(100.0*(prevMinusDM/prevTR));
+/* Generated */          math.MinusDI  = round_pos(100.0*(prevMinusDM/prevTR));
 /* Generated */          plusDI   = round_pos(100.0*(prevPlusDM/prevTR));
-/* Generated */          tempReal = minusDI+plusDI;
+/* Generated */          tempReal = math.MinusDI+plusDI;
 /* Generated */          if( !TA_IS_ZERO(tempReal) )
 /* Generated */          {
-/* Generated */             tempReal = round_pos(100.0*(std_fabs(minusDI-plusDI)/tempReal));
+/* Generated */             tempReal = round_pos(100.0*(std_fabs(math.MinusDI-plusDI)/tempReal));
 /* Generated */             prevADX = round_pos(((prevADX*(optInTimePeriod-1))+tempReal)/optInTimePeriod);
 /* Generated */          }
 /* Generated */       }
@@ -774,12 +774,12 @@
 /* Generated */       prevClose = inClose[today];
 /* Generated */       if( !TA_IS_ZERO(prevTR) )
 /* Generated */       {
-/* Generated */          minusDI  = round_pos(100.0*(prevMinusDM/prevTR));
+/* Generated */          math.MinusDI  = round_pos(100.0*(prevMinusDM/prevTR));
 /* Generated */          plusDI   = round_pos(100.0*(prevPlusDM/prevTR));
-/* Generated */          tempReal = minusDI+plusDI;
+/* Generated */          tempReal = math.MinusDI+plusDI;
 /* Generated */          if( !TA_IS_ZERO(tempReal) )
 /* Generated */          {
-/* Generated */             tempReal = round_pos(100.0*(std_fabs(minusDI-plusDI)/tempReal));
+/* Generated */             tempReal = round_pos(100.0*(std_fabs(math.MinusDI-plusDI)/tempReal));
 /* Generated */             prevADX = round_pos(((prevADX*(optInTimePeriod-1))+tempReal)/optInTimePeriod);
 /* Generated */          }
 /* Generated */       }

@@ -96,7 +96,7 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( max( settingShadowVeryShort.avgPeriod, settingBodyLong.avgPeriod ), 
+    return math.Max( math.Max( settingShadowVeryShort.avgPeriod, settingBodyLong.avgPeriod ), 
                 settingEqual.avgPeriod
             ) + 1;
 }
@@ -182,7 +182,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -234,15 +234,15 @@
     * - second candle: bullish (bearish) belt hold with the same open as the prior candle
     * The meaning of "long body" and "very short shadow" of the belt hold is specified with TA_SetCandleSettings
     * outInteger is positive (1 to 100) when bullish or negative (-1 to -100) when bearish;
-    * the user should consider that separating lines is significant when coming in a trend and the belt hold has 
+    * the user should consider that separating lines is significant when comath.Ming in a trend and the belt hold has 
     * the same direction of the trend, while this function does not consider it
     */
    outIdx = 0;
    do
    {
         if( es.candleColor(i-1) == -es.candleColor(i) &&                                        // opposite candles
-            inOpen[i] <= inOpen[i-1] + es.average( Equal, EqualPeriodTotal, i-1 ) &&   // same open
-            inOpen[i] >= inOpen[i-1] - es.average( Equal, EqualPeriodTotal, i-1 ) &&
+            es.Open(i) <= es.Open(i-1) + es.average( Equal, EqualPeriodTotal, i-1 ) &&   // same open
+            es.Open(i) >= es.Open(i-1) - es.average( Equal, EqualPeriodTotal, i-1 ) &&
             es.realBody(i) > es.average( BodyLong, bodyLongPeriodTotal, i ) &&         // belt hold: long body
             ( 
               ( es.candleColor(i) == 1 &&                                               // with no lower shadow if bullish
@@ -380,8 +380,8 @@
 /* Generated */    do
 /* Generated */    {
 /* Generated */         if( es.candleColor(i-1) == -es.candleColor(i) &&                                        // opposite candles
-/* Generated */             inOpen[i] <= inOpen[i-1] + es.average( Equal, EqualPeriodTotal, i-1 ) &&   // same open
-/* Generated */             inOpen[i] >= inOpen[i-1] - es.average( Equal, EqualPeriodTotal, i-1 ) &&
+/* Generated */             es.Open(i) <= es.Open(i-1) + es.average( Equal, EqualPeriodTotal, i-1 ) &&   // same open
+/* Generated */             es.Open(i) >= es.Open(i-1) - es.average( Equal, EqualPeriodTotal, i-1 ) &&
 /* Generated */             es.realBody(i) > es.average( BodyLong, bodyLongPeriodTotal, i ) &&         // belt hold: long body
 /* Generated */             ( 
 /* Generated */               ( es.candleColor(i) == 1 &&                                               // with no lower shadow if bullish

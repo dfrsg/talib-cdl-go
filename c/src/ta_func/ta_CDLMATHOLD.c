@@ -103,7 +103,7 @@
 
    /* insert lookback code here. */
    UNUSED_VARIABLE(optInPenetration);
-   return max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 4;
+   return math.Max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 4;
 }
 
 /**** START GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
@@ -202,7 +202,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -257,7 +257,7 @@
     *   high of the highest reaction day
     * The meaning of "short" and "long" is specified with TA_SetCandleSettings; 
     * "hold within" means "a part of the real body must be within";
-    * optInPenetration is the maximum percentage of the first white body the reaction days can penetrate (it is 
+    * optInPenetration is the math.Maximum percentage of the first white body the reaction days can penetrate (it is 
     * to specify how much the reaction days should be "higher than the reaction days of the rising three methods")
     * outInteger is positive (1 to 100): mat hold is always bullish
     */
@@ -279,18 +279,18 @@
             // upside gap 1st to 2nd
             es.realBodyGAPUP(i-3,i-4) &&
             // 3rd to 4th hold within 1st: a part of the real body must be within 1st real body
-            min(inOpen[i-2], inClose[i-2]) < inClose[i-4] &&
-            min(inOpen[i-1], inClose[i-1]) < inClose[i-4] &&
+            math.Min(es.Open(i-2), es.Close(i-2)) < inClose[i-4] &&
+            math.Min(es.Open(i-1), es.Close(i-1)) < inClose[i-4] &&
             // reaction days penetrate first body less than optInPenetration percent
-            min(inOpen[i-2], inClose[i-2]) > inClose[i-4] - es.realBody(i-4) * optInPenetration &&
-            min(inOpen[i-1], inClose[i-1]) > inClose[i-4] - es.realBody(i-4) * optInPenetration &&
+            math.Min(es.Open(i-2), es.Close(i-2)) > inClose[i-4] - es.realBody(i-4) * optInPenetration &&
+            math.Min(es.Open(i-1), es.Close(i-1)) > inClose[i-4] - es.realBody(i-4) * optInPenetration &&
             // 2nd to 4th are falling
-            max(inClose[i-2], inOpen[i-2]) < inOpen[i-3] && 
-            max(inClose[i-1], inOpen[i-1]) < max(inClose[i-2], inOpen[i-2]) &&
+            math.Max(es.Close(i-2), es.Open(i-2)) < es.Open(i-3) && 
+            math.Max(es.Close(i-1), es.Open(i-1)) < math.Max(es.Close(i-2), es.Open(i-2)) &&
             // 5th opens above the prior close
-            inOpen[i] > inClose[i-1] &&
+            es.Open(i) > es.Close(i-1) &&
             // 5th closes above the highest high of the reaction days
-            inClose[i] > max(max(inHigh[i-3], inHigh[i-2]), inHigh[i-1])
+            es.Close(i) > math.Max(math.Max(es.High(i-3), es.High(i-2)), es.High(i-1))
           )
             outInteger[outIdx++] = 100;
         else
@@ -437,18 +437,18 @@
 /* Generated */             // upside gap 1st to 2nd
 /* Generated */             es.realBodyGAPUP(i-3,i-4) &&
 /* Generated */             // 3rd to 4th hold within 1st: a part of the real body must be within 1st real body
-/* Generated */             min(inOpen[i-2], inClose[i-2]) < inClose[i-4] &&
-/* Generated */             min(inOpen[i-1], inClose[i-1]) < inClose[i-4] &&
+/* Generated */             math.Min(es.Open(i-2), es.Close(i-2)) < inClose[i-4] &&
+/* Generated */             math.Min(es.Open(i-1), es.Close(i-1)) < inClose[i-4] &&
 /* Generated */             // reaction days penetrate first body less than optInPenetration percent
-/* Generated */             min(inOpen[i-2], inClose[i-2]) > inClose[i-4] - es.realBody(i-4) * optInPenetration &&
-/* Generated */             min(inOpen[i-1], inClose[i-1]) > inClose[i-4] - es.realBody(i-4) * optInPenetration &&
+/* Generated */             math.Min(es.Open(i-2), es.Close(i-2)) > inClose[i-4] - es.realBody(i-4) * optInPenetration &&
+/* Generated */             math.Min(es.Open(i-1), es.Close(i-1)) > inClose[i-4] - es.realBody(i-4) * optInPenetration &&
 /* Generated */             // 2nd to 4th are falling
-/* Generated */             max(inClose[i-2], inOpen[i-2]) < inOpen[i-3] && 
-/* Generated */             max(inClose[i-1], inOpen[i-1]) < max(inClose[i-2], inOpen[i-2]) &&
+/* Generated */             math.Max(es.Close(i-2), es.Open(i-2)) < es.Open(i-3) && 
+/* Generated */             math.Max(es.Close(i-1), es.Open(i-1)) < math.Max(es.Close(i-2), es.Open(i-2)) &&
 /* Generated */             // 5th opens above the prior close
-/* Generated */             inOpen[i] > inClose[i-1] &&
+/* Generated */             es.Open(i) > es.Close(i-1) &&
 /* Generated */             // 5th closes above the highest high of the reaction days
-/* Generated */             inClose[i] > max(max(inHigh[i-3], inHigh[i-2]), inHigh[i-1])
+/* Generated */             es.Close(i) > math.Max(math.Max(es.High(i-3), es.High(i-2)), es.High(i-1))
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else

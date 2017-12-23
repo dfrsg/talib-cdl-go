@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -235,9 +235,9 @@
             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal[1], i-1 ) &&  //      long
             es.candleColor(i) == 1 &&                                                           // 2nd: white
             es.realBody(i) > es.average( BodyLong, bodyLongPeriodTotal[0], i ) &&      //      long
-            inOpen[i] < inLow[i-1] &&                                                           //      open below prior low
-            inClose[i] < inOpen[i-1] &&                                                         //      close within prior body
-            inClose[i] > inClose[i-1] + es.realBody(i-1) * 0.5                                  //        above midpoint
+            es.Open(i) < es.Low(i-1) &&                                                           //      open below prior low
+            es.Close(i) < es.Open(i-1) &&                                                         //      close within prior body
+            es.Close(i) > es.Close(i-1) + es.realBody(i-1) * 0.5                                  //        above midpoint
           )
             outInteger[outIdx++] = 100;
         else
@@ -356,9 +356,9 @@
 /* Generated */             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal[1], i-1 ) &&  //      long
 /* Generated */             es.candleColor(i) == 1 &&                                                           // 2nd: white
 /* Generated */             es.realBody(i) > es.average( BodyLong, bodyLongPeriodTotal[0], i ) &&      //      long
-/* Generated */             inOpen[i] < inLow[i-1] &&                                                           //      open below prior low
-/* Generated */             inClose[i] < inOpen[i-1] &&                                                         //      close within prior body
-/* Generated */             inClose[i] > inClose[i-1] + es.realBody(i-1) * 0.5                                  //        above midpoint
+/* Generated */             es.Open(i) < es.Low(i-1) &&                                                           //      open below prior low
+/* Generated */             es.Close(i) < es.Open(i-1) &&                                                         //      close within prior body
+/* Generated */             es.Close(i) > es.Close(i-1) + es.realBody(i-1) * 0.5                                  //        above midpoint
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else

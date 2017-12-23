@@ -193,7 +193,7 @@
    CIRCBUF_PROLOG(smoothPrice,double,SMOOTH_PRICE_SIZE);
    int idx;
 
-   /* Variable used to calculate the dominant cycle phase */
+   /* Variable used to calculate the domath.Minant cycle phase */
    int DCPeriodInt;
    double DCPhase, DCPeriod, imagPart, realPart;
 
@@ -232,7 +232,7 @@
    deg2Rad = 1.0/rad2Deg;
    constDeg2RadBy360 = tempReal*8.0;
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
    lookbackTotal = 63 + TA_GLOBALS_UNSTABLE_PERIOD(TA_FUNC_UNST_HT_SINE,HtSine);
@@ -298,7 +298,7 @@
    /* Initialize the circular buffers used by the hilbert
     * transform logic. 
     * A buffer is used for odd day and another for even days.
-    * This minimize the number of memory access and floating point
+    * This math.Minimize the number of memory access and floating point
     * operations needed (note also that by using static circular buffer, 
     * no large dynamic memory allocation is needed for storing
     * intermediate calculation!).
@@ -407,7 +407,7 @@
 
       smoothPeriod = (0.33*period)+(0.67*smoothPeriod);
 
-      /* Compute Dominant Cycle Phase */
+      /* Compute Domath.Minant Cycle Phase */
       DCPeriod    = smoothPeriod+0.5;
       DCPeriodInt = (int)DCPeriod;
       realPart = 0.0;

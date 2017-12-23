@@ -96,7 +96,7 @@
 
 /**** START GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 /* Generated */ #ifndef TA_FUNC_NO_RANGE_CHECK
-/* Generated */    /* min/max are checked for optInTimePeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod. */
 /* Generated */    if( (int)optInTimePeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod = 14;
 /* Generated */    else if( ((int)optInTimePeriod < 2) || ((int)optInTimePeriod > 100000) )
@@ -193,7 +193,7 @@
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
 /* Generated */    #endif /* !defined(_JAVA)*/
-/* Generated */    /* min/max are checked for optInTimePeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod. */
 /* Generated */    if( (int)optInTimePeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod = 14;
 /* Generated */    else if( ((int)optInTimePeriod < 2) || ((int)optInTimePeriod > 100000) )
@@ -210,7 +210,7 @@
 
    /* Insert TA function code here. */
    
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
    lookbackTotal = (optInTimePeriod-1);
@@ -244,7 +244,7 @@
    {
       while( i < startIdx )
       {
-         circBuffer[circBuffer_Idx] = (inHigh[i]+inLow[i]+inClose[i])/3;
+         circBuffer[circBuffer_Idx] = (es.High(i)+es.Low(i)+es.Close(i))/3;
          i++;
          CIRCBUF_NEXT(circBuffer);
       }
@@ -257,7 +257,7 @@
    outIdx = 0;
    do
    {
-      lastValue = (inHigh[i]+inLow[i]+inClose[i])/3;
+      lastValue = (es.High(i)+es.Low(i)+es.Close(i))/3;
       circBuffer[circBuffer_Idx] = lastValue;
 
       /* Calculate the average for the whole period. */
@@ -387,7 +387,7 @@
 /* Generated */    {
 /* Generated */       while( i < startIdx )
 /* Generated */       {
-/* Generated */          circBuffer[circBuffer_Idx] = (inHigh[i]+inLow[i]+inClose[i])/3;
+/* Generated */          circBuffer[circBuffer_Idx] = (es.High(i)+es.Low(i)+es.Close(i))/3;
 /* Generated */          i++;
 /* Generated */          CIRCBUF_NEXT(circBuffer);
 /* Generated */       }
@@ -395,7 +395,7 @@
 /* Generated */    outIdx = 0;
 /* Generated */    do
 /* Generated */    {
-/* Generated */       lastValue = (inHigh[i]+inLow[i]+inClose[i])/3;
+/* Generated */       lastValue = (es.High(i)+es.Low(i)+es.Close(i))/3;
 /* Generated */       circBuffer[circBuffer_Idx] = lastValue;
 /* Generated */       theAverage = 0;
 /* Generated */       for( j=0; j < optInTimePeriod; j++ )

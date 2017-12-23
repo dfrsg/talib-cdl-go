@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -227,8 +227,8 @@
    {
         if( es.candleColor(i-1) == -1 &&                                                        // first black
             es.candleColor(i) == -1 &&                                                          // second black
-            inClose[i] <= inClose[i-1] + es.average( Equal, EqualPeriodTotal, i-1 ) && // 1st and 2nd same close
-            inClose[i] >= inClose[i-1] - es.average( Equal, EqualPeriodTotal, i-1 )
+            es.Close(i) <= es.Close(i-1) + es.average( Equal, EqualPeriodTotal, i-1 ) && // 1st and 2nd same close
+            es.Close(i) >= es.Close(i-1) - es.average( Equal, EqualPeriodTotal, i-1 )
           )
             outInteger[outIdx++] = 100;
         else
@@ -341,8 +341,8 @@
 /* Generated */    {
 /* Generated */         if( es.candleColor(i-1) == -1 &&                                                        // first black
 /* Generated */             es.candleColor(i) == -1 &&                                                          // second black
-/* Generated */             inClose[i] <= inClose[i-1] + es.average( Equal, EqualPeriodTotal, i-1 ) && // 1st and 2nd same close
-/* Generated */             inClose[i] >= inClose[i-1] - es.average( Equal, EqualPeriodTotal, i-1 )
+/* Generated */             es.Close(i) <= es.Close(i-1) + es.average( Equal, EqualPeriodTotal, i-1 ) && // 1st and 2nd same close
+/* Generated */             es.Close(i) >= es.Close(i-1) - es.average( Equal, EqualPeriodTotal, i-1 )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else

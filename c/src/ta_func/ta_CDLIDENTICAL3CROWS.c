@@ -96,7 +96,7 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( settingShadowVeryShort.avgPeriod, settingEqual.avgPeriod
+    return math.Max( settingShadowVeryShort.avgPeriod, settingEqual.avgPeriod
             ) + 2;
 }
 
@@ -182,7 +182,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -258,14 +258,14 @@
             es.candleColor(i) == -1 &&                                      // 3rd black
                                                                             // very short lower shadow
             TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&         
-            inClose[i-2] > inClose[i-1] &&                                  // three declining
-            inClose[i-1] > inClose[i] &&
+            es.Close(i-2) > es.Close(i-1) &&                                  // three declining
+            es.Close(i-1) > es.Close(i) &&
                                                                             // 2nd black opens very close to 1st close
-            inOpen[i-1] <= inClose[i-2] + es.average( Equal, EqualPeriodTotal[2], i-2 ) && 
-            inOpen[i-1] >= inClose[i-2] - es.average( Equal, EqualPeriodTotal[2], i-2 ) &&
+            es.Open(i-1) <= es.Close(i-2) + es.average( Equal, EqualPeriodTotal[2], i-2 ) && 
+            es.Open(i-1) >= es.Close(i-2) - es.average( Equal, EqualPeriodTotal[2], i-2 ) &&
                                                                             // 3rd black opens very close to 2nd close 
-            inOpen[i] <= inClose[i-1] + es.average( Equal, EqualPeriodTotal[1], i-1 ) &&   
-            inOpen[i] >= inClose[i-1] - es.average( Equal, EqualPeriodTotal[1], i-1 )
+            es.Open(i) <= es.Close(i-1) + es.average( Equal, EqualPeriodTotal[1], i-1 ) &&   
+            es.Open(i) >= es.Close(i-1) - es.average( Equal, EqualPeriodTotal[1], i-1 )
           )
             outInteger[outIdx++] = -100;
         else
@@ -408,14 +408,14 @@
 /* Generated */             es.candleColor(i) == -1 &&                                      // 3rd black
 /* Generated */                                                                             // very short lower shadow
 /* Generated */             TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&         
-/* Generated */             inClose[i-2] > inClose[i-1] &&                                  // three declining
-/* Generated */             inClose[i-1] > inClose[i] &&
+/* Generated */             es.Close(i-2) > es.Close(i-1) &&                                  // three declining
+/* Generated */             es.Close(i-1) > es.Close(i) &&
 /* Generated */                                                                             // 2nd black opens very close to 1st close
-/* Generated */             inOpen[i-1] <= inClose[i-2] + es.average( Equal, EqualPeriodTotal[2], i-2 ) && 
-/* Generated */             inOpen[i-1] >= inClose[i-2] - es.average( Equal, EqualPeriodTotal[2], i-2 ) &&
+/* Generated */             es.Open(i-1) <= es.Close(i-2) + es.average( Equal, EqualPeriodTotal[2], i-2 ) && 
+/* Generated */             es.Open(i-1) >= es.Close(i-2) - es.average( Equal, EqualPeriodTotal[2], i-2 ) &&
 /* Generated */                                                                             // 3rd black opens very close to 2nd close 
-/* Generated */             inOpen[i] <= inClose[i-1] + es.average( Equal, EqualPeriodTotal[1], i-1 ) &&   
-/* Generated */             inOpen[i] >= inClose[i-1] - es.average( Equal, EqualPeriodTotal[1], i-1 )
+/* Generated */             es.Open(i) <= es.Close(i-1) + es.average( Equal, EqualPeriodTotal[1], i-1 ) &&   
+/* Generated */             es.Open(i) >= es.Close(i-1) - es.average( Equal, EqualPeriodTotal[1], i-1 )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = -100;
 /* Generated */         else

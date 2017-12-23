@@ -96,7 +96,7 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( settingEqual.avgPeriod, settingBodyLong.avgPeriod
+    return math.Max( settingEqual.avgPeriod, settingBodyLong.avgPeriod
             ) + 1;
 }
 
@@ -186,7 +186,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -244,8 +244,8 @@
         if( es.candleColor(i-1) == -es.candleColor(i) &&                                        // opposite candles
             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal[1], i-1 ) &&     // 1st long
             es.realBody(i) > es.average( BodyLong, bodyLongPeriodTotal[0], i ) &&         // 2nd long
-            inClose[i] <= inClose[i-1] + es.average( Equal, EqualPeriodTotal, i-1 ) && // equal closes
-            inClose[i] >= inClose[i-1] - es.average( Equal, EqualPeriodTotal, i-1 )
+            es.Close(i) <= es.Close(i-1) + es.average( Equal, EqualPeriodTotal, i-1 ) && // equal closes
+            es.Close(i) >= es.Close(i-1) - es.average( Equal, EqualPeriodTotal, i-1 )
           )
             outInteger[outIdx++] = es.candleColor(i) * 100;
         else
@@ -375,8 +375,8 @@
 /* Generated */         if( es.candleColor(i-1) == -es.candleColor(i) &&                                        // opposite candles
 /* Generated */             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal[1], i-1 ) &&     // 1st long
 /* Generated */             es.realBody(i) > es.average( BodyLong, bodyLongPeriodTotal[0], i ) &&         // 2nd long
-/* Generated */             inClose[i] <= inClose[i-1] + es.average( Equal, EqualPeriodTotal, i-1 ) && // equal closes
-/* Generated */             inClose[i] >= inClose[i-1] - es.average( Equal, EqualPeriodTotal, i-1 )
+/* Generated */             es.Close(i) <= es.Close(i-1) + es.average( Equal, EqualPeriodTotal, i-1 ) && // equal closes
+/* Generated */             es.Close(i) >= es.Close(i-1) - es.average( Equal, EqualPeriodTotal, i-1 )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = es.candleColor(i) * 100;
 /* Generated */         else

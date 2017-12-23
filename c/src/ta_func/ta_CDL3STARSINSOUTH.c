@@ -96,8 +96,8 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( max( settingShadowVeryShort.avgPeriod, settingShadowLong.avgPeriod ),
-                max( settingBodyLong.avgPeriod, settingBodyShort.avgPeriod )
+    return math.Max( math.Max( settingShadowVeryShort.avgPeriod, settingShadowLong.avgPeriod ),
+                math.Max( settingBodyLong.avgPeriod, settingBodyShort.avgPeriod )
             ) + 2;
 }
 
@@ -184,7 +184,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -264,16 +264,16 @@
                                                                             //      with long lower shadow
             TA_LOWERSHADOW(i-2) > es.average( ShadowLong, ShadowLongPeriodTotal, i-2 ) &&
             es.realBody(i-1) < es.realBody(i-2) &&                          // 2nd: smaller candle
-            inOpen[i-1] > inClose[i-2] && inOpen[i-1] <= inHigh[i-2] &&     //      that opens higher but within 1st range
-            inLow[i-1] < inClose[i-2] &&                                    //      and trades lower than 1st close
-            inLow[i-1] >= inLow[i-2] &&                                     //      but not lower than 1st low
+            es.Open(i-1) > es.Close(i-2) && es.Open(i-1) <= es.High(i-2) &&     //      that opens higher but within 1st range
+            es.Low(i-1) < es.Close(i-2) &&                                    //      and trades lower than 1st close
+            es.Low(i-1) >= es.Low(i-2) &&                                     //      but not lower than 1st low
                                                                             //      and has a lower shadow
             TA_LOWERSHADOW(i-1) > es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[1], i-1 ) &&
                                                                             // 3rd: small marubozu
             es.realBody(i) < es.average( BodyShort, bodyShortPeriodTotal, i ) &&
             TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&
             TA_UPPERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&
-            inLow[i] > inLow[i-1] && inHigh[i] < inHigh[i-1]                //      engulfed by prior candle's range
+            es.Low(i) > es.Low(i-1) && es.High(i) < es.High(i-1)                //      engulfed by prior candle's range
           )
 #endif
             outInteger[outIdx++] = 100;
@@ -428,16 +428,16 @@
 /* Generated */                                                                             //      with long lower shadow
 /* Generated */             TA_LOWERSHADOW(i-2) > es.average( ShadowLong, ShadowLongPeriodTotal, i-2 ) &&
 /* Generated */             es.realBody(i-1) < es.realBody(i-2) &&                          // 2nd: smaller candle
-/* Generated */             inOpen[i-1] > inClose[i-2] && inOpen[i-1] <= inHigh[i-2] &&     //      that opens higher but within 1st range
-/* Generated */             inLow[i-1] < inClose[i-2] &&                                    //      and trades lower than 1st close
-/* Generated */             inLow[i-1] >= inLow[i-2] &&                                     //      but not lower than 1st low
+/* Generated */             es.Open(i-1) > es.Close(i-2) && es.Open(i-1) <= es.High(i-2) &&     //      that opens higher but within 1st range
+/* Generated */             es.Low(i-1) < es.Close(i-2) &&                                    //      and trades lower than 1st close
+/* Generated */             es.Low(i-1) >= es.Low(i-2) &&                                     //      but not lower than 1st low
 /* Generated */                                                                             //      and has a lower shadow
 /* Generated */             TA_LOWERSHADOW(i-1) > es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[1], i-1 ) &&
 /* Generated */                                                                             // 3rd: small marubozu
 /* Generated */             es.realBody(i) < es.average( BodyShort, bodyShortPeriodTotal, i ) &&
 /* Generated */             TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&
 /* Generated */             TA_UPPERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&
-/* Generated */             inLow[i] > inLow[i-1] && inHigh[i] < inHigh[i-1]                //      engulfed by prior candle's range
+/* Generated */             es.Low(i) > es.Low(i-1) && es.High(i) < es.High(i-1)                //      engulfed by prior candle's range
 /* Generated */           )
 /* Generated */ #endif
 /* Generated */             outInteger[outIdx++] = 100;

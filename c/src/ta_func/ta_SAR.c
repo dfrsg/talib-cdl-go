@@ -278,7 +278,7 @@
     * to be used by Metastock.
     */
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     *
     * Move up the start index if there is not
@@ -295,7 +295,7 @@
       return ENUM_VALUE(RetCode,TA_SUCCESS,Success);
    }   
 
-   /* Make sure the acceleration and maximum are coherent.
+   /* Make sure the acceleration and math.Maximum are coherent.
     * If not, correct the acceleration.
     */
    af = optInAcceleration;

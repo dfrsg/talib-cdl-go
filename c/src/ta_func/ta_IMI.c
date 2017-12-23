@@ -91,7 +91,7 @@
 
 /**** START GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 /* Generated */ #ifndef TA_FUNC_NO_RANGE_CHECK
-/* Generated */    /* min/max are checked for optInTimePeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod. */
 /* Generated */    if( (int)optInTimePeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod = 14;
 /* Generated */    else if( ((int)optInTimePeriod < 2) || ((int)optInTimePeriod > 100000) )
@@ -178,7 +178,7 @@
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
 /* Generated */    #endif /* !defined(_JAVA)*/
-/* Generated */    /* min/max are checked for optInTimePeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod. */
 /* Generated */    if( (int)optInTimePeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod = 14;
 /* Generated */    else if( ((int)optInTimePeriod < 2) || ((int)optInTimePeriod > 100000) )
@@ -214,8 +214,8 @@
 		int i;
 
 		for (i = startIdx - lookback; i <= startIdx; i++) {
-			double close = inClose[i];
-			double open = inOpen[i];
+			double close = es.Close(i);
+			double open = es.Open(i);
 
 			if (close > open) {
 				upsum += (close - open);
@@ -315,8 +315,8 @@
 /* Generated */ 		double upsum = .0, downsum = .0;
 /* Generated */ 		int i;
 /* Generated */ 		for (i = startIdx - lookback; i <= startIdx; i++) {
-/* Generated */ 			double close = inClose[i];
-/* Generated */ 			double open = inOpen[i];
+/* Generated */ 			double close = es.Close(i);
+/* Generated */ 			double open = es.Open(i);
 /* Generated */ 			if (close > open) {
 /* Generated */ 				upsum += (close - open);
 /* Generated */ 			} else {

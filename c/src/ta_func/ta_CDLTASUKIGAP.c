@@ -152,8 +152,8 @@
 /**** END GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
 {
    /* Insert local variables here. */
-    double NearPeriodTotal;
-    int i, outIdx, NearTrailingIdx, lookbackTotal;
+    double nearPeriodTotal;
+    int i, outIdx, nearTrailingIdx, lookbackTotal;
 
 /**** START GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 /* Generated */ 
@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -202,12 +202,12 @@
 
    /* Do the calculation using tight loops. */
    /* Add-up the initial period, except for the last value. */
-   NearPeriodTotal = 0;
-   NearTrailingIdx = startIdx - settingNear.avgPeriod;
+   nearPeriodTotal = 0;
+   nearTrailingIdx = startIdx - settingNear.avgPeriod;
 
-   i = NearTrailingIdx;
+   i = nearTrailingIdx;
    while( i < startIdx ) {
-        NearPeriodTotal += es.rangeOf( Near, i-1 );
+        nearPeriodTotal += es.rangeOf( Near, i-1 );
         i++;
    }
    i = startIdx;
@@ -232,21 +232,21 @@
                 es.realBodyGAPUP(i-1,i-2) &&                                // upside gap
                 es.candleColor(i-1) == 1 &&                                 // 1st: white
                 es.candleColor(i) == -1 &&                                  // 2nd: black
-                inOpen[i] < inClose[i-1] && inOpen[i] > inOpen[i-1] &&      //      that opens within the white rb
-                inClose[i] < inOpen[i-1] &&                                 //      and closes under the white rb
-                inClose[i] > max(inClose[i-2], inOpen[i-2]) &&              //      inside the gap
+                es.Open(i) < es.Close(i-1) && es.Open(i) > es.Open(i-1) &&      //      that opens within the white rb
+                es.Close(i) < es.Open(i-1) &&                                 //      and closes under the white rb
+                es.Close(i) > math.Max(es.Close(i-2), es.Open(i-2)) &&              //      inside the gap
                                                                             // size of 2 rb near the same
-                std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average( Near, NearPeriodTotal, i-1 )
+                std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average( Near, nearPeriodTotal, i-1 )
             ) ||
             (
                 es.realBodyGAPDOWN(i-1,i-2) &&                              // downside gap
                 es.candleColor(i-1) == -1 &&                                // 1st: black
                 es.candleColor(i) == 1 &&                                   // 2nd: white
-                inOpen[i] < inOpen[i-1] && inOpen[i] > inClose[i-1] &&      //      that opens within the black rb
-                inClose[i] > inOpen[i-1] &&                                 //      and closes above the black rb
-                inClose[i] < min(inClose[i-2], inOpen[i-2]) &&              //      inside the gap
+                es.Open(i) < es.Open(i-1) && es.Open(i) > es.Close(i-1) &&      //      that opens within the black rb
+                es.Close(i) > es.Open(i-1) &&                                 //      and closes above the black rb
+                es.Close(i) < math.Min(es.Close(i-2), es.Open(i-2)) &&              //      inside the gap
                                                                             // size of 2 rb near the same
-                std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average( Near, NearPeriodTotal, i-1 )
+                std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average( Near, nearPeriodTotal, i-1 )
             )
         )
             outInteger[outIdx++] = es.candleColor(i-1) * 100;
@@ -255,9 +255,9 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        NearPeriodTotal += es.rangeOf( Near, i-1 ) - es.rangeOf( Near, NearTrailingIdx-1 );
+        nearPeriodTotal += es.rangeOf( Near, i-1 ) - es.rangeOf( Near, nearTrailingIdx-1 );
         i++; 
-        NearTrailingIdx++;
+        nearTrailingIdx++;
    } while( i <= endIdx );
 
    /* All done. Indicate the output limits and return. */
@@ -319,8 +319,8 @@
 /* Generated */                               int           outInteger[] )
 /* Generated */ #endif
 /* Generated */ {
-/* Generated */     double NearPeriodTotal;
-/* Generated */     int i, outIdx, NearTrailingIdx, lookbackTotal;
+/* Generated */     double nearPeriodTotal;
+/* Generated */     int i, outIdx, nearTrailingIdx, lookbackTotal;
 /* Generated */  #ifndef TA_FUNC_NO_RANGE_CHECK
 /* Generated */     if( startIdx < 0 )
 /* Generated */        return ENUM_VALUE(RetCode,TA_OUT_OF_RANGE_START_INDEX,OutOfRangeStartIndex);
@@ -344,11 +344,11 @@
 /* Generated */       VALUE_HANDLE_DEREF_TO_ZERO(outNBElement);
 /* Generated */       return ENUM_VALUE(RetCode,TA_SUCCESS,Success);
 /* Generated */    }
-/* Generated */    NearPeriodTotal = 0;
-/* Generated */    NearTrailingIdx = startIdx - settingNear.avgPeriod;
-/* Generated */    i = NearTrailingIdx;
+/* Generated */    nearPeriodTotal = 0;
+/* Generated */    nearTrailingIdx = startIdx - settingNear.avgPeriod;
+/* Generated */    i = nearTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         NearPeriodTotal += es.rangeOf( Near, i-1 );
+/* Generated */         nearPeriodTotal += es.rangeOf( Near, i-1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -360,29 +360,29 @@
 /* Generated */                 es.realBodyGAPUP(i-1,i-2) &&                                // upside gap
 /* Generated */                 es.candleColor(i-1) == 1 &&                                 // 1st: white
 /* Generated */                 es.candleColor(i) == -1 &&                                  // 2nd: black
-/* Generated */                 inOpen[i] < inClose[i-1] && inOpen[i] > inOpen[i-1] &&      //      that opens within the white rb
-/* Generated */                 inClose[i] < inOpen[i-1] &&                                 //      and closes under the white rb
-/* Generated */                 inClose[i] > max(inClose[i-2], inOpen[i-2]) &&              //      inside the gap
+/* Generated */                 es.Open(i) < es.Close(i-1) && es.Open(i) > es.Open(i-1) &&      //      that opens within the white rb
+/* Generated */                 es.Close(i) < es.Open(i-1) &&                                 //      and closes under the white rb
+/* Generated */                 es.Close(i) > math.Max(es.Close(i-2), es.Open(i-2)) &&              //      inside the gap
 /* Generated */                                                                             // size of 2 rb near the same
-/* Generated */                 std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average( Near, NearPeriodTotal, i-1 )
+/* Generated */                 std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average( Near, nearPeriodTotal, i-1 )
 /* Generated */             ) ||
 /* Generated */             (
 /* Generated */                 es.realBodyGAPDOWN(i-1,i-2) &&                              // downside gap
 /* Generated */                 es.candleColor(i-1) == -1 &&                                // 1st: black
 /* Generated */                 es.candleColor(i) == 1 &&                                   // 2nd: white
-/* Generated */                 inOpen[i] < inOpen[i-1] && inOpen[i] > inClose[i-1] &&      //      that opens within the black rb
-/* Generated */                 inClose[i] > inOpen[i-1] &&                                 //      and closes above the black rb
-/* Generated */                 inClose[i] < min(inClose[i-2], inOpen[i-2]) &&              //      inside the gap
+/* Generated */                 es.Open(i) < es.Open(i-1) && es.Open(i) > es.Close(i-1) &&      //      that opens within the black rb
+/* Generated */                 es.Close(i) > es.Open(i-1) &&                                 //      and closes above the black rb
+/* Generated */                 es.Close(i) < math.Min(es.Close(i-2), es.Open(i-2)) &&              //      inside the gap
 /* Generated */                                                                             // size of 2 rb near the same
-/* Generated */                 std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average( Near, NearPeriodTotal, i-1 )
+/* Generated */                 std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average( Near, nearPeriodTotal, i-1 )
 /* Generated */             )
 /* Generated */         )
 /* Generated */             outInteger[outIdx++] = es.candleColor(i-1) * 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         NearPeriodTotal += es.rangeOf( Near, i-1 ) - es.rangeOf( Near, NearTrailingIdx-1 );
+/* Generated */         nearPeriodTotal += es.rangeOf( Near, i-1 ) - es.rangeOf( Near, nearTrailingIdx-1 );
 /* Generated */         i++; 
-/* Generated */         NearTrailingIdx++;
+/* Generated */         nearTrailingIdx++;
 /* Generated */    } while( i <= endIdx );
 /* Generated */    VALUE_HANDLE_DEREF(outNBElement) = outIdx;
 /* Generated */    VALUE_HANDLE_DEREF(outBegIdx)    = startIdx;

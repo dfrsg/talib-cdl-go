@@ -96,7 +96,7 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( settingBodyDoji.avgPeriod, settingBodyLong.avgPeriod ) + 1;
+    return math.Max( settingBodyDoji.avgPeriod, settingBodyLong.avgPeriod ) + 1;
 }
 
 /**** START GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -230,7 +230,7 @@
     * outInteger is positive (1 to 100) when bullish or negative (-1 to -100) when bearish; 
     * it's defined bullish when the long candle is white and the star gaps up, bearish when the long candle 
     * is black and the star gaps down; the user should consider that a doji star is bullish when it appears 
-    * in an uptrend and it's bearish when it appears in a downtrend, so to determine the bullishness or 
+    * in an uptrend and it's bearish when it appears in a downtrend, so to determath.Mine the bullishness or 
     * bearishness of the pattern the trend must be analyzed
     */
    outIdx = 0;

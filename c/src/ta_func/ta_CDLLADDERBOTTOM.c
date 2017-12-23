@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -230,13 +230,13 @@
 #else
         if(                                                             
             es.candleColor(i-4) == -1 && es.candleColor(i-3) == -1 && es.candleColor(i-2) == -1 &&  // 3 black candlesticks
-            inOpen[i-4] > inOpen[i-3] && inOpen[i-3] > inOpen[i-2] &&           // with consecutively lower opens
-            inClose[i-4] > inClose[i-3] && inClose[i-3] > inClose[i-2] &&       // and closes
+            inOpen[i-4] > es.Open(i-3) && es.Open(i-3) > es.Open(i-2) &&           // with consecutively lower opens
+            inClose[i-4] > es.Close(i-3) && es.Close(i-3) > es.Close(i-2) &&       // and closes
             es.candleColor(i-1) == -1 &&                                        // 4th: black with an upper shadow
             TA_UPPERSHADOW(i-1) > es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal, i-1 ) &&
             es.candleColor(i) == 1 &&                                           // 5th: white
-            inOpen[i] > inOpen[i-1] &&                                          // that opens above prior candle's body
-            inClose[i] > inHigh[i-1]                                            // and closes above prior candle's high
+            es.Open(i) > es.Open(i-1) &&                                          // that opens above prior candle's body
+            es.Close(i) > es.High(i-1)                                            // and closes above prior candle's high
           )
             outInteger[outIdx++] = 100;
         else
@@ -350,13 +350,13 @@
 /* Generated */ #else
 /* Generated */         if(                                                             
 /* Generated */             es.candleColor(i-4) == -1 && es.candleColor(i-3) == -1 && es.candleColor(i-2) == -1 &&  // 3 black candlesticks
-/* Generated */             inOpen[i-4] > inOpen[i-3] && inOpen[i-3] > inOpen[i-2] &&           // with consecutively lower opens
-/* Generated */             inClose[i-4] > inClose[i-3] && inClose[i-3] > inClose[i-2] &&       // and closes
+/* Generated */             inOpen[i-4] > es.Open(i-3) && es.Open(i-3) > es.Open(i-2) &&           // with consecutively lower opens
+/* Generated */             inClose[i-4] > es.Close(i-3) && es.Close(i-3) > es.Close(i-2) &&       // and closes
 /* Generated */             es.candleColor(i-1) == -1 &&                                        // 4th: black with an upper shadow
 /* Generated */             TA_UPPERSHADOW(i-1) > es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal, i-1 ) &&
 /* Generated */             es.candleColor(i) == 1 &&                                           // 5th: white
-/* Generated */             inOpen[i] > inOpen[i-1] &&                                          // that opens above prior candle's body
-/* Generated */             inClose[i] > inHigh[i-1]                                            // and closes above prior candle's high
+/* Generated */             es.Open(i) > es.Open(i-1) &&                                          // that opens above prior candle's body
+/* Generated */             es.Close(i) > es.High(i-1)                                            // and closes above prior candle's high
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else

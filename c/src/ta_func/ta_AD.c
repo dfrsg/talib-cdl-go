@@ -195,7 +195,7 @@
     *
     *       For most function, this is not an apparent difference
     *       but for function using large cummulative values (like
-    *       this AD function), minor imprecision adds up and becomes
+    *       this AD function), math.Minor imprecision adds up and becomes
     *       significative.
     *
     *       For better precision, TA-Lib use double in all its 

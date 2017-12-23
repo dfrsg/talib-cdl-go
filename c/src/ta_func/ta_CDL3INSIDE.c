@@ -96,7 +96,7 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 2;
+    return math.Max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 2;
 }
 
 /**** START GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -237,11 +237,11 @@
 #else
         if( es.realBody(i-2) > es.average( BodyLong, bodyLongPeriodTotal, i-2 ) &&         // 1st: long
             es.realBody(i-1) <= es.average( BodyShort, bodyShortPeriodTotal, i-1 ) &&      // 2nd: short
-            max( inClose[i-1], inOpen[i-1] ) < max( inClose[i-2], inOpen[i-2] ) &&                  //      engulfed by 1st
-            min( inClose[i-1], inOpen[i-1] ) > min( inClose[i-2], inOpen[i-2] ) &&
-            ( ( es.candleColor(i-2) == 1 && es.candleColor(i) == -1 && inClose[i] < inOpen[i-2] )   // 3rd: opposite to 1st
+            math.Max( es.Close(i-1), es.Open(i-1) ) < math.Max( es.Close(i-2), es.Open(i-2) ) &&                  //      engulfed by 1st
+            math.Min( es.Close(i-1), es.Open(i-1) ) > math.Min( es.Close(i-2), es.Open(i-2) ) &&
+            ( ( es.candleColor(i-2) == 1 && es.candleColor(i) == -1 && es.Close(i) < es.Open(i-2) )   // 3rd: opposite to 1st
               ||                                                                                    //      and closing out
-              ( es.candleColor(i-2) == -1 && es.candleColor(i) == 1 && inClose[i] > inOpen[i-2] )
+              ( es.candleColor(i-2) == -1 && es.candleColor(i) == 1 && es.Close(i) > es.Open(i-2) )
             )
           )
 #endif
@@ -364,11 +364,11 @@
 /* Generated */ #else
 /* Generated */         if( es.realBody(i-2) > es.average( BodyLong, bodyLongPeriodTotal, i-2 ) &&         // 1st: long
 /* Generated */             es.realBody(i-1) <= es.average( BodyShort, bodyShortPeriodTotal, i-1 ) &&      // 2nd: short
-/* Generated */             max( inClose[i-1], inOpen[i-1] ) < max( inClose[i-2], inOpen[i-2] ) &&                  //      engulfed by 1st
-/* Generated */             min( inClose[i-1], inOpen[i-1] ) > min( inClose[i-2], inOpen[i-2] ) &&
-/* Generated */             ( ( es.candleColor(i-2) == 1 && es.candleColor(i) == -1 && inClose[i] < inOpen[i-2] )   // 3rd: opposite to 1st
+/* Generated */             math.Max( es.Close(i-1), es.Open(i-1) ) < math.Max( es.Close(i-2), es.Open(i-2) ) &&                  //      engulfed by 1st
+/* Generated */             math.Min( es.Close(i-1), es.Open(i-1) ) > math.Min( es.Close(i-2), es.Open(i-2) ) &&
+/* Generated */             ( ( es.candleColor(i-2) == 1 && es.candleColor(i) == -1 && es.Close(i) < es.Open(i-2) )   // 3rd: opposite to 1st
 /* Generated */               ||                                                                                    //      and closing out
-/* Generated */               ( es.candleColor(i-2) == -1 && es.candleColor(i) == 1 && inClose[i] > inOpen[i-2] )
+/* Generated */               ( es.candleColor(i-2) == -1 && es.candleColor(i) == 1 && es.Close(i) > es.Open(i-2) )
 /* Generated */             )
 /* Generated */           )
 /* Generated */ #endif

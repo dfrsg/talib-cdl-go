@@ -93,7 +93,7 @@
 
 /**** START GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 /* Generated */ #ifndef TA_FUNC_NO_RANGE_CHECK
-/* Generated */    /* min/max are checked for optInTimePeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod. */
 /* Generated */    if( (int)optInTimePeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod = 20;
 /* Generated */    else if( ((int)optInTimePeriod < 2) || ((int)optInTimePeriod > 100000) )
@@ -198,7 +198,7 @@
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
 /* Generated */    #endif /* !defined(_JAVA)*/
-/* Generated */    /* min/max are checked for optInTimePeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInTimePeriod. */
 /* Generated */    if( (int)optInTimePeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInTimePeriod = 20;
 /* Generated */    else if( ((int)optInTimePeriod < 2) || ((int)optInTimePeriod > 100000) )
@@ -219,7 +219,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
    lookbackTotal = LOOKBACK_CALL(SMA)( optInTimePeriod );
@@ -270,17 +270,17 @@
 	*/   
    for(j=0, i=startIdx-lookbackTotal; i<=endIdx; i++, j++)
    {
-	    tempReal = inHigh[i]+inLow[i];
+	    tempReal = es.High(i)+es.Low(i);
 	    if( !TA_IS_ZERO(tempReal) )
 		{
-		   tempReal = 4*(inHigh[i]-inLow[i])/tempReal;
-		   tempBuffer1[j] = inHigh[i]*(1+tempReal);
-		   tempBuffer2[j] = inLow[i]*(1-tempReal);
+		   tempReal = 4*(es.High(i)-es.Low(i))/tempReal;
+		   tempBuffer1[j] = es.High(i)*(1+tempReal);
+		   tempBuffer2[j] = es.Low(i)*(1-tempReal);
 		}
 		else
 		{
-		   tempBuffer1[j] = inHigh[i];
-		   tempBuffer2[j] = inLow[i];
+		   tempBuffer1[j] = es.High(i);
+		   tempBuffer2[j] = es.Low(i);
 		}
    }
 
@@ -456,17 +456,17 @@
 /* Generated */    #endif
 /* Generated */    for(j=0, i=startIdx-lookbackTotal; i<=endIdx; i++, j++)
 /* Generated */    {
-/* Generated */ 	    tempReal = inHigh[i]+inLow[i];
+/* Generated */ 	    tempReal = es.High(i)+es.Low(i);
 /* Generated */ 	    if( !TA_IS_ZERO(tempReal) )
 /* Generated */ 		{
-/* Generated */ 		   tempReal = 4*(inHigh[i]-inLow[i])/tempReal;
-/* Generated */ 		   tempBuffer1[j] = inHigh[i]*(1+tempReal);
-/* Generated */ 		   tempBuffer2[j] = inLow[i]*(1-tempReal);
+/* Generated */ 		   tempReal = 4*(es.High(i)-es.Low(i))/tempReal;
+/* Generated */ 		   tempBuffer1[j] = es.High(i)*(1+tempReal);
+/* Generated */ 		   tempBuffer2[j] = es.Low(i)*(1-tempReal);
 /* Generated */ 		}
 /* Generated */ 		else
 /* Generated */ 		{
-/* Generated */ 		   tempBuffer1[j] = inHigh[i];
-/* Generated */ 		   tempBuffer2[j] = inLow[i];
+/* Generated */ 		   tempBuffer1[j] = es.High(i);
+/* Generated */ 		   tempBuffer2[j] = es.Low(i);
 /* Generated */ 		}
 /* Generated */    }
 /* Generated */    retCode = FUNCTION_CALL(SMA)( startIdx, endIdx, inClose,

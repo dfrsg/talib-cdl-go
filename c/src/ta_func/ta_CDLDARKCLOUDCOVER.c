@@ -203,7 +203,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -255,9 +255,9 @@
         if( es.candleColor(i-1) == 1 &&                                                     // 1st: white
             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal, i-1 ) && //      long
             es.candleColor(i) == -1 &&                                                      // 2nd: black
-            inOpen[i] > inHigh[i-1] &&                                                      //      open above prior high
-            inClose[i] > inOpen[i-1] &&                                                     //      close within prior body
-            inClose[i] < inClose[i-1] - es.realBody(i-1) * optInPenetration
+            es.Open(i) > es.High(i-1) &&                                                      //      open above prior high
+            es.Close(i) > es.Open(i-1) &&                                                     //      close within prior body
+            es.Close(i) < es.Close(i-1) - es.realBody(i-1) * optInPenetration
           )
 #endif
             outInteger[outIdx++] = -100;
@@ -379,9 +379,9 @@
 /* Generated */         if( es.candleColor(i-1) == 1 &&                                                     // 1st: white
 /* Generated */             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal, i-1 ) && //      long
 /* Generated */             es.candleColor(i) == -1 &&                                                      // 2nd: black
-/* Generated */             inOpen[i] > inHigh[i-1] &&                                                      //      open above prior high
-/* Generated */             inClose[i] > inOpen[i-1] &&                                                     //      close within prior body
-/* Generated */             inClose[i] < inClose[i-1] - es.realBody(i-1) * optInPenetration
+/* Generated */             es.Open(i) > es.High(i-1) &&                                                      //      open above prior high
+/* Generated */             es.Close(i) > es.Open(i-1) &&                                                     //      close within prior body
+/* Generated */             es.Close(i) < es.Close(i-1) - es.realBody(i-1) * optInPenetration
 /* Generated */           )
 /* Generated */ #endif
 /* Generated */             outInteger[outIdx++] = -100;

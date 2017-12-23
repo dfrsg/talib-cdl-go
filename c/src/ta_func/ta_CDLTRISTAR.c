@@ -185,7 +185,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -236,12 +236,12 @@
             outInteger[outIdx] = 0;
             if ( es.realBodyGAPUP(i-1,i-2)                                                  // 2nd gaps up
                  &&
-                 max(inOpen[i],inClose[i]) < max(inOpen[i-1],inClose[i-1])                  // 3rd is not higher than 2nd
+                 math.Max(es.Open(i),es.Close(i)) < math.Max(es.Open(i-1),es.Close(i-1))                  // 3rd is not higher than 2nd
                )
                 outInteger[outIdx] = -100;
             if ( es.realBodyGAPDOWN(i-1,i-2)                                                // 2nd gaps down
                  &&
-                 min(inOpen[i],inClose[i]) > min(inOpen[i-1],inClose[i-1])                  // 3rd is not lower than 2nd
+                 math.Min(es.Open(i),es.Close(i)) > math.Min(es.Open(i-1),es.Close(i-1))                  // 3rd is not lower than 2nd
                )
                 outInteger[outIdx] = +100;
             outIdx++;
@@ -362,12 +362,12 @@
 /* Generated */             outInteger[outIdx] = 0;
 /* Generated */             if ( es.realBodyGAPUP(i-1,i-2)                                                  // 2nd gaps up
 /* Generated */                  &&
-/* Generated */                  max(inOpen[i],inClose[i]) < max(inOpen[i-1],inClose[i-1])                  // 3rd is not higher than 2nd
+/* Generated */                  math.Max(es.Open(i),es.Close(i)) < math.Max(es.Open(i-1),es.Close(i-1))                  // 3rd is not higher than 2nd
 /* Generated */                )
 /* Generated */                 outInteger[outIdx] = -100;
 /* Generated */             if ( es.realBodyGAPDOWN(i-1,i-2)                                                // 2nd gaps down
 /* Generated */                  &&
-/* Generated */                  min(inOpen[i],inClose[i]) > min(inOpen[i-1],inClose[i-1])                  // 3rd is not lower than 2nd
+/* Generated */                  math.Min(es.Open(i),es.Close(i)) > math.Min(es.Open(i-1),es.Close(i-1))                  // 3rd is not lower than 2nd
 /* Generated */                )
 /* Generated */                 outInteger[outIdx] = +100;
 /* Generated */             outIdx++;

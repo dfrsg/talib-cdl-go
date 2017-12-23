@@ -98,7 +98,7 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( settingBodyDoji.avgPeriod, settingBodyLong.avgPeriod ) + 1;
+    return math.Max( settingBodyDoji.avgPeriod, settingBodyLong.avgPeriod ) + 1;
 }
 
 /**** START GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
@@ -182,7 +182,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -242,13 +242,13 @@
 #else
         if( es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal, i-1 ) &&         // 1st: long
             es.realBody(i) <= es.average( BodyDoji, BodyDojiPeriodTotal, i ) )             // 2nd: doji
-            if ( max( inClose[i], inOpen[i] ) < max( inClose[i-1], inOpen[i-1] ) &&              // 2nd is engulfed by 1st
-                 min( inClose[i], inOpen[i] ) > min( inClose[i-1], inOpen[i-1] )
+            if ( math.Max( es.Close(i), es.Open(i) ) < math.Max( es.Close(i-1), es.Open(i-1) ) &&              // 2nd is engulfed by 1st
+                 math.Min( es.Close(i), es.Open(i) ) > math.Min( es.Close(i-1), es.Open(i-1) )
                )
                 outInteger[outIdx++] = -es.candleColor(i-1) * 100;
             else 
-                if ( max( inClose[i], inOpen[i] ) <= max( inClose[i-1], inOpen[i-1] ) &&         // 2nd is engulfed by 1st
-                     min( inClose[i], inOpen[i] ) >= min( inClose[i-1], inOpen[i-1] )            // (one end of real body can match;
+                if ( math.Max( es.Close(i), es.Open(i) ) <= math.Max( es.Close(i-1), es.Open(i-1) ) &&         // 2nd is engulfed by 1st
+                     math.Min( es.Close(i), es.Open(i) ) >= math.Min( es.Close(i-1), es.Open(i-1) )            // (one end of real body can match;
                    )                                                                             // engulfing guaranteed by "long" and "doji")
                     outInteger[outIdx++] = -es.candleColor(i-1) * 80;
                 else
@@ -374,13 +374,13 @@
 /* Generated */ #else
 /* Generated */         if( es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal, i-1 ) &&         // 1st: long
 /* Generated */             es.realBody(i) <= es.average( BodyDoji, BodyDojiPeriodTotal, i ) )             // 2nd: doji
-/* Generated */             if ( max( inClose[i], inOpen[i] ) < max( inClose[i-1], inOpen[i-1] ) &&              // 2nd is engulfed by 1st
-/* Generated */                  min( inClose[i], inOpen[i] ) > min( inClose[i-1], inOpen[i-1] )
+/* Generated */             if ( math.Max( es.Close(i), es.Open(i) ) < math.Max( es.Close(i-1), es.Open(i-1) ) &&              // 2nd is engulfed by 1st
+/* Generated */                  math.Min( es.Close(i), es.Open(i) ) > math.Min( es.Close(i-1), es.Open(i-1) )
 /* Generated */                )
 /* Generated */                 outInteger[outIdx++] = -es.candleColor(i-1) * 100;
 /* Generated */             else 
-/* Generated */                 if ( max( inClose[i], inOpen[i] ) <= max( inClose[i-1], inOpen[i-1] ) &&         // 2nd is engulfed by 1st
-/* Generated */                      min( inClose[i], inOpen[i] ) >= min( inClose[i-1], inOpen[i-1] )            // (one end of real body can match;
+/* Generated */                 if ( math.Max( es.Close(i), es.Open(i) ) <= math.Max( es.Close(i-1), es.Open(i-1) ) &&         // 2nd is engulfed by 1st
+/* Generated */                      math.Min( es.Close(i), es.Open(i) ) >= math.Min( es.Close(i-1), es.Open(i-1) )            // (one end of real body can match;
 /* Generated */                    )                                                                             // engulfing guaranteed by "long" and "doji")
 /* Generated */                     outInteger[outIdx++] = -es.candleColor(i-1) * 80;
 /* Generated */                 else

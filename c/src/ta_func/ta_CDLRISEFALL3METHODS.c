@@ -96,7 +96,7 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 4;
+    return math.Max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 4;
 }
 
 /**** START GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -255,16 +255,16 @@
             es.candleColor(i-2) ==  es.candleColor(i-1) &&
             es.candleColor(i-1) == -es.candleColor(i) &&
             // 2nd to 4th hold within 1st: a part of the real body must be within 1st range
-            min(inOpen[i-3], inClose[i-3]) < inHigh[i-4] && max(inOpen[i-3], inClose[i-3]) > inLow[i-4] &&
-            min(inOpen[i-2], inClose[i-2]) < inHigh[i-4] && max(inOpen[i-2], inClose[i-2]) > inLow[i-4] &&
-            min(inOpen[i-1], inClose[i-1]) < inHigh[i-4] && max(inOpen[i-1], inClose[i-1]) > inLow[i-4] &&
+            math.Min(es.Open(i-3), es.Close(i-3)) < inHigh[i-4] && math.Max(es.Open(i-3), es.Close(i-3)) > inLow[i-4] &&
+            math.Min(es.Open(i-2), es.Close(i-2)) < inHigh[i-4] && math.Max(es.Open(i-2), es.Close(i-2)) > inLow[i-4] &&
+            math.Min(es.Open(i-1), es.Close(i-1)) < inHigh[i-4] && math.Max(es.Open(i-1), es.Close(i-1)) > inLow[i-4] &&
             // 2nd to 4th are falling (rising)
-            inClose[i-2] * es.candleColor(i-4) < inClose[i-3] * es.candleColor(i-4) &&
-            inClose[i-1] * es.candleColor(i-4) < inClose[i-2] * es.candleColor(i-4) &&
+            es.Close(i-2) * es.candleColor(i-4) < es.Close(i-3) * es.candleColor(i-4) &&
+            es.Close(i-1) * es.candleColor(i-4) < es.Close(i-2) * es.candleColor(i-4) &&
             // 5th opens above (below) the prior close
-            inOpen[i] * es.candleColor(i-4) > inClose[i-1] * es.candleColor(i-4) &&
+            es.Open(i) * es.candleColor(i-4) > es.Close(i-1) * es.candleColor(i-4) &&
             // 5th closes above (below) the 1st close
-            inClose[i] * es.candleColor(i-4) > inClose[i-4] * es.candleColor(i-4)
+            es.Close(i) * es.candleColor(i-4) > inClose[i-4] * es.candleColor(i-4)
           )
             outInteger[outIdx++] = 100 * es.candleColor(i-4);
         else
@@ -405,16 +405,16 @@
 /* Generated */             es.candleColor(i-2) ==  es.candleColor(i-1) &&
 /* Generated */             es.candleColor(i-1) == -es.candleColor(i) &&
 /* Generated */             // 2nd to 4th hold within 1st: a part of the real body must be within 1st range
-/* Generated */             min(inOpen[i-3], inClose[i-3]) < inHigh[i-4] && max(inOpen[i-3], inClose[i-3]) > inLow[i-4] &&
-/* Generated */             min(inOpen[i-2], inClose[i-2]) < inHigh[i-4] && max(inOpen[i-2], inClose[i-2]) > inLow[i-4] &&
-/* Generated */             min(inOpen[i-1], inClose[i-1]) < inHigh[i-4] && max(inOpen[i-1], inClose[i-1]) > inLow[i-4] &&
+/* Generated */             math.Min(es.Open(i-3), es.Close(i-3)) < inHigh[i-4] && math.Max(es.Open(i-3), es.Close(i-3)) > inLow[i-4] &&
+/* Generated */             math.Min(es.Open(i-2), es.Close(i-2)) < inHigh[i-4] && math.Max(es.Open(i-2), es.Close(i-2)) > inLow[i-4] &&
+/* Generated */             math.Min(es.Open(i-1), es.Close(i-1)) < inHigh[i-4] && math.Max(es.Open(i-1), es.Close(i-1)) > inLow[i-4] &&
 /* Generated */             // 2nd to 4th are falling (rising)
-/* Generated */             inClose[i-2] * es.candleColor(i-4) < inClose[i-3] * es.candleColor(i-4) &&
-/* Generated */             inClose[i-1] * es.candleColor(i-4) < inClose[i-2] * es.candleColor(i-4) &&
+/* Generated */             es.Close(i-2) * es.candleColor(i-4) < es.Close(i-3) * es.candleColor(i-4) &&
+/* Generated */             es.Close(i-1) * es.candleColor(i-4) < es.Close(i-2) * es.candleColor(i-4) &&
 /* Generated */             // 5th opens above (below) the prior close
-/* Generated */             inOpen[i] * es.candleColor(i-4) > inClose[i-1] * es.candleColor(i-4) &&
+/* Generated */             es.Open(i) * es.candleColor(i-4) > es.Close(i-1) * es.candleColor(i-4) &&
 /* Generated */             // 5th closes above (below) the 1st close
-/* Generated */             inClose[i] * es.candleColor(i-4) > inClose[i-4] * es.candleColor(i-4)
+/* Generated */             es.Close(i) * es.candleColor(i-4) > inClose[i-4] * es.candleColor(i-4)
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100 * es.candleColor(i-4);
 /* Generated */         else

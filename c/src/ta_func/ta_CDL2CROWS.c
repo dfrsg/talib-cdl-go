@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -234,8 +234,8 @@
             es.candleColor(i-1) == -1 &&                                                        // 2nd: black
             es.realBodyGAPUP(i-1,i-2) &&                                                        //      gapping up
             es.candleColor(i) == -1 &&                                                          // 3rd: black
-            inOpen[i] < inOpen[i-1] && inOpen[i] > inClose[i-1] &&                              //      opening within 2nd rb
-            inClose[i] > inOpen[i-2] && inClose[i] < inClose[i-2]                               //      closing within 1st rb
+            es.Open(i) < es.Open(i-1) && es.Open(i) > es.Close(i-1) &&                              //      opening within 2nd rb
+            es.Close(i) > es.Open(i-2) && es.Close(i) < es.Close(i-2)                               //      closing within 1st rb
           )
 #endif
             outInteger[outIdx++] = -100;
@@ -351,8 +351,8 @@
 /* Generated */             es.candleColor(i-1) == -1 &&                                                        // 2nd: black
 /* Generated */             es.realBodyGAPUP(i-1,i-2) &&                                                        //      gapping up
 /* Generated */             es.candleColor(i) == -1 &&                                                          // 3rd: black
-/* Generated */             inOpen[i] < inOpen[i-1] && inOpen[i] > inClose[i-1] &&                              //      opening within 2nd rb
-/* Generated */             inClose[i] > inOpen[i-2] && inClose[i] < inClose[i-2]                               //      closing within 1st rb
+/* Generated */             es.Open(i) < es.Open(i-1) && es.Open(i) > es.Close(i-1) &&                              //      opening within 2nd rb
+/* Generated */             es.Close(i) > es.Open(i-2) && es.Close(i) < es.Close(i-2)                               //      closing within 1st rb
 /* Generated */           )
 /* Generated */ #endif
 /* Generated */             outInteger[outIdx++] = -100;

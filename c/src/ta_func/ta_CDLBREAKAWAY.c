@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -237,16 +237,16 @@
             (
               ( es.candleColor(i-4) == -1 &&                                // when 1st is black:
                 es.realBodyGAPDOWN(i-3,i-4) &&                              // 2nd gaps down
-                inHigh[i-2] < inHigh[i-3] && inLow[i-2] < inLow[i-3] &&     // 3rd has lower high and low than 2nd
-                inHigh[i-1] < inHigh[i-2] && inLow[i-1] < inLow[i-2] &&     // 4th has lower high and low than 3rd
-                inClose[i] > inOpen[i-3] && inClose[i] < inClose[i-4]       // 5th closes inside the gap
+                es.High(i-2) < es.High(i-3) && es.Low(i-2) < es.Low(i-3) &&     // 3rd has lower high and low than 2nd
+                es.High(i-1) < es.High(i-2) && es.Low(i-1) < es.Low(i-2) &&     // 4th has lower high and low than 3rd
+                es.Close(i) > es.Open(i-3) && es.Close(i) < inClose[i-4]       // 5th closes inside the gap
               ) 
               ||
               ( es.candleColor(i-4) == 1 &&                                 // when 1st is white:
                 es.realBodyGAPUP(i-3,i-4) &&                                // 2nd gaps up
-                inHigh[i-2] > inHigh[i-3] && inLow[i-2] > inLow[i-3] &&     // 3rd has higher high and low than 2nd
-                inHigh[i-1] > inHigh[i-2] && inLow[i-1] > inLow[i-2] &&     // 4th has higher high and low than 3rd
-                inClose[i] < inOpen[i-3] && inClose[i] > inClose[i-4]       // 5th closes inside the gap
+                es.High(i-2) > es.High(i-3) && es.Low(i-2) > es.Low(i-3) &&     // 3rd has higher high and low than 2nd
+                es.High(i-1) > es.High(i-2) && es.Low(i-1) > es.Low(i-2) &&     // 4th has higher high and low than 3rd
+                es.Close(i) < es.Open(i-3) && es.Close(i) > inClose[i-4]       // 5th closes inside the gap
               ) 
             )
           )
@@ -367,16 +367,16 @@
 /* Generated */             (
 /* Generated */               ( es.candleColor(i-4) == -1 &&                                // when 1st is black:
 /* Generated */                 es.realBodyGAPDOWN(i-3,i-4) &&                              // 2nd gaps down
-/* Generated */                 inHigh[i-2] < inHigh[i-3] && inLow[i-2] < inLow[i-3] &&     // 3rd has lower high and low than 2nd
-/* Generated */                 inHigh[i-1] < inHigh[i-2] && inLow[i-1] < inLow[i-2] &&     // 4th has lower high and low than 3rd
-/* Generated */                 inClose[i] > inOpen[i-3] && inClose[i] < inClose[i-4]       // 5th closes inside the gap
+/* Generated */                 es.High(i-2) < es.High(i-3) && es.Low(i-2) < es.Low(i-3) &&     // 3rd has lower high and low than 2nd
+/* Generated */                 es.High(i-1) < es.High(i-2) && es.Low(i-1) < es.Low(i-2) &&     // 4th has lower high and low than 3rd
+/* Generated */                 es.Close(i) > es.Open(i-3) && es.Close(i) < inClose[i-4]       // 5th closes inside the gap
 /* Generated */               ) 
 /* Generated */               ||
 /* Generated */               ( es.candleColor(i-4) == 1 &&                                 // when 1st is white:
 /* Generated */                 es.realBodyGAPUP(i-3,i-4) &&                                // 2nd gaps up
-/* Generated */                 inHigh[i-2] > inHigh[i-3] && inLow[i-2] > inLow[i-3] &&     // 3rd has higher high and low than 2nd
-/* Generated */                 inHigh[i-1] > inHigh[i-2] && inLow[i-1] > inLow[i-2] &&     // 4th has higher high and low than 3rd
-/* Generated */                 inClose[i] < inOpen[i-3] && inClose[i] > inClose[i-4]       // 5th closes inside the gap
+/* Generated */                 es.High(i-2) > es.High(i-3) && es.Low(i-2) > es.Low(i-3) &&     // 3rd has higher high and low than 2nd
+/* Generated */                 es.High(i-1) > es.High(i-2) && es.Low(i-1) > es.Low(i-2) &&     // 4th has higher high and low than 3rd
+/* Generated */                 es.Close(i) < es.Open(i-3) && es.Close(i) > inClose[i-4]       // 5th closes inside the gap
 /* Generated */               ) 
 /* Generated */             )
 /* Generated */           )

@@ -94,13 +94,13 @@
 
 /**** START GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 /* Generated */ #ifndef TA_FUNC_NO_RANGE_CHECK
-/* Generated */    /* min/max are checked for optInMinPeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInMinPeriod. */
 /* Generated */    if( (int)optInMinPeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInMinPeriod = 2;
 /* Generated */    else if( ((int)optInMinPeriod < 2) || ((int)optInMinPeriod > 100000) )
 /* Generated */       return -1;
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInMaxPeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInMaxPeriod. */
 /* Generated */    if( (int)optInMaxPeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInMaxPeriod = 30;
 /* Generated */    else if( ((int)optInMaxPeriod < 2) || ((int)optInMaxPeriod > 100000) )
@@ -129,10 +129,10 @@
  * Optional Parameters
  * -------------------
  * optInMinPeriod:(From 2 to 100000)
- *    Value less than minimum will be changed to Minimum period
+ *    Value less than math.Minimum will be changed to Minimum period
  * 
  * optInMaxPeriod:(From 2 to 100000)
- *    Value higher than maximum will be changed to Maximum period
+ *    Value higher than math.Maximum will be changed to Maximum period
  * 
  * optInMAType:
  *    Type of Moving Average
@@ -209,13 +209,13 @@
 /* Generated */    if( !inReal ) return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */    if( !inPeriods ) return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */    #endif /* !defined(_JAVA)*/
-/* Generated */    /* min/max are checked for optInMinPeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInMinPeriod. */
 /* Generated */    if( (int)optInMinPeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInMinPeriod = 2;
 /* Generated */    else if( ((int)optInMinPeriod < 2) || ((int)optInMinPeriod > 100000) )
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInMaxPeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInMaxPeriod. */
 /* Generated */    if( (int)optInMaxPeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInMaxPeriod = 30;
 /* Generated */    else if( ((int)optInMaxPeriod < 2) || ((int)optInMaxPeriod > 100000) )
@@ -239,7 +239,7 @@
 
    /* Insert TA function code here. */
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
    lookbackTotal = LOOKBACK_CALL(MA)(optInMaxPeriod,optInMAType);
@@ -277,7 +277,7 @@
    ARRAY_INT_ALLOC(localPeriodArray,outputSize);
 
    /* Copy caller array of period into local buffer.
-    * At the same time, truncate to min/max.
+    * At the same time, truncate to math.Min/math.Max.
 	*/
    for( i=0; i < outputSize; i++ )
    {

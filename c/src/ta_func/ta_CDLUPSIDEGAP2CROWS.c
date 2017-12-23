@@ -96,7 +96,7 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 2;
+    return math.Max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 2;
 }
 
 /**** START GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -243,8 +243,8 @@
             es.realBody(i-1) <= es.average( BodyShort, bodyShortPeriodTotal, i-1 ) &&      //      short
             es.realBodyGAPUP(i-1,i-2) &&                                                            //      gapping up
             es.candleColor(i) == -1 &&                                                              // 3rd: black
-            inOpen[i] > inOpen[i-1] && inClose[i] < inClose[i-1] &&                                 // 3rd: engulfing prior rb
-            inClose[i] > inClose[i-2]                                                               //      closing above 1st
+            es.Open(i) > es.Open(i-1) && es.Close(i) < es.Close(i-1) &&                                 // 3rd: engulfing prior rb
+            es.Close(i) > es.Close(i-2)                                                               //      closing above 1st
           )
             outInteger[outIdx++] = -100;
         else
@@ -370,8 +370,8 @@
 /* Generated */             es.realBody(i-1) <= es.average( BodyShort, bodyShortPeriodTotal, i-1 ) &&      //      short
 /* Generated */             es.realBodyGAPUP(i-1,i-2) &&                                                            //      gapping up
 /* Generated */             es.candleColor(i) == -1 &&                                                              // 3rd: black
-/* Generated */             inOpen[i] > inOpen[i-1] && inClose[i] < inClose[i-1] &&                                 // 3rd: engulfing prior rb
-/* Generated */             inClose[i] > inClose[i-2]                                                               //      closing above 1st
+/* Generated */             es.Open(i) > es.Open(i-1) && es.Close(i) < es.Close(i-1) &&                                 // 3rd: engulfing prior rb
+/* Generated */             es.Close(i) > es.Close(i-2)                                                               //      closing above 1st
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = -100;
 /* Generated */         else

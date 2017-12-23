@@ -96,7 +96,7 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 2;
+    return math.Max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 2;
 }
 
 /**** START GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -238,11 +238,11 @@
         if( es.realBody(i-2) > es.average( BodyLong, bodyLongPeriodTotal, i-2 ) &&         // 1st: long
             es.candleColor(i-2) == -1 &&                                                            //      black
             es.candleColor(i-1) == -1 &&                                                            // 2nd: black
-            inClose[i-1] > inClose[i-2] && inOpen[i-1] <= inOpen[i-2] &&                            //      harami
-            inLow[i-1] < inLow[i-2] &&                                                              //      lower low
+            es.Close(i-1) > es.Close(i-2) && es.Open(i-1) <= es.Open(i-2) &&                            //      harami
+            es.Low(i-1) < es.Low(i-2) &&                                                              //      lower low
             es.realBody(i) < es.average( BodyShort, bodyShortPeriodTotal, i ) &&           // 3rd: short
             es.candleColor(i) == 1 &&                                                               //      white
-            inOpen[i] > inLow[i-1]                                                                  //      open not lower
+            es.Open(i) > es.Low(i-1)                                                                  //      open not lower
           )
             outInteger[outIdx++] = 100;
         else
@@ -364,11 +364,11 @@
 /* Generated */         if( es.realBody(i-2) > es.average( BodyLong, bodyLongPeriodTotal, i-2 ) &&         // 1st: long
 /* Generated */             es.candleColor(i-2) == -1 &&                                                            //      black
 /* Generated */             es.candleColor(i-1) == -1 &&                                                            // 2nd: black
-/* Generated */             inClose[i-1] > inClose[i-2] && inOpen[i-1] <= inOpen[i-2] &&                            //      harami
-/* Generated */             inLow[i-1] < inLow[i-2] &&                                                              //      lower low
+/* Generated */             es.Close(i-1) > es.Close(i-2) && es.Open(i-1) <= es.Open(i-2) &&                            //      harami
+/* Generated */             es.Low(i-1) < es.Low(i-2) &&                                                              //      lower low
 /* Generated */             es.realBody(i) < es.average( BodyShort, bodyShortPeriodTotal, i ) &&           // 3rd: short
 /* Generated */             es.candleColor(i) == 1 &&                                                               //      white
-/* Generated */             inOpen[i] > inLow[i-1]                                                                  //      open not lower
+/* Generated */             es.Open(i) > es.Low(i-1)                                                                  //      open not lower
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else

@@ -103,7 +103,7 @@
 
    /* insert lookback code here. */
     UNUSED_VARIABLE(optInPenetration);
-    return max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 2;
+    return math.Max( settingBodyShort.avgPeriod, settingBodyLong.avgPeriod ) + 2;
 }
 
 /**** START GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
@@ -202,7 +202,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -265,7 +265,7 @@
             es.realBodyGAPDOWN(i-1,i-2) &&                                                          //            gapping down
             es.realBody(i) > es.average( BodyShort, bodyShortPeriodTotal2, i ) &&          // 3rd: longer than short
             es.candleColor(i) == 1 &&                                                               //          black real body
-            inClose[i] > inClose[i-2] + es.realBody(i-2) * optInPenetration                         //               closing well within 1st rb
+            es.Close(i) > es.Close(i-2) + es.realBody(i-2) * optInPenetration                         //               closing well within 1st rb
           )
             outInteger[outIdx++] = 100;
         else
@@ -399,7 +399,7 @@
 /* Generated */             es.realBodyGAPDOWN(i-1,i-2) &&                                                          //            gapping down
 /* Generated */             es.realBody(i) > es.average( BodyShort, bodyShortPeriodTotal2, i ) &&          // 3rd: longer than short
 /* Generated */             es.candleColor(i) == 1 &&                                                               //          black real body
-/* Generated */             inClose[i] > inClose[i-2] + es.realBody(i-2) * optInPenetration                         //               closing well within 1st rb
+/* Generated */             es.Close(i) > es.Close(i-2) + es.realBody(i-2) * optInPenetration                         //               closing well within 1st rb
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else

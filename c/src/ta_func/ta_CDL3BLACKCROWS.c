@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -243,11 +243,11 @@
             es.candleColor(i) == -1 &&                                          // 3rd black
             TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&         
                                                                                 // very short lower shadow
-            inOpen[i-1] < inOpen[i-2] && inOpen[i-1] > inClose[i-2] &&          // 2nd black opens within 1st black's rb
-            inOpen[i] < inOpen[i-1] && inOpen[i] > inClose[i-1] &&              // 3rd black opens within 2nd black's rb
-            inHigh[i-3] > inClose[i-2] &&                                       // 1st black closes under prior candle's high
-            inClose[i-2] > inClose[i-1] &&                                      // three declining
-            inClose[i-1] > inClose[i]                                           // three declining
+            es.Open(i-1) < es.Open(i-2) && es.Open(i-1) > es.Close(i-2) &&          // 2nd black opens within 1st black's rb
+            es.Open(i) < es.Open(i-1) && es.Open(i) > es.Close(i-1) &&              // 3rd black opens within 2nd black's rb
+            es.High(i-3) > es.Close(i-2) &&                                       // 1st black closes under prior candle's high
+            es.Close(i-2) > es.Close(i-1) &&                                      // three declining
+            es.Close(i-1) > es.Close(i)                                           // three declining
           )
 #endif
             outInteger[outIdx++] = -100;
@@ -374,11 +374,11 @@
 /* Generated */             es.candleColor(i) == -1 &&                                          // 3rd black
 /* Generated */             TA_LOWERSHADOW(i) < es.average( ShadowVeryShort, ShadowVeryShortPeriodTotal[0], i ) &&         
 /* Generated */                                                                                 // very short lower shadow
-/* Generated */             inOpen[i-1] < inOpen[i-2] && inOpen[i-1] > inClose[i-2] &&          // 2nd black opens within 1st black's rb
-/* Generated */             inOpen[i] < inOpen[i-1] && inOpen[i] > inClose[i-1] &&              // 3rd black opens within 2nd black's rb
-/* Generated */             inHigh[i-3] > inClose[i-2] &&                                       // 1st black closes under prior candle's high
-/* Generated */             inClose[i-2] > inClose[i-1] &&                                      // three declining
-/* Generated */             inClose[i-1] > inClose[i]                                           // three declining
+/* Generated */             es.Open(i-1) < es.Open(i-2) && es.Open(i-1) > es.Close(i-2) &&          // 2nd black opens within 1st black's rb
+/* Generated */             es.Open(i) < es.Open(i-1) && es.Open(i) > es.Close(i-1) &&              // 3rd black opens within 2nd black's rb
+/* Generated */             es.High(i-3) > es.Close(i-2) &&                                       // 1st black closes under prior candle's high
+/* Generated */             es.Close(i-2) > es.Close(i-1) &&                                      // three declining
+/* Generated */             es.Close(i-1) > es.Close(i)                                           // three declining
 /* Generated */           )
 /* Generated */ #endif
 /* Generated */             outInteger[outIdx++] = -100;

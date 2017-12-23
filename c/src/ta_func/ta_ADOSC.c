@@ -98,13 +98,13 @@
 
 /**** START GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 /* Generated */ #ifndef TA_FUNC_NO_RANGE_CHECK
-/* Generated */    /* min/max are checked for optInFastPeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInFastPeriod. */
 /* Generated */    if( (int)optInFastPeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInFastPeriod = 3;
 /* Generated */    else if( ((int)optInFastPeriod < 2) || ((int)optInFastPeriod > 100000) )
 /* Generated */       return -1;
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInSlowPeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInSlowPeriod. */
 /* Generated */    if( (int)optInSlowPeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInSlowPeriod = 10;
 /* Generated */    else if( ((int)optInSlowPeriod < 2) || ((int)optInSlowPeriod > 100000) )
@@ -200,8 +200,8 @@
    int slowestPeriod;
    double high, low, close, tmp;
 
-   double slowEMA, slowk, one_minus_slowk;
-   double fastEMA, fastk, one_minus_fastk;
+   double slowEMA, slowk, one_math.Minus_slowk;
+   double fastEMA, fastk, one_math.Minus_fastk;
    double ad;
 
 /**** START GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
@@ -220,13 +220,13 @@
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
 /* Generated */    #endif /* !defined(_JAVA)*/
-/* Generated */    /* min/max are checked for optInFastPeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInFastPeriod. */
 /* Generated */    if( (int)optInFastPeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInFastPeriod = 3;
 /* Generated */    else if( ((int)optInFastPeriod < 2) || ((int)optInFastPeriod > 100000) )
 /* Generated */       return ENUM_VALUE(RetCode,TA_BAD_PARAM,BadParam);
 /* Generated */ 
-/* Generated */    /* min/max are checked for optInSlowPeriod. */
+/* Generated */    /* math.Min/math.Max are checked for optInSlowPeriod. */
 /* Generated */    if( (int)optInSlowPeriod == TA_INTEGER_DEFAULT )
 /* Generated */       optInSlowPeriod = 10;
 /* Generated */    else if( ((int)optInSlowPeriod < 2) || ((int)optInSlowPeriod > 100000) )
@@ -308,10 +308,10 @@
 
    /* Constants for EMA */
    fastk = PER_TO_K( optInFastPeriod );
-   one_minus_fastk = 1.0 - fastk;
+   one_math.Minus_fastk = 1.0 - fastk;
 
    slowk = PER_TO_K( optInSlowPeriod );
-   one_minus_slowk = 1.0 - slowk;
+   one_math.Minus_slowk = 1.0 - slowk;
 
    /* Initialize the two EMA
     *
@@ -328,8 +328,8 @@
    while( today < startIdx )
    {
       CALCULATE_AD;
-      fastEMA = (fastk*ad)+(one_minus_fastk*fastEMA);
-      slowEMA = (slowk*ad)+(one_minus_slowk*slowEMA);
+      fastEMA = (fastk*ad)+(one_math.Minus_fastk*fastEMA);
+      slowEMA = (slowk*ad)+(one_math.Minus_slowk*slowEMA);
    }     
       
    /* Perform the calculation for the requested range */
@@ -337,8 +337,8 @@
    while( today <= endIdx )
    {
       CALCULATE_AD;
-      fastEMA = (fastk*ad)+(one_minus_fastk*fastEMA);
-      slowEMA = (slowk*ad)+(one_minus_slowk*slowEMA);
+      fastEMA = (fastk*ad)+(one_math.Minus_fastk*fastEMA);
+      slowEMA = (slowk*ad)+(one_math.Minus_slowk*slowEMA);
 
       outReal[outIdx++] = fastEMA - slowEMA;
    }
@@ -410,8 +410,8 @@
 /* Generated */    int today, outIdx, lookbackTotal;
 /* Generated */    int slowestPeriod;
 /* Generated */    double high, low, close, tmp;
-/* Generated */    double slowEMA, slowk, one_minus_slowk;
-/* Generated */    double fastEMA, fastk, one_minus_fastk;
+/* Generated */    double slowEMA, slowk, one_math.Minus_slowk;
+/* Generated */    double fastEMA, fastk, one_math.Minus_fastk;
 /* Generated */    double ad;
 /* Generated */  #ifndef TA_FUNC_NO_RANGE_CHECK
 /* Generated */     if( startIdx < 0 )
@@ -462,24 +462,24 @@
 /* Generated */       today++; \
 /* Generated */    }
 /* Generated */    fastk = PER_TO_K( optInFastPeriod );
-/* Generated */    one_minus_fastk = 1.0 - fastk;
+/* Generated */    one_math.Minus_fastk = 1.0 - fastk;
 /* Generated */    slowk = PER_TO_K( optInSlowPeriod );
-/* Generated */    one_minus_slowk = 1.0 - slowk;
+/* Generated */    one_math.Minus_slowk = 1.0 - slowk;
 /* Generated */    CALCULATE_AD;
 /* Generated */    fastEMA = ad;
 /* Generated */    slowEMA = ad;
 /* Generated */    while( today < startIdx )
 /* Generated */    {
 /* Generated */       CALCULATE_AD;
-/* Generated */       fastEMA = (fastk*ad)+(one_minus_fastk*fastEMA);
-/* Generated */       slowEMA = (slowk*ad)+(one_minus_slowk*slowEMA);
+/* Generated */       fastEMA = (fastk*ad)+(one_math.Minus_fastk*fastEMA);
+/* Generated */       slowEMA = (slowk*ad)+(one_math.Minus_slowk*slowEMA);
 /* Generated */    }     
 /* Generated */    outIdx = 0;
 /* Generated */    while( today <= endIdx )
 /* Generated */    {
 /* Generated */       CALCULATE_AD;
-/* Generated */       fastEMA = (fastk*ad)+(one_minus_fastk*fastEMA);
-/* Generated */       slowEMA = (slowk*ad)+(one_minus_slowk*slowEMA);
+/* Generated */       fastEMA = (fastk*ad)+(one_math.Minus_fastk*fastEMA);
+/* Generated */       slowEMA = (slowk*ad)+(one_math.Minus_slowk*slowEMA);
 /* Generated */       outReal[outIdx++] = fastEMA - slowEMA;
 /* Generated */    }
 /* Generated */    VALUE_HANDLE_DEREF(outNBElement) = outIdx;

@@ -179,7 +179,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -207,20 +207,20 @@
    i = startIdx - 3;
    while( i < startIdx ) {
         /* copy here the pattern recognition code below */
-        if( inHigh[i-1] < inHigh[i-2] && inLow[i-1] > inLow[i-2] &&             // 1st + 2nd: lower high and higher low
-            ( ( inHigh[i] < inHigh[i-1] && inLow[i] < inLow[i-1] )              // (bull) 3rd: lower high and lower low
+        if( es.High(i-1) < es.High(i-2) && es.Low(i-1) > es.Low(i-2) &&             // 1st + 2nd: lower high and higher low
+            ( ( es.High(i) < es.High(i-1) && es.Low(i) < es.Low(i-1) )              // (bull) 3rd: lower high and lower low
               ||
-              ( inHigh[i] > inHigh[i-1] && inLow[i] > inLow[i-1] )              // (bear) 3rd: higher high and higher low
+              ( es.High(i) > es.High(i-1) && es.Low(i) > es.Low(i-1) )              // (bear) 3rd: higher high and higher low
             )
         ) {
-            patternResult = 100 * ( inHigh[i] < inHigh[i-1] ? 1 : -1 );
+            patternResult = 100 * ( es.High(i) < es.High(i-1) ? 1 : -1 );
             patternIdx = i;
         } else
             /* search for confirmation if hikkake was no more than 3 bars ago */
             if( i <= patternIdx+3 &&
-                ( ( patternResult > 0 && inClose[i] > inHigh[patternIdx-1] )    // close higher than the high of 2nd
+                ( ( patternResult > 0 && es.Close(i) > inHigh[patternIdx-1] )    // close higher than the high of 2nd
                   ||
-                  ( patternResult < 0 && inClose[i] < inLow[patternIdx-1] )     // close lower than the low of 2nd
+                  ( patternResult < 0 && es.Close(i) < inLow[patternIdx-1] )     // close lower than the low of 2nd
                 )
             )
                 patternIdx = 0;
@@ -243,21 +243,21 @@
    outIdx = 0;
    do
    {
-        if( inHigh[i-1] < inHigh[i-2] && inLow[i-1] > inLow[i-2] &&             // 1st + 2nd: lower high and higher low
-            ( ( inHigh[i] < inHigh[i-1] && inLow[i] < inLow[i-1] )              // (bull) 3rd: lower high and lower low
+        if( es.High(i-1) < es.High(i-2) && es.Low(i-1) > es.Low(i-2) &&             // 1st + 2nd: lower high and higher low
+            ( ( es.High(i) < es.High(i-1) && es.Low(i) < es.Low(i-1) )              // (bull) 3rd: lower high and lower low
               ||
-              ( inHigh[i] > inHigh[i-1] && inLow[i] > inLow[i-1] )              // (bear) 3rd: higher high and higher low
+              ( es.High(i) > es.High(i-1) && es.Low(i) > es.Low(i-1) )              // (bear) 3rd: higher high and higher low
             )
         ) {
-            patternResult = 100 * ( inHigh[i] < inHigh[i-1] ? 1 : -1 );
+            patternResult = 100 * ( es.High(i) < es.High(i-1) ? 1 : -1 );
             patternIdx = i;
             outInteger[outIdx++] = patternResult;
         } else
             /* search for confirmation if hikkake was no more than 3 bars ago */
             if( i <= patternIdx+3 &&
-                ( ( patternResult > 0 && inClose[i] > inHigh[patternIdx-1] )    // close higher than the high of 2nd
+                ( ( patternResult > 0 && es.Close(i) > inHigh[patternIdx-1] )    // close higher than the high of 2nd
                   ||
-                  ( patternResult < 0 && inClose[i] < inLow[patternIdx-1] )     // close lower than the low of 2nd
+                  ( patternResult < 0 && es.Close(i) < inLow[patternIdx-1] )     // close lower than the low of 2nd
                 )
             ) {
                 outInteger[outIdx++] = patternResult + 100 * ( patternResult > 0 ? 1 : -1 );
@@ -354,19 +354,19 @@
 /* Generated */    patternResult = 0;
 /* Generated */    i = startIdx - 3;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         if( inHigh[i-1] < inHigh[i-2] && inLow[i-1] > inLow[i-2] &&             // 1st + 2nd: lower high and higher low
-/* Generated */             ( ( inHigh[i] < inHigh[i-1] && inLow[i] < inLow[i-1] )              // (bull) 3rd: lower high and lower low
+/* Generated */         if( es.High(i-1) < es.High(i-2) && es.Low(i-1) > es.Low(i-2) &&             // 1st + 2nd: lower high and higher low
+/* Generated */             ( ( es.High(i) < es.High(i-1) && es.Low(i) < es.Low(i-1) )              // (bull) 3rd: lower high and lower low
 /* Generated */               ||
-/* Generated */               ( inHigh[i] > inHigh[i-1] && inLow[i] > inLow[i-1] )              // (bear) 3rd: higher high and higher low
+/* Generated */               ( es.High(i) > es.High(i-1) && es.Low(i) > es.Low(i-1) )              // (bear) 3rd: higher high and higher low
 /* Generated */             )
 /* Generated */         ) {
-/* Generated */             patternResult = 100 * ( inHigh[i] < inHigh[i-1] ? 1 : -1 );
+/* Generated */             patternResult = 100 * ( es.High(i) < es.High(i-1) ? 1 : -1 );
 /* Generated */             patternIdx = i;
 /* Generated */         } else
 /* Generated */             if( i <= patternIdx+3 &&
-/* Generated */                 ( ( patternResult > 0 && inClose[i] > inHigh[patternIdx-1] )    // close higher than the high of 2nd
+/* Generated */                 ( ( patternResult > 0 && es.Close(i) > inHigh[patternIdx-1] )    // close higher than the high of 2nd
 /* Generated */                   ||
-/* Generated */                   ( patternResult < 0 && inClose[i] < inLow[patternIdx-1] )     // close lower than the low of 2nd
+/* Generated */                   ( patternResult < 0 && es.Close(i) < inLow[patternIdx-1] )     // close lower than the low of 2nd
 /* Generated */                 )
 /* Generated */             )
 /* Generated */                 patternIdx = 0;
@@ -376,20 +376,20 @@
 /* Generated */    outIdx = 0;
 /* Generated */    do
 /* Generated */    {
-/* Generated */         if( inHigh[i-1] < inHigh[i-2] && inLow[i-1] > inLow[i-2] &&             // 1st + 2nd: lower high and higher low
-/* Generated */             ( ( inHigh[i] < inHigh[i-1] && inLow[i] < inLow[i-1] )              // (bull) 3rd: lower high and lower low
+/* Generated */         if( es.High(i-1) < es.High(i-2) && es.Low(i-1) > es.Low(i-2) &&             // 1st + 2nd: lower high and higher low
+/* Generated */             ( ( es.High(i) < es.High(i-1) && es.Low(i) < es.Low(i-1) )              // (bull) 3rd: lower high and lower low
 /* Generated */               ||
-/* Generated */               ( inHigh[i] > inHigh[i-1] && inLow[i] > inLow[i-1] )              // (bear) 3rd: higher high and higher low
+/* Generated */               ( es.High(i) > es.High(i-1) && es.Low(i) > es.Low(i-1) )              // (bear) 3rd: higher high and higher low
 /* Generated */             )
 /* Generated */         ) {
-/* Generated */             patternResult = 100 * ( inHigh[i] < inHigh[i-1] ? 1 : -1 );
+/* Generated */             patternResult = 100 * ( es.High(i) < es.High(i-1) ? 1 : -1 );
 /* Generated */             patternIdx = i;
 /* Generated */             outInteger[outIdx++] = patternResult;
 /* Generated */         } else
 /* Generated */             if( i <= patternIdx+3 &&
-/* Generated */                 ( ( patternResult > 0 && inClose[i] > inHigh[patternIdx-1] )    // close higher than the high of 2nd
+/* Generated */                 ( ( patternResult > 0 && es.Close(i) > inHigh[patternIdx-1] )    // close higher than the high of 2nd
 /* Generated */                   ||
-/* Generated */                   ( patternResult < 0 && inClose[i] < inLow[patternIdx-1] )     // close lower than the low of 2nd
+/* Generated */                   ( patternResult < 0 && es.Close(i) < inLow[patternIdx-1] )     // close lower than the low of 2nd
 /* Generated */                 )
 /* Generated */             ) {
 /* Generated */                 outInteger[outIdx++] = patternResult + 100 * ( patternResult > 0 ? 1 : -1 );

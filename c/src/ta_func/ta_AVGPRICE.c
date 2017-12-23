@@ -192,7 +192,7 @@
    {
       outReal[outIdx++] = ( inHigh [i] +
                               inLow  [i] +
-                              inClose[i] +
+                              es.Close(i) +
                               inOpen [i]) / 4;
    }
 
@@ -274,7 +274,7 @@
 /* Generated */    {
 /* Generated */       outReal[outIdx++] = ( inHigh [i] +
 /* Generated */                               inLow  [i] +
-/* Generated */                               inClose[i] +
+/* Generated */                               es.Close(i) +
 /* Generated */                               inOpen [i]) / 4;
 /* Generated */    }
 /* Generated */    VALUE_HANDLE_DEREF(outNBElement) = outIdx;

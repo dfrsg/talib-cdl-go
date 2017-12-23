@@ -179,7 +179,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -216,13 +216,13 @@
    do
    {
         if( ( es.candleColor(i-1) == 1 && es.candleColor(i-2) == -1 &&          // white engulfs black
-              inClose[i-1] > inOpen[i-2] && inOpen[i-1] < inClose[i-2] &&
-              inClose[i] > inClose[i-1]                                         // third candle higher
+              es.Close(i-1) > es.Open(i-2) && es.Open(i-1) < es.Close(i-2) &&
+              es.Close(i) > es.Close(i-1)                                         // third candle higher
             )
             ||
             ( es.candleColor(i-1) == -1 && es.candleColor(i-2) == 1 &&          // black engulfs white
-              inOpen[i-1] > inClose[i-2] && inClose[i-1] < inOpen[i-2] &&
-              inClose[i] < inClose[i-1]                                         // third candle lower
+              es.Open(i-1) > es.Close(i-2) && es.Close(i-1) < es.Open(i-2) &&
+              es.Close(i) < es.Close(i-1)                                         // third candle lower
             )
           )
        {
@@ -325,13 +325,13 @@
 /* Generated */    do
 /* Generated */    {
 /* Generated */         if( ( es.candleColor(i-1) == 1 && es.candleColor(i-2) == -1 &&          // white engulfs black
-/* Generated */               inClose[i-1] > inOpen[i-2] && inOpen[i-1] < inClose[i-2] &&
-/* Generated */               inClose[i] > inClose[i-1]                                         // third candle higher
+/* Generated */               es.Close(i-1) > es.Open(i-2) && es.Open(i-1) < es.Close(i-2) &&
+/* Generated */               es.Close(i) > es.Close(i-1)                                         // third candle higher
 /* Generated */             )
 /* Generated */             ||
 /* Generated */             ( es.candleColor(i-1) == -1 && es.candleColor(i-2) == 1 &&          // black engulfs white
-/* Generated */               inOpen[i-1] > inClose[i-2] && inClose[i-1] < inOpen[i-2] &&
-/* Generated */               inClose[i] < inClose[i-1]                                         // third candle lower
+/* Generated */               es.Open(i-1) > es.Close(i-2) && es.Close(i-1) < es.Open(i-2) &&
+/* Generated */               es.Close(i) < es.Close(i-1)                                         // third candle lower
 /* Generated */             )
 /* Generated */           )
 /* Generated */        {

@@ -96,7 +96,7 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( settingEqual.avgPeriod, settingBodyLong.avgPeriod
+    return math.Max( settingEqual.avgPeriod, settingBodyLong.avgPeriod
             ) + 1;
 }
 
@@ -181,7 +181,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -228,7 +228,7 @@
     * The meaning of "equal" is specified with TA_SetCandleSettings
     * outInteger is negative (-1 to -100): thrusting pattern is always bearish
     * the user should consider that the thrusting pattern is significant when it appears in a downtrend and it could be 
-    * even bullish "when coming in an uptrend or occurring twice within several days" (Steve Nison says), while this 
+    * even bullish "when comath.Ming in an uptrend or occurring twice within several days" (Steve Nison says), while this 
     * function does not consider the trend
     */
    outIdx = 0;
@@ -240,9 +240,9 @@
         if( es.candleColor(i-1) == -1 &&                                                        // 1st: black
             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal, i-1 ) &&     //  long
             es.candleColor(i) == 1 &&                                                           // 2nd: white
-            inOpen[i] < inLow[i-1] &&                                                           //  open below prior low
-            inClose[i] > inClose[i-1] + es.average( Equal, EqualPeriodTotal, i-1 ) &&  //  close into prior body
-            inClose[i] <= inClose[i-1] + es.realBody(i-1) * 0.5                                 //   under the midpoint
+            es.Open(i) < es.Low(i-1) &&                                                           //  open below prior low
+            es.Close(i) > es.Close(i-1) + es.average( Equal, EqualPeriodTotal, i-1 ) &&  //  close into prior body
+            es.Close(i) <= es.Close(i-1) + es.realBody(i-1) * 0.5                                 //   under the midpoint
           )
             outInteger[outIdx++] = -100;
         else
@@ -366,9 +366,9 @@
 /* Generated */         if( es.candleColor(i-1) == -1 &&                                                        // 1st: black
 /* Generated */             es.realBody(i-1) > es.average( BodyLong, bodyLongPeriodTotal, i-1 ) &&     //  long
 /* Generated */             es.candleColor(i) == 1 &&                                                           // 2nd: white
-/* Generated */             inOpen[i] < inLow[i-1] &&                                                           //  open below prior low
-/* Generated */             inClose[i] > inClose[i-1] + es.average( Equal, EqualPeriodTotal, i-1 ) &&  //  close into prior body
-/* Generated */             inClose[i] <= inClose[i-1] + es.realBody(i-1) * 0.5                                 //   under the midpoint
+/* Generated */             es.Open(i) < es.Low(i-1) &&                                                           //  open below prior low
+/* Generated */             es.Close(i) > es.Close(i-1) + es.average( Equal, EqualPeriodTotal, i-1 ) &&  //  close into prior body
+/* Generated */             es.Close(i) <= es.Close(i-1) + es.realBody(i-1) * 0.5                                 //   under the midpoint
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = -100;
 /* Generated */         else

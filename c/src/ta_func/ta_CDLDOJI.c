@@ -183,7 +183,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -222,7 +222,7 @@
     *
     * Must have:
     * - open quite equal to close
-    * How much can be the maximum distance between open and close is specified with TA_SetCandleSettings
+    * How much can be the math.Maximum distance between open and close is specified with TA_SetCandleSettings
     * outInteger is always positive (1 to 100) but this does not mean it is bullish: doji shows uncertainty and it is
     * neither bullish nor bearish when considered alone
     */

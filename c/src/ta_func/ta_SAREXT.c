@@ -209,7 +209,7 @@
  *    Acceleration Factor for the Long direction
  * 
  * optInAccelerationMaxLong:(From 0 to TA_REAL_MAX)
- *    Acceleration Factor maximum value for the Long direction
+ *    Acceleration Factor math.Maximum value for the Long direction
  * 
  * optInAccelerationInitShort:(From 0 to TA_REAL_MAX)
  *    Acceleration Factor initial value for the Short direction
@@ -218,7 +218,7 @@
  *    Acceleration Factor for the Short direction
  * 
  * optInAccelerationMaxShort:(From 0 to TA_REAL_MAX)
- *    Acceleration Factor maximum value for the Short direction
+ *    Acceleration Factor math.Maximum value for the Short direction
  * 
  * 
  */
@@ -427,7 +427,7 @@
     * (See previous two sections).
     */
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     *
     * Move up the start index if there is not
@@ -446,7 +446,7 @@
 
 
    /* Check if the acceleration factors are being defined by the user.
-    * Make sure the acceleration and maximum are coherent.
+    * Make sure the acceleration and math.Maximum are coherent.
     * If not, correct the acceleration.    
     * Default afLong = 0.02
     * Default afShort = 0.02

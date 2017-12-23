@@ -152,8 +152,8 @@
 /**** END GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
 {
    /* Insert local variables here. */
-    ARRAY_LOCAL(NearPeriodTotal,4);
-    int i, outIdx, totIdx, NearTrailingIdx, lookbackTotal;
+    ARRAY_LOCAL(nearPeriodTotal,4);
+    int i, outIdx, totIdx, nearTrailingIdx, lookbackTotal;
 
 /**** START GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 /* Generated */ 
@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -202,14 +202,14 @@
 
    /* Do the calculation using tight loops. */
    /* Add-up the initial period, except for the last value. */
-   NearPeriodTotal[3] = 0;
-   NearPeriodTotal[2] = 0;
-   NearTrailingIdx = startIdx - settingNear.avgPeriod;
+   nearPeriodTotal[3] = 0;
+   nearPeriodTotal[2] = 0;
+   nearTrailingIdx = startIdx - settingNear.avgPeriod;
    
-   i = NearTrailingIdx;
+   i = nearTrailingIdx;
    while( i < startIdx ) {
-        NearPeriodTotal[3] += es.rangeOf( Near, i-3 );
-        NearPeriodTotal[2] += es.rangeOf( Near, i-2 );
+        nearPeriodTotal[3] += es.rangeOf( Near, i-3 );
+        nearPeriodTotal[2] += es.rangeOf( Near, i-2 );
         i++;
    }
    i = startIdx;
@@ -235,23 +235,23 @@
             es.candleColor(i-2) == es.candleColor(i-1) &&
             es.candleColor(i) == -es.candleColor(i-1) &&                                    // 4th opposite color
                                                                                             // 2nd opens within/near 1st rb
-            inOpen[i-2] >= min( inOpen[i-3], inClose[i-3] ) - es.average( Near, NearPeriodTotal[3], i-3 ) &&
-            inOpen[i-2] <= max( inOpen[i-3], inClose[i-3] ) + es.average( Near, NearPeriodTotal[3], i-3 ) &&
+            es.Open(i-2) >= math.Min( es.Open(i-3), es.Close(i-3) ) - es.average( Near, nearPeriodTotal[3], i-3 ) &&
+            es.Open(i-2) <= math.Max( es.Open(i-3), es.Close(i-3) ) + es.average( Near, nearPeriodTotal[3], i-3 ) &&
                                                                                             // 3rd opens within/near 2nd rb
-            inOpen[i-1] >= min( inOpen[i-2], inClose[i-2] ) - es.average( Near, NearPeriodTotal[2], i-2 ) &&
-            inOpen[i-1] <= max( inOpen[i-2], inClose[i-2] ) + es.average( Near, NearPeriodTotal[2], i-2 ) &&
+            es.Open(i-1) >= math.Min( es.Open(i-2), es.Close(i-2) ) - es.average( Near, nearPeriodTotal[2], i-2 ) &&
+            es.Open(i-1) <= math.Max( es.Open(i-2), es.Close(i-2) ) + es.average( Near, nearPeriodTotal[2], i-2 ) &&
             (
                 (   // if three white
                     es.candleColor(i-1) == 1 &&
-                    inClose[i-1] > inClose[i-2] && inClose[i-2] > inClose[i-3] &&           // consecutive higher closes
-                    inOpen[i] > inClose[i-1] &&                                             // 4th opens above prior close
-                    inClose[i] < inOpen[i-3]                                                // 4th closes below 1st open
+                    es.Close(i-1) > es.Close(i-2) && es.Close(i-2) > es.Close(i-3) &&           // consecutive higher closes
+                    es.Open(i) > es.Close(i-1) &&                                             // 4th opens above prior close
+                    es.Close(i) < es.Open(i-3)                                                // 4th closes below 1st open
                 ) ||
                 (   // if three black
                     es.candleColor(i-1) == -1 &&
-                    inClose[i-1] < inClose[i-2] && inClose[i-2] < inClose[i-3] &&           // consecutive lower closes
-                    inOpen[i] < inClose[i-1] &&                                             // 4th opens below prior close
-                    inClose[i] > inOpen[i-3]                                                // 4th closes above 1st open
+                    es.Close(i-1) < es.Close(i-2) && es.Close(i-2) < es.Close(i-3) &&           // consecutive lower closes
+                    es.Open(i) < es.Close(i-1) &&                                             // 4th opens below prior close
+                    es.Close(i) > es.Open(i-3)                                                // 4th closes above 1st open
                 )
             )
           )
@@ -263,10 +263,10 @@
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
         for (totIdx = 3; totIdx >= 2; --totIdx)
-            NearPeriodTotal[totIdx] += es.rangeOf( Near, i-totIdx ) 
-                                     - es.rangeOf( Near, NearTrailingIdx-totIdx );
+            nearPeriodTotal[totIdx] += es.rangeOf( Near, i-totIdx ) 
+                                     - es.rangeOf( Near, nearTrailingIdx-totIdx );
         i++; 
-        NearTrailingIdx++;
+        nearTrailingIdx++;
    } while( i <= endIdx );
 
    /* All done. Indicate the output limits and return. */
@@ -328,8 +328,8 @@
 /* Generated */                                 int           outInteger[] )
 /* Generated */ #endif
 /* Generated */ {
-/* Generated */     ARRAY_LOCAL(NearPeriodTotal,4);
-/* Generated */     int i, outIdx, totIdx, NearTrailingIdx, lookbackTotal;
+/* Generated */     ARRAY_LOCAL(nearPeriodTotal,4);
+/* Generated */     int i, outIdx, totIdx, nearTrailingIdx, lookbackTotal;
 /* Generated */  #ifndef TA_FUNC_NO_RANGE_CHECK
 /* Generated */     if( startIdx < 0 )
 /* Generated */        return ENUM_VALUE(RetCode,TA_OUT_OF_RANGE_START_INDEX,OutOfRangeStartIndex);
@@ -353,13 +353,13 @@
 /* Generated */       VALUE_HANDLE_DEREF_TO_ZERO(outNBElement);
 /* Generated */       return ENUM_VALUE(RetCode,TA_SUCCESS,Success);
 /* Generated */    }
-/* Generated */    NearPeriodTotal[3] = 0;
-/* Generated */    NearPeriodTotal[2] = 0;
-/* Generated */    NearTrailingIdx = startIdx - settingNear.avgPeriod;
-/* Generated */    i = NearTrailingIdx;
+/* Generated */    nearPeriodTotal[3] = 0;
+/* Generated */    nearPeriodTotal[2] = 0;
+/* Generated */    nearTrailingIdx = startIdx - settingNear.avgPeriod;
+/* Generated */    i = nearTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         NearPeriodTotal[3] += es.rangeOf( Near, i-3 );
-/* Generated */         NearPeriodTotal[2] += es.rangeOf( Near, i-2 );
+/* Generated */         nearPeriodTotal[3] += es.rangeOf( Near, i-3 );
+/* Generated */         nearPeriodTotal[2] += es.rangeOf( Near, i-2 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -372,23 +372,23 @@
 /* Generated */             es.candleColor(i-2) == es.candleColor(i-1) &&
 /* Generated */             es.candleColor(i) == -es.candleColor(i-1) &&                                    // 4th opposite color
 /* Generated */                                                                                             // 2nd opens within/near 1st rb
-/* Generated */             inOpen[i-2] >= min( inOpen[i-3], inClose[i-3] ) - es.average( Near, NearPeriodTotal[3], i-3 ) &&
-/* Generated */             inOpen[i-2] <= max( inOpen[i-3], inClose[i-3] ) + es.average( Near, NearPeriodTotal[3], i-3 ) &&
+/* Generated */             es.Open(i-2) >= math.Min( es.Open(i-3), es.Close(i-3) ) - es.average( Near, nearPeriodTotal[3], i-3 ) &&
+/* Generated */             es.Open(i-2) <= math.Max( es.Open(i-3), es.Close(i-3) ) + es.average( Near, nearPeriodTotal[3], i-3 ) &&
 /* Generated */                                                                                             // 3rd opens within/near 2nd rb
-/* Generated */             inOpen[i-1] >= min( inOpen[i-2], inClose[i-2] ) - es.average( Near, NearPeriodTotal[2], i-2 ) &&
-/* Generated */             inOpen[i-1] <= max( inOpen[i-2], inClose[i-2] ) + es.average( Near, NearPeriodTotal[2], i-2 ) &&
+/* Generated */             es.Open(i-1) >= math.Min( es.Open(i-2), es.Close(i-2) ) - es.average( Near, nearPeriodTotal[2], i-2 ) &&
+/* Generated */             es.Open(i-1) <= math.Max( es.Open(i-2), es.Close(i-2) ) + es.average( Near, nearPeriodTotal[2], i-2 ) &&
 /* Generated */             (
 /* Generated */                 (   // if three white
 /* Generated */                     es.candleColor(i-1) == 1 &&
-/* Generated */                     inClose[i-1] > inClose[i-2] && inClose[i-2] > inClose[i-3] &&           // consecutive higher closes
-/* Generated */                     inOpen[i] > inClose[i-1] &&                                             // 4th opens above prior close
-/* Generated */                     inClose[i] < inOpen[i-3]                                                // 4th closes below 1st open
+/* Generated */                     es.Close(i-1) > es.Close(i-2) && es.Close(i-2) > es.Close(i-3) &&           // consecutive higher closes
+/* Generated */                     es.Open(i) > es.Close(i-1) &&                                             // 4th opens above prior close
+/* Generated */                     es.Close(i) < es.Open(i-3)                                                // 4th closes below 1st open
 /* Generated */                 ) ||
 /* Generated */                 (   // if three black
 /* Generated */                     es.candleColor(i-1) == -1 &&
-/* Generated */                     inClose[i-1] < inClose[i-2] && inClose[i-2] < inClose[i-3] &&           // consecutive lower closes
-/* Generated */                     inOpen[i] < inClose[i-1] &&                                             // 4th opens below prior close
-/* Generated */                     inClose[i] > inOpen[i-3]                                                // 4th closes above 1st open
+/* Generated */                     es.Close(i-1) < es.Close(i-2) && es.Close(i-2) < es.Close(i-3) &&           // consecutive lower closes
+/* Generated */                     es.Open(i) < es.Close(i-1) &&                                             // 4th opens below prior close
+/* Generated */                     es.Close(i) > es.Open(i-3)                                                // 4th closes above 1st open
 /* Generated */                 )
 /* Generated */             )
 /* Generated */           )
@@ -397,10 +397,10 @@
 /* Generated */             outInteger[outIdx++] = 0;
 /* Generated */ #endif
 /* Generated */         for (totIdx = 3; totIdx >= 2; --totIdx)
-/* Generated */             NearPeriodTotal[totIdx] += es.rangeOf( Near, i-totIdx ) 
-/* Generated */                                      - es.rangeOf( Near, NearTrailingIdx-totIdx );
+/* Generated */             nearPeriodTotal[totIdx] += es.rangeOf( Near, i-totIdx ) 
+/* Generated */                                      - es.rangeOf( Near, nearTrailingIdx-totIdx );
 /* Generated */         i++; 
-/* Generated */         NearTrailingIdx++;
+/* Generated */         nearTrailingIdx++;
 /* Generated */    } while( i <= endIdx );
 /* Generated */    VALUE_HANDLE_DEREF(outNBElement) = outIdx;
 /* Generated */    VALUE_HANDLE_DEREF(outBegIdx)    = startIdx;

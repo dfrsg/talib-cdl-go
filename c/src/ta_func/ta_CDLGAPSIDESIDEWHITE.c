@@ -96,7 +96,7 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( settingNear.avgPeriod, settingEqual.avgPeriod ) + 2;
+    return math.Max( settingNear.avgPeriod, settingEqual.avgPeriod ) + 2;
 }
 
 /**** START GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
@@ -152,8 +152,8 @@
 /**** END GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
 {
    /* Insert local variables here. */
-    double NearPeriodTotal, EqualPeriodTotal;
-    int i, outIdx, NearTrailingIdx, EqualTrailingIdx, lookbackTotal;
+    double nearPeriodTotal, EqualPeriodTotal;
+    int i, outIdx, nearTrailingIdx, EqualTrailingIdx, lookbackTotal;
 
 /**** START GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 /* Generated */ 
@@ -180,7 +180,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -202,14 +202,14 @@
 
    /* Do the calculation using tight loops. */
    /* Add-up the initial period, except for the last value. */
-   NearPeriodTotal = 0;
+   nearPeriodTotal = 0;
    EqualPeriodTotal = 0;
-   NearTrailingIdx = startIdx - settingNear.avgPeriod;
+   nearTrailingIdx = startIdx - settingNear.avgPeriod;
    EqualTrailingIdx = startIdx - settingEqual.avgPeriod;
    
-   i = NearTrailingIdx;
+   i = nearTrailingIdx;
    while( i < startIdx ) {
-        NearPeriodTotal += es.rangeOf( Near, i-1 );
+        nearPeriodTotal += es.rangeOf( Near, i-1 );
         i++;
    }
    i = EqualTrailingIdx;
@@ -242,10 +242,10 @@
             ) &&
             es.candleColor(i-1) == 1 &&                                                                 // 2nd: white
             es.candleColor(i) == 1 &&                                                                   // 3rd: white
-            es.realBody(i) >= es.realBody(i-1) - es.average( Near, NearPeriodTotal, i-1 ) &&   // same size 2 and 3
-            es.realBody(i) <= es.realBody(i-1) + es.average( Near, NearPeriodTotal, i-1 ) &&
-            inOpen[i] >= inOpen[i-1] - es.average( Equal, EqualPeriodTotal, i-1 ) &&           // same open 2 and 3
-            inOpen[i] <= inOpen[i-1] + es.average( Equal, EqualPeriodTotal, i-1 )
+            es.realBody(i) >= es.realBody(i-1) - es.average( Near, nearPeriodTotal, i-1 ) &&   // same size 2 and 3
+            es.realBody(i) <= es.realBody(i-1) + es.average( Near, nearPeriodTotal, i-1 ) &&
+            es.Open(i) >= es.Open(i-1) - es.average( Equal, EqualPeriodTotal, i-1 ) &&           // same open 2 and 3
+            es.Open(i) <= es.Open(i-1) + es.average( Equal, EqualPeriodTotal, i-1 )
           )
             outInteger[outIdx++] = ( es.realBodyGAPUP(i-1,i-2) ? 100 : -100 );
         else
@@ -253,10 +253,10 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        NearPeriodTotal += es.rangeOf( Near, i-1 ) - es.rangeOf( Near, NearTrailingIdx-1 );
+        nearPeriodTotal += es.rangeOf( Near, i-1 ) - es.rangeOf( Near, nearTrailingIdx-1 );
         EqualPeriodTotal += es.rangeOf( Equal, i-1 ) - es.rangeOf( Equal, EqualTrailingIdx-1 );
         i++; 
-        NearTrailingIdx++;
+        nearTrailingIdx++;
         EqualTrailingIdx++;
    } while( i <= endIdx );
 
@@ -319,8 +319,8 @@
 /* Generated */                                      int           outInteger[] )
 /* Generated */ #endif
 /* Generated */ {
-/* Generated */     double NearPeriodTotal, EqualPeriodTotal;
-/* Generated */     int i, outIdx, NearTrailingIdx, EqualTrailingIdx, lookbackTotal;
+/* Generated */     double nearPeriodTotal, EqualPeriodTotal;
+/* Generated */     int i, outIdx, nearTrailingIdx, EqualTrailingIdx, lookbackTotal;
 /* Generated */  #ifndef TA_FUNC_NO_RANGE_CHECK
 /* Generated */     if( startIdx < 0 )
 /* Generated */        return ENUM_VALUE(RetCode,TA_OUT_OF_RANGE_START_INDEX,OutOfRangeStartIndex);
@@ -344,13 +344,13 @@
 /* Generated */       VALUE_HANDLE_DEREF_TO_ZERO(outNBElement);
 /* Generated */       return ENUM_VALUE(RetCode,TA_SUCCESS,Success);
 /* Generated */    }
-/* Generated */    NearPeriodTotal = 0;
+/* Generated */    nearPeriodTotal = 0;
 /* Generated */    EqualPeriodTotal = 0;
-/* Generated */    NearTrailingIdx = startIdx - settingNear.avgPeriod;
+/* Generated */    nearTrailingIdx = startIdx - settingNear.avgPeriod;
 /* Generated */    EqualTrailingIdx = startIdx - settingEqual.avgPeriod;
-/* Generated */    i = NearTrailingIdx;
+/* Generated */    i = nearTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         NearPeriodTotal += es.rangeOf( Near, i-1 );
+/* Generated */         nearPeriodTotal += es.rangeOf( Near, i-1 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = EqualTrailingIdx;
@@ -370,18 +370,18 @@
 /* Generated */             ) &&
 /* Generated */             es.candleColor(i-1) == 1 &&                                                                 // 2nd: white
 /* Generated */             es.candleColor(i) == 1 &&                                                                   // 3rd: white
-/* Generated */             es.realBody(i) >= es.realBody(i-1) - es.average( Near, NearPeriodTotal, i-1 ) &&   // same size 2 and 3
-/* Generated */             es.realBody(i) <= es.realBody(i-1) + es.average( Near, NearPeriodTotal, i-1 ) &&
-/* Generated */             inOpen[i] >= inOpen[i-1] - es.average( Equal, EqualPeriodTotal, i-1 ) &&           // same open 2 and 3
-/* Generated */             inOpen[i] <= inOpen[i-1] + es.average( Equal, EqualPeriodTotal, i-1 )
+/* Generated */             es.realBody(i) >= es.realBody(i-1) - es.average( Near, nearPeriodTotal, i-1 ) &&   // same size 2 and 3
+/* Generated */             es.realBody(i) <= es.realBody(i-1) + es.average( Near, nearPeriodTotal, i-1 ) &&
+/* Generated */             es.Open(i) >= es.Open(i-1) - es.average( Equal, EqualPeriodTotal, i-1 ) &&           // same open 2 and 3
+/* Generated */             es.Open(i) <= es.Open(i-1) + es.average( Equal, EqualPeriodTotal, i-1 )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = ( es.realBodyGAPUP(i-1,i-2) ? 100 : -100 );
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         NearPeriodTotal += es.rangeOf( Near, i-1 ) - es.rangeOf( Near, NearTrailingIdx-1 );
+/* Generated */         nearPeriodTotal += es.rangeOf( Near, i-1 ) - es.rangeOf( Near, nearTrailingIdx-1 );
 /* Generated */         EqualPeriodTotal += es.rangeOf( Equal, i-1 ) - es.rangeOf( Equal, EqualTrailingIdx-1 );
 /* Generated */         i++; 
-/* Generated */         NearTrailingIdx++;
+/* Generated */         nearTrailingIdx++;
 /* Generated */         EqualTrailingIdx++;
 /* Generated */    } while( i <= endIdx );
 /* Generated */    VALUE_HANDLE_DEREF(outNBElement) = outIdx;

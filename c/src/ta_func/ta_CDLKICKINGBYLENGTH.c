@@ -96,13 +96,13 @@
 /**** END GENCODE SECTION 2 - DO NOT DELETE THIS LINE ****/
 
    /* insert lookback code here. */
-    return max( settingShadowVeryShort.avgPeriod, settingBodyLong.avgPeriod
+    return math.Max( settingShadowVeryShort.avgPeriod, settingBodyLong.avgPeriod
             ) + 1;
 }
 
 /**** START GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
 /*
- * TA_CDLKICKINGBYLENGTH - Kicking - bull/bear determined by the longer marubozu
+ * TA_CDLKICKINGBYLENGTH - Kicking - bull/bear determath.Mined by the longer marubozu
  * 
  * Input  = Open, High, Low, Close
  * Output = int
@@ -182,7 +182,7 @@
 /* Generated */ 
 /**** END GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 
-   /* Identify the minimum number of price bar needed
+   /* Identify the math.Minimum number of price bar needed
     * to calculate at least one output.
     */
 
@@ -232,7 +232,7 @@
     * - gap between the two candles: upside gap if black then white, downside gap if white then black
     * The meaning of "long body" and "very short shadow" is specified with TA_SetCandleSettings
     * outInteger is positive (1 to 100) when bullish or negative (-1 to -100) when bearish; the longer of the two
-    * marubozu determines the bullishness or bearishness of this pattern
+    * marubozu determath.Mines the bullishness or bearishness of this pattern
     */
    outIdx = 0;
    do
