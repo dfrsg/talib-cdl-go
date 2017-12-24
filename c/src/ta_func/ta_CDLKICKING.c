@@ -250,9 +250,9 @@
             es.lowerShadow(i) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[0], i ) &&
             // gap
             ( 
-              ( es.candleColor(i-1) == -1 && TA_CANDLEGAPUP(i,i-1) )
+              ( es.candleColor(i-1) == -1 && es.isCandleGapUp(i,i-1) )
               ||
-              ( es.candleColor(i-1) == 1 && TA_CANDLEGAPDOWN(i,i-1) )
+              ( es.candleColor(i-1) == 1 && es.isCandleGapDown(i,i-1) )
             )
           )
             outInteger[outIdx++] = es.candleColor(i) * 100;
@@ -393,9 +393,9 @@
 /* Generated */             es.lowerShadow(i) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[0], i ) &&
 /* Generated */             // gap
 /* Generated */             ( 
-/* Generated */               ( es.candleColor(i-1) == -1 && TA_CANDLEGAPUP(i,i-1) )
+/* Generated */               ( es.candleColor(i-1) == -1 && es.isCandleGapUp(i,i-1) )
 /* Generated */               ||
-/* Generated */               ( es.candleColor(i-1) == 1 && TA_CANDLEGAPDOWN(i,i-1) )
+/* Generated */               ( es.candleColor(i-1) == 1 && es.isCandleGapDown(i,i-1) )
 /* Generated */             )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = es.candleColor(i) * 100;

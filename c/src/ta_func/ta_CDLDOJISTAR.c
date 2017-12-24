@@ -152,8 +152,8 @@
 /**** END GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
 {
    /* Insert local variables here. */
-    double BodyDojiPeriodTotal, bodyLongPeriodTotal;
-    int i, outIdx, BodyDojiTrailingIdx, bodyLongTrailingIdx, lookbackTotal;
+    double bodyDojiPeriodTotal, bodyLongPeriodTotal;
+    int i, outIdx, bodyDojiTrailingIdx, bodyLongTrailingIdx, lookbackTotal;
 
 /**** START GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
 /* Generated */ 
@@ -203,18 +203,18 @@
    /* Do the calculation using tight loops. */
    /* Add-up the initial period, except for the last value. */
    bodyLongPeriodTotal = 0;
-   BodyDojiPeriodTotal = 0;
+   bodyDojiPeriodTotal = 0;
    bodyLongTrailingIdx = startIdx -1 - settingBodyLong.avgPeriod;
-   BodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
+   bodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
    
    i = bodyLongTrailingIdx;
    while( i < startIdx-1 ) {
         bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i );
         i++;
    }
-   i = BodyDojiTrailingIdx;
+   i = bodyDojiTrailingIdx;
    while( i < startIdx ) {
-        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
+        bodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
         i++;
    }
 
@@ -240,7 +240,7 @@
       /* Section for code distributed with TA-Lib Pro only. */
 #else
         if( es.realBody(i-1) > es.average(settingBodyLong, bodyLongPeriodTotal, i-1 ) &&     // 1st: long real body
-            es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) &&        // 2nd: doji
+            es.realBody(i) <= es.average(settingBodyDoji, bodyDojiPeriodTotal, i ) &&        // 2nd: doji
             ( ( es.candleColor(i-1) == 1 && es.realBodyGAPUP(i,i-1) )                        //        that gaps up if 1st is white
                 ||
               ( es.candleColor(i-1) == -1 && es.realBodyGAPDOWN(i,i-1) )                        //      or down if 1st is black
@@ -253,10 +253,10 @@
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
         bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i-1 ) - es.rangeOf(settingBodyLong, bodyLongTrailingIdx );
-        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
+        bodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, bodyDojiTrailingIdx );
         i++; 
         bodyLongTrailingIdx++;
-        BodyDojiTrailingIdx++;
+        bodyDojiTrailingIdx++;
    } while( i <= endIdx );
 
    /* All done. Indicate the output limits and return. */
@@ -318,8 +318,8 @@
 /* Generated */                              int           outInteger[] )
 /* Generated */ #endif
 /* Generated */ {
-/* Generated */     double BodyDojiPeriodTotal, bodyLongPeriodTotal;
-/* Generated */     int i, outIdx, BodyDojiTrailingIdx, bodyLongTrailingIdx, lookbackTotal;
+/* Generated */     double bodyDojiPeriodTotal, bodyLongPeriodTotal;
+/* Generated */     int i, outIdx, bodyDojiTrailingIdx, bodyLongTrailingIdx, lookbackTotal;
 /* Generated */  #ifndef TA_FUNC_NO_RANGE_CHECK
 /* Generated */     if( startIdx < 0 )
 /* Generated */        return ENUM_VALUE(RetCode,TA_OUT_OF_RANGE_START_INDEX,OutOfRangeStartIndex);
@@ -344,17 +344,17 @@
 /* Generated */       return ENUM_VALUE(RetCode,TA_SUCCESS,Success);
 /* Generated */    }
 /* Generated */    bodyLongPeriodTotal = 0;
-/* Generated */    BodyDojiPeriodTotal = 0;
+/* Generated */    bodyDojiPeriodTotal = 0;
 /* Generated */    bodyLongTrailingIdx = startIdx -1 - settingBodyLong.avgPeriod;
-/* Generated */    BodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
+/* Generated */    bodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
 /* Generated */    i = bodyLongTrailingIdx;
 /* Generated */    while( i < startIdx-1 ) {
 /* Generated */         bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i );
 /* Generated */         i++;
 /* Generated */    }
-/* Generated */    i = BodyDojiTrailingIdx;
+/* Generated */    i = bodyDojiTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
+/* Generated */         bodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */ #ifdef TA_LIB_PRO
@@ -365,7 +365,7 @@
 /* Generated */ #ifdef TA_LIB_PRO
 /* Generated */ #else
 /* Generated */         if( es.realBody(i-1) > es.average(settingBodyLong, bodyLongPeriodTotal, i-1 ) &&     // 1st: long real body
-/* Generated */             es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) &&        // 2nd: doji
+/* Generated */             es.realBody(i) <= es.average(settingBodyDoji, bodyDojiPeriodTotal, i ) &&        // 2nd: doji
 /* Generated */             ( ( es.candleColor(i-1) == 1 && es.realBodyGAPUP(i,i-1) )                        //        that gaps up if 1st is white
 /* Generated */                 ||
 /* Generated */               ( es.candleColor(i-1) == -1 && es.realBodyGAPDOWN(i,i-1) )                        //      or down if 1st is black
@@ -375,10 +375,10 @@
 /* Generated */             outInteger[outIdx++] = 0;
 /* Generated */ #endif
 /* Generated */         bodyLongPeriodTotal += es.rangeOf(settingBodyLong, i-1 ) - es.rangeOf(settingBodyLong, bodyLongTrailingIdx );
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
+/* Generated */         bodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, bodyDojiTrailingIdx );
 /* Generated */         i++; 
 /* Generated */         bodyLongTrailingIdx++;
-/* Generated */         BodyDojiTrailingIdx++;
+/* Generated */         bodyDojiTrailingIdx++;
 /* Generated */    } while( i <= endIdx );
 /* Generated */    VALUE_HANDLE_DEREF(outNBElement) = outIdx;
 /* Generated */    VALUE_HANDLE_DEREF(outBegIdx)    = startIdx;

@@ -152,8 +152,8 @@
 /**** END GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
 {
    /* Insert local variables here. */
-    double BodyDojiPeriodTotal;
-    int i, outIdx, BodyDojiTrailingIdx, lookbackTotal;
+    double bodyDojiPeriodTotal;
+    int i, outIdx, bodyDojiTrailingIdx, lookbackTotal;
 #ifdef TA_LIB_PRO
 	      /* Section for code distributed with TA-Lib Pro only. */
 #endif
@@ -205,12 +205,12 @@
 
    /* Do the calculation using tight loops. */
    /* Add-up the initial period, except for the last value. */
-   BodyDojiPeriodTotal = 0;
-   BodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
+   bodyDojiPeriodTotal = 0;
+   bodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
    
-   i = BodyDojiTrailingIdx;
+   i = bodyDojiTrailingIdx;
    while( i < startIdx ) {
-        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
+        bodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
         i++;
    }
 
@@ -232,16 +232,16 @@
 #else
    do
    {
-        if( es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) )
+        if( es.realBody(i) <= es.average(settingBodyDoji, bodyDojiPeriodTotal, i ) )
             outInteger[outIdx++] = 100;
         else
             outInteger[outIdx++] = 0;
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
+        bodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, bodyDojiTrailingIdx );
         i++; 
-        BodyDojiTrailingIdx++;
+        bodyDojiTrailingIdx++;
    } while( i <= endIdx );
 #endif
 
@@ -304,8 +304,8 @@
 /* Generated */                          int           outInteger[] )
 /* Generated */ #endif
 /* Generated */ {
-/* Generated */     double BodyDojiPeriodTotal;
-/* Generated */     int i, outIdx, BodyDojiTrailingIdx, lookbackTotal;
+/* Generated */     double bodyDojiPeriodTotal;
+/* Generated */     int i, outIdx, bodyDojiTrailingIdx, lookbackTotal;
 /* Generated */ #ifdef TA_LIB_PRO
 /* Generated */ #endif
 /* Generated */  #ifndef TA_FUNC_NO_RANGE_CHECK
@@ -331,11 +331,11 @@
 /* Generated */       VALUE_HANDLE_DEREF_TO_ZERO(outNBElement);
 /* Generated */       return ENUM_VALUE(RetCode,TA_SUCCESS,Success);
 /* Generated */    }
-/* Generated */    BodyDojiPeriodTotal = 0;
-/* Generated */    BodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
-/* Generated */    i = BodyDojiTrailingIdx;
+/* Generated */    bodyDojiPeriodTotal = 0;
+/* Generated */    bodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
+/* Generated */    i = bodyDojiTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
+/* Generated */         bodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */ #ifdef TA_LIB_PRO
@@ -345,13 +345,13 @@
 /* Generated */ #else
 /* Generated */    do
 /* Generated */    {
-/* Generated */         if( es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) )
+/* Generated */         if( es.realBody(i) <= es.average(settingBodyDoji, bodyDojiPeriodTotal, i ) )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
+/* Generated */         bodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, bodyDojiTrailingIdx );
 /* Generated */         i++; 
-/* Generated */         BodyDojiTrailingIdx++;
+/* Generated */         bodyDojiTrailingIdx++;
 /* Generated */    } while( i <= endIdx );
 /* Generated */ #endif
 /* Generated */    VALUE_HANDLE_DEREF(outNBElement) = outIdx;

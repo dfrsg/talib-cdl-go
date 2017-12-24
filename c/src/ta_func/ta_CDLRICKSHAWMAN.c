@@ -154,8 +154,8 @@
 /**** END GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
 {
    /* Insert local variables here. */
-    double BodyDojiPeriodTotal, shadowLongPeriodTotal, nearPeriodTotal;
-    int i, outIdx, BodyDojiTrailingIdx, shadowLongTrailingIdx, nearTrailingIdx, lookbackTotal;
+    double bodyDojiPeriodTotal, shadowLongPeriodTotal, nearPeriodTotal;
+    int i, outIdx, bodyDojiTrailingIdx, shadowLongTrailingIdx, nearTrailingIdx, lookbackTotal;
 
 #ifdef TA_LIB_PRO
       /* Section for code distributed with TA-Lib Pro only. */
@@ -208,16 +208,16 @@
 
    /* Do the calculation using tight loops. */
    /* Add-up the initial period, except for the last value. */
-   BodyDojiPeriodTotal = 0;
-   BodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
+   bodyDojiPeriodTotal = 0;
+   bodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
    shadowLongPeriodTotal = 0;
    shadowLongTrailingIdx = startIdx - settingShadowLong.avgPeriod;
    nearPeriodTotal = 0;
    nearTrailingIdx = startIdx - settingNear.avgPeriod;
    
-   i = BodyDojiTrailingIdx;
+   i = bodyDojiTrailingIdx;
    while( i < startIdx ) {
-        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
+        bodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
         i++;
    }
    i = shadowLongTrailingIdx;
@@ -246,7 +246,7 @@
 #ifdef TA_LIB_PRO
       /* Section for code distributed with TA-Lib Pro only. */
 #else
-        if( es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) &&            // doji
+        if( es.realBody(i) <= es.average(settingBodyDoji, bodyDojiPeriodTotal, i ) &&            // doji
             es.lowerShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) &&      // long shadow
             es.upperShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) &&      // long shadow
             (                                                                                       // body near midpoint
@@ -264,13 +264,13 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
+        bodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, bodyDojiTrailingIdx );
         shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i ) - es.rangeOf(settingShadowLong, shadowLongTrailingIdx );
         nearPeriodTotal += es.rangeOf(settingNear, i ) - es.rangeOf(settingNear, nearTrailingIdx );
 #endif
 
         i++; 
-        BodyDojiTrailingIdx++;
+        bodyDojiTrailingIdx++;
         shadowLongTrailingIdx++;
         nearTrailingIdx++;
    } while( i <= endIdx );
@@ -334,8 +334,8 @@
 /* Generated */                                 int           outInteger[] )
 /* Generated */ #endif
 /* Generated */ {
-/* Generated */     double BodyDojiPeriodTotal, shadowLongPeriodTotal, nearPeriodTotal;
-/* Generated */     int i, outIdx, BodyDojiTrailingIdx, shadowLongTrailingIdx, nearTrailingIdx, lookbackTotal;
+/* Generated */     double bodyDojiPeriodTotal, shadowLongPeriodTotal, nearPeriodTotal;
+/* Generated */     int i, outIdx, bodyDojiTrailingIdx, shadowLongTrailingIdx, nearTrailingIdx, lookbackTotal;
 /* Generated */ #ifdef TA_LIB_PRO
 /* Generated */ #endif
 /* Generated */  #ifndef TA_FUNC_NO_RANGE_CHECK
@@ -361,15 +361,15 @@
 /* Generated */       VALUE_HANDLE_DEREF_TO_ZERO(outNBElement);
 /* Generated */       return ENUM_VALUE(RetCode,TA_SUCCESS,Success);
 /* Generated */    }
-/* Generated */    BodyDojiPeriodTotal = 0;
-/* Generated */    BodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
+/* Generated */    bodyDojiPeriodTotal = 0;
+/* Generated */    bodyDojiTrailingIdx = startIdx - settingBodyDoji.avgPeriod;
 /* Generated */    shadowLongPeriodTotal = 0;
 /* Generated */    shadowLongTrailingIdx = startIdx - settingShadowLong.avgPeriod;
 /* Generated */    nearPeriodTotal = 0;
 /* Generated */    nearTrailingIdx = startIdx - settingNear.avgPeriod;
-/* Generated */    i = BodyDojiTrailingIdx;
+/* Generated */    i = bodyDojiTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
+/* Generated */         bodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = shadowLongTrailingIdx;
@@ -387,7 +387,7 @@
 /* Generated */    {
 /* Generated */ #ifdef TA_LIB_PRO
 /* Generated */ #else
-/* Generated */         if( es.realBody(i) <= es.average(settingBodyDoji, BodyDojiPeriodTotal, i ) &&            // doji
+/* Generated */         if( es.realBody(i) <= es.average(settingBodyDoji, bodyDojiPeriodTotal, i ) &&            // doji
 /* Generated */             es.lowerShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) &&      // long shadow
 /* Generated */             es.upperShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) &&      // long shadow
 /* Generated */             (                                                                                       // body near midpoint
@@ -401,12 +401,12 @@
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         BodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, BodyDojiTrailingIdx );
+/* Generated */         bodyDojiPeriodTotal += es.rangeOf(settingBodyDoji, i ) - es.rangeOf(settingBodyDoji, bodyDojiTrailingIdx );
 /* Generated */         shadowLongPeriodTotal += es.rangeOf(settingShadowLong, i ) - es.rangeOf(settingShadowLong, shadowLongTrailingIdx );
 /* Generated */         nearPeriodTotal += es.rangeOf(settingNear, i ) - es.rangeOf(settingNear, nearTrailingIdx );
 /* Generated */ #endif
 /* Generated */         i++; 
-/* Generated */         BodyDojiTrailingIdx++;
+/* Generated */         bodyDojiTrailingIdx++;
 /* Generated */         shadowLongTrailingIdx++;
 /* Generated */         nearTrailingIdx++;
 /* Generated */    } while( i <= endIdx );
