@@ -234,7 +234,7 @@
             es.realBody(i-1) <= es.average(settingBodyDoji, BodyPeriodTotal, i-2 ) &&    // 2nd: doji
             es.realBody(i) <= es.average(settingBodyDoji, BodyPeriodTotal, i-2 ) ) {     // 3rd: doji
             outInteger[outIdx] = 0;
-            if ( es.realBodyGAPUP(i-1,i-2)                                                  // 2nd gaps up
+            if ( es.realBodyGapUp(i-1,i-2)                                                  // 2nd gaps up
                  &&
                  math.Max(es.Open(i),es.Close(i)) < math.Max(es.Open(i-1),es.Close(i-1))                  // 3rd is not higher than 2nd
                )
@@ -360,7 +360,7 @@
 /* Generated */             es.realBody(i-1) <= es.average(settingBodyDoji, BodyPeriodTotal, i-2 ) &&    // 2nd: doji
 /* Generated */             es.realBody(i) <= es.average(settingBodyDoji, BodyPeriodTotal, i-2 ) ) {     // 3rd: doji
 /* Generated */             outInteger[outIdx] = 0;
-/* Generated */             if ( es.realBodyGAPUP(i-1,i-2)                                                  // 2nd gaps up
+/* Generated */             if ( es.realBodyGapUp(i-1,i-2)                                                  // 2nd gaps up
 /* Generated */                  &&
 /* Generated */                  math.Max(es.Open(i),es.Close(i)) < math.Max(es.Open(i-1),es.Close(i-1))                  // 3rd is not higher than 2nd
 /* Generated */                )

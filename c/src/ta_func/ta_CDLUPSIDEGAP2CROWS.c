@@ -241,7 +241,7 @@
             es.realBody(i-2) > es.average(settingBodyLong, bodyLongPeriodTotal, i-2 ) &&         //      long
             es.candleColor(i-1) == -1 &&                                                            // 2nd: black
             es.realBody(i-1) <= es.average(settingBodyShort, bodyShortPeriodTotal, i-1 ) &&      //      short
-            es.realBodyGAPUP(i-1,i-2) &&                                                            //      gapping up
+            es.realBodyGapUp(i-1,i-2) &&                                                            //      gapping up
             es.candleColor(i) == -1 &&                                                              // 3rd: black
             es.Open(i) > es.Open(i-1) && es.Close(i) < es.Close(i-1) &&                                 // 3rd: engulfing prior rb
             es.Close(i) > es.Close(i-2)                                                               //      closing above 1st
@@ -368,7 +368,7 @@
 /* Generated */             es.realBody(i-2) > es.average(settingBodyLong, bodyLongPeriodTotal, i-2 ) &&         //      long
 /* Generated */             es.candleColor(i-1) == -1 &&                                                            // 2nd: black
 /* Generated */             es.realBody(i-1) <= es.average(settingBodyShort, bodyShortPeriodTotal, i-1 ) &&      //      short
-/* Generated */             es.realBodyGAPUP(i-1,i-2) &&                                                            //      gapping up
+/* Generated */             es.realBodyGapUp(i-1,i-2) &&                                                            //      gapping up
 /* Generated */             es.candleColor(i) == -1 &&                                                              // 3rd: black
 /* Generated */             es.Open(i) > es.Open(i-1) && es.Close(i) < es.Close(i-1) &&                                 // 3rd: engulfing prior rb
 /* Generated */             es.Close(i) > es.Close(i-2)                                                               //      closing above 1st

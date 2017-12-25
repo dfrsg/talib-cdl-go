@@ -236,7 +236,7 @@
    {
         if( 
             ( // upside or downside gap between the 1st candle and both the next 2 candles
-              ( es.realBodyGAPUP(i-1,i-2) && es.realBodyGAPUP(i,i-2) )
+              ( es.realBodyGapUp(i-1,i-2) && es.realBodyGapUp(i,i-2) )
               ||
               ( es.realBodyGapDown(i-1,i-2) && es.realBodyGapDown(i,i-2) )
             ) &&
@@ -247,7 +247,7 @@
             es.Open(i) >= es.Open(i-1) - es.average(settingEqual, EqualPeriodTotal, i-1 ) &&           // same open 2 and 3
             es.Open(i) <= es.Open(i-1) + es.average(settingEqual, EqualPeriodTotal, i-1 )
           )
-            outInteger[outIdx++] = ( es.realBodyGAPUP(i-1,i-2) ? 100 : -100 );
+            outInteger[outIdx++] = ( es.realBodyGapUp(i-1,i-2) ? 100 : -100 );
         else
             outInteger[outIdx++] = 0;
         /* add the current range and subtract the first range: this is done after the pattern recognition 
@@ -364,7 +364,7 @@
 /* Generated */    {
 /* Generated */         if( 
 /* Generated */             ( // upside or downside gap between the 1st candle and both the next 2 candles
-/* Generated */               ( es.realBodyGAPUP(i-1,i-2) && es.realBodyGAPUP(i,i-2) )
+/* Generated */               ( es.realBodyGapUp(i-1,i-2) && es.realBodyGapUp(i,i-2) )
 /* Generated */               ||
 /* Generated */               ( es.realBodyGapDown(i-1,i-2) && es.realBodyGapDown(i,i-2) )
 /* Generated */             ) &&
@@ -375,7 +375,7 @@
 /* Generated */             es.Open(i) >= es.Open(i-1) - es.average(settingEqual, EqualPeriodTotal, i-1 ) &&           // same open 2 and 3
 /* Generated */             es.Open(i) <= es.Open(i-1) + es.average(settingEqual, EqualPeriodTotal, i-1 )
 /* Generated */           )
-/* Generated */             outInteger[outIdx++] = ( es.realBodyGAPUP(i-1,i-2) ? 100 : -100 );
+/* Generated */             outInteger[outIdx++] = ( es.realBodyGapUp(i-1,i-2) ? 100 : -100 );
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
 /* Generated */         nearPeriodTotal += es.rangeOf(settingNear, i-1 ) - es.rangeOf(settingNear, nearTrailingIdx-1 );

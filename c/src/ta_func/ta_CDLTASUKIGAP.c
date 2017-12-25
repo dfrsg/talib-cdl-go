@@ -229,7 +229,7 @@
    {
         if( 
             ( 
-                es.realBodyGAPUP(i-1,i-2) &&                                // upside gap
+                es.realBodyGapUp(i-1,i-2) &&                                // upside gap
                 es.candleColor(i-1) == 1 &&                                 // 1st: white
                 es.candleColor(i) == -1 &&                                  // 2nd: black
                 es.Open(i) < es.Close(i-1) && es.Open(i) > es.Open(i-1) &&      //      that opens within the white rb
@@ -357,7 +357,7 @@
 /* Generated */    {
 /* Generated */         if( 
 /* Generated */             ( 
-/* Generated */                 es.realBodyGAPUP(i-1,i-2) &&                                // upside gap
+/* Generated */                 es.realBodyGapUp(i-1,i-2) &&                                // upside gap
 /* Generated */                 es.candleColor(i-1) == 1 &&                                 // 1st: white
 /* Generated */                 es.candleColor(i) == -1 &&                                  // 2nd: black
 /* Generated */                 es.Open(i) < es.Close(i-1) && es.Open(i) > es.Open(i-1) &&      //      that opens within the white rb

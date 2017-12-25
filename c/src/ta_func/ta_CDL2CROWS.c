@@ -232,7 +232,7 @@
         if( es.candleColor(i-2) == 1 &&                                                         // 1st: white
             es.realBody(i-2) > es.average(settingBodyLong, bodyLongPeriodTotal, i-2 ) &&     //      long
             es.candleColor(i-1) == -1 &&                                                        // 2nd: black
-            es.realBodyGAPUP(i-1,i-2) &&                                                        //      gapping up
+            es.realBodyGapUp(i-1,i-2) &&                                                        //      gapping up
             es.candleColor(i) == -1 &&                                                          // 3rd: black
             es.Open(i) < es.Open(i-1) && es.Open(i) > es.Close(i-1) &&                              //      opening within 2nd rb
             es.Close(i) > es.Open(i-2) && es.Close(i) < es.Close(i-2)                               //      closing within 1st rb
@@ -349,7 +349,7 @@
 /* Generated */         if( es.candleColor(i-2) == 1 &&                                                         // 1st: white
 /* Generated */             es.realBody(i-2) > es.average(settingBodyLong, bodyLongPeriodTotal, i-2 ) &&     //      long
 /* Generated */             es.candleColor(i-1) == -1 &&                                                        // 2nd: black
-/* Generated */             es.realBodyGAPUP(i-1,i-2) &&                                                        //      gapping up
+/* Generated */             es.realBodyGapUp(i-1,i-2) &&                                                        //      gapping up
 /* Generated */             es.candleColor(i) == -1 &&                                                          // 3rd: black
 /* Generated */             es.Open(i) < es.Open(i-1) && es.Open(i) > es.Close(i-1) &&                              //      opening within 2nd rb
 /* Generated */             es.Close(i) > es.Open(i-2) && es.Close(i) < es.Close(i-2)                               //      closing within 1st rb

@@ -247,7 +247,7 @@
         if( es.realBody(i) < es.average(settingBodyShort, BodyPeriodTotal, i ) &&                        // small rb
             es.upperShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) &&              // long upper shadow
             es.lowerShadow(i) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i ) &&    // very short lower shadow
-            es.realBodyGAPUP(i, i-1) )                                                                      // gap up
+            es.realBodyGapUp(i, i-1) )                                                                      // gap up
             outInteger[outIdx++] = -100;
         else
             outInteger[outIdx++] = 0;
@@ -379,7 +379,7 @@
 /* Generated */         if( es.realBody(i) < es.average(settingBodyShort, BodyPeriodTotal, i ) &&                        // small rb
 /* Generated */             es.upperShadow(i) > es.average(settingShadowLong, shadowLongPeriodTotal, i ) &&              // long upper shadow
 /* Generated */             es.lowerShadow(i) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i ) &&    // very short lower shadow
-/* Generated */             es.realBodyGAPUP(i, i-1) )                                                                      // gap up
+/* Generated */             es.realBodyGapUp(i, i-1) )                                                                      // gap up
 /* Generated */             outInteger[outIdx++] = -100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;

@@ -224,7 +224,7 @@
             es.Close(i) > math.Min(es.Close(i-2), es.Open(i-2)) &&
             ( ( 
                 es.candleColor(i-2) == 1 &&                                 // when 1st is white
-                es.realBodyGAPUP(i-1,i-2)                                   // upside gap
+                es.realBodyGapUp(i-1,i-2)                                   // upside gap
               ) ||
               (
                 es.candleColor(i-2) == -1 &&                                // when 1st is black
@@ -336,7 +336,7 @@
 /* Generated */             es.Close(i) > math.Min(es.Close(i-2), es.Open(i-2)) &&
 /* Generated */             ( ( 
 /* Generated */                 es.candleColor(i-2) == 1 &&                                 // when 1st is white
-/* Generated */                 es.realBodyGAPUP(i-1,i-2)                                   // upside gap
+/* Generated */                 es.realBodyGapUp(i-1,i-2)                                   // upside gap
 /* Generated */               ) ||
 /* Generated */               (
 /* Generated */                 es.candleColor(i-2) == -1 &&                                // when 1st is black

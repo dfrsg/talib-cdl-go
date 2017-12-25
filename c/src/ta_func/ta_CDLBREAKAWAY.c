@@ -243,7 +243,7 @@
               ) 
               ||
               ( es.candleColor(i-4) == 1 &&                                 // when 1st is white:
-                es.realBodyGAPUP(i-3,i-4) &&                                // 2nd gaps up
+                es.realBodyGapUp(i-3,i-4) &&                                // 2nd gaps up
                 es.High(i-2) > es.High(i-3) && es.Low(i-2) > es.Low(i-3) &&     // 3rd has higher high and low than 2nd
                 es.High(i-1) > es.High(i-2) && es.Low(i-1) > es.Low(i-2) &&     // 4th has higher high and low than 3rd
                 es.Close(i) < es.Open(i-3) && es.Close(i) > es.Close(i-4)       // 5th closes inside the gap
@@ -373,7 +373,7 @@
 /* Generated */               ) 
 /* Generated */               ||
 /* Generated */               ( es.candleColor(i-4) == 1 &&                                 // when 1st is white:
-/* Generated */                 es.realBodyGAPUP(i-3,i-4) &&                                // 2nd gaps up
+/* Generated */                 es.realBodyGapUp(i-3,i-4) &&                                // 2nd gaps up
 /* Generated */                 es.High(i-2) > es.High(i-3) && es.Low(i-2) > es.Low(i-3) &&     // 3rd has higher high and low than 2nd
 /* Generated */                 es.High(i-1) > es.High(i-2) && es.Low(i-1) > es.Low(i-2) &&     // 4th has higher high and low than 3rd
 /* Generated */                 es.Close(i) < es.Open(i-3) && es.Close(i) > es.Close(i-4)       // 5th closes inside the gap

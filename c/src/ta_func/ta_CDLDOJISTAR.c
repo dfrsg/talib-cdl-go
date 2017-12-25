@@ -241,7 +241,7 @@
 #else
         if( es.realBody(i-1) > es.average(settingBodyLong, bodyLongPeriodTotal, i-1 ) &&     // 1st: long real body
             es.realBody(i) <= es.average(settingBodyDoji, bodyDojiPeriodTotal, i ) &&        // 2nd: doji
-            ( ( es.candleColor(i-1) == 1 && es.realBodyGAPUP(i,i-1) )                        //        that gaps up if 1st is white
+            ( ( es.candleColor(i-1) == 1 && es.realBodyGapUp(i,i-1) )                        //        that gaps up if 1st is white
                 ||
               ( es.candleColor(i-1) == -1 && es.realBodyGapDown(i,i-1) )                        //      or down if 1st is black
             ) )
@@ -366,7 +366,7 @@
 /* Generated */ #else
 /* Generated */         if( es.realBody(i-1) > es.average(settingBodyLong, bodyLongPeriodTotal, i-1 ) &&     // 1st: long real body
 /* Generated */             es.realBody(i) <= es.average(settingBodyDoji, bodyDojiPeriodTotal, i ) &&        // 2nd: doji
-/* Generated */             ( ( es.candleColor(i-1) == 1 && es.realBodyGAPUP(i,i-1) )                        //        that gaps up if 1st is white
+/* Generated */             ( ( es.candleColor(i-1) == 1 && es.realBodyGapUp(i,i-1) )                        //        that gaps up if 1st is white
 /* Generated */                 ||
 /* Generated */               ( es.candleColor(i-1) == -1 && es.realBodyGapDown(i,i-1) )                        //      or down if 1st is black
 /* Generated */             ) )
