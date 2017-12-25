@@ -252,7 +252,7 @@
                                                                             // 2nd: marubozu
             es.lowerShadow(i-2) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&
             es.upperShadow(i-2) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&
-            es.realBodyGAPDOWN(i-1,i-2) &&                                  // 3rd: opens gapping down
+            es.realBodyGapDown(i-1,i-2) &&                                  // 3rd: opens gapping down
                                                                             //      and HAS an upper shadow
             es.upperShadow(i-1) > es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[1], i-1 ) &&
             es.High(i-1) > es.Close(i-2) &&                                   //      that extends into the prior body
@@ -387,7 +387,7 @@
 /* Generated */                                                                             // 2nd: marubozu
 /* Generated */             es.lowerShadow(i-2) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&
 /* Generated */             es.upperShadow(i-2) < es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[2], i-2 ) &&
-/* Generated */             es.realBodyGAPDOWN(i-1,i-2) &&                                  // 3rd: opens gapping down
+/* Generated */             es.realBodyGapDown(i-1,i-2) &&                                  // 3rd: opens gapping down
 /* Generated */                                                                             //      and HAS an upper shadow
 /* Generated */             es.upperShadow(i-1) > es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal[1], i-1 ) &&
 /* Generated */             es.High(i-1) > es.Close(i-2) &&                                   //      that extends into the prior body

@@ -228,7 +228,7 @@
               ) ||
               (
                 es.candleColor(i-2) == -1 &&                                // when 1st is black
-                es.realBodyGAPDOWN(i-1,i-2)                                 // downside gap
+                es.realBodyGapDown(i-1,i-2)                                 // downside gap
               )
             )
         )
@@ -340,7 +340,7 @@
 /* Generated */               ) ||
 /* Generated */               (
 /* Generated */                 es.candleColor(i-2) == -1 &&                                // when 1st is black
-/* Generated */                 es.realBodyGAPDOWN(i-1,i-2)                                 // downside gap
+/* Generated */                 es.realBodyGapDown(i-1,i-2)                                 // downside gap
 /* Generated */               )
 /* Generated */             )
 /* Generated */         )

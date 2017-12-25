@@ -279,11 +279,11 @@
             // upside gap 1st to 2nd
             es.realBodyGAPUP(i-3,i-4) &&
             // 3rd to 4th hold within 1st: a part of the real body must be within 1st real body
-            math.Min(es.Open(i-2), es.Close(i-2)) < inClose[i-4] &&
-            math.Min(es.Open(i-1), es.Close(i-1)) < inClose[i-4] &&
+            math.Min(es.Open(i-2), es.Close(i-2)) < es.Close(i-4) &&
+            math.Min(es.Open(i-1), es.Close(i-1)) < es.Close(i-4) &&
             // reaction days penetrate first body less than optInPenetration percent
-            math.Min(es.Open(i-2), es.Close(i-2)) > inClose[i-4] - es.realBody(i-4) * optInPenetration &&
-            math.Min(es.Open(i-1), es.Close(i-1)) > inClose[i-4] - es.realBody(i-4) * optInPenetration &&
+            math.Min(es.Open(i-2), es.Close(i-2)) > es.Close(i-4) - es.realBody(i-4) * optInPenetration &&
+            math.Min(es.Open(i-1), es.Close(i-1)) > es.Close(i-4) - es.realBody(i-4) * optInPenetration &&
             // 2nd to 4th are falling
             math.Max(es.Close(i-2), es.Open(i-2)) < es.Open(i-3) && 
             math.Max(es.Close(i-1), es.Open(i-1)) < math.Max(es.Close(i-2), es.Open(i-2)) &&
@@ -437,11 +437,11 @@
 /* Generated */             // upside gap 1st to 2nd
 /* Generated */             es.realBodyGAPUP(i-3,i-4) &&
 /* Generated */             // 3rd to 4th hold within 1st: a part of the real body must be within 1st real body
-/* Generated */             math.Min(es.Open(i-2), es.Close(i-2)) < inClose[i-4] &&
-/* Generated */             math.Min(es.Open(i-1), es.Close(i-1)) < inClose[i-4] &&
+/* Generated */             math.Min(es.Open(i-2), es.Close(i-2)) < es.Close(i-4) &&
+/* Generated */             math.Min(es.Open(i-1), es.Close(i-1)) < es.Close(i-4) &&
 /* Generated */             // reaction days penetrate first body less than optInPenetration percent
-/* Generated */             math.Min(es.Open(i-2), es.Close(i-2)) > inClose[i-4] - es.realBody(i-4) * optInPenetration &&
-/* Generated */             math.Min(es.Open(i-1), es.Close(i-1)) > inClose[i-4] - es.realBody(i-4) * optInPenetration &&
+/* Generated */             math.Min(es.Open(i-2), es.Close(i-2)) > es.Close(i-4) - es.realBody(i-4) * optInPenetration &&
+/* Generated */             math.Min(es.Open(i-1), es.Close(i-1)) > es.Close(i-4) - es.realBody(i-4) * optInPenetration &&
 /* Generated */             // 2nd to 4th are falling
 /* Generated */             math.Max(es.Close(i-2), es.Open(i-2)) < es.Open(i-3) && 
 /* Generated */             math.Max(es.Close(i-1), es.Open(i-1)) < math.Max(es.Close(i-2), es.Open(i-2)) &&

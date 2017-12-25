@@ -238,7 +238,7 @@
             ( // upside or downside gap between the 1st candle and both the next 2 candles
               ( es.realBodyGAPUP(i-1,i-2) && es.realBodyGAPUP(i,i-2) )
               ||
-              ( es.realBodyGAPDOWN(i-1,i-2) && es.realBodyGAPDOWN(i,i-2) )
+              ( es.realBodyGapDown(i-1,i-2) && es.realBodyGapDown(i,i-2) )
             ) &&
             es.candleColor(i-1) == 1 &&                                                                 // 2nd: white
             es.candleColor(i) == 1 &&                                                                   // 3rd: white
@@ -366,7 +366,7 @@
 /* Generated */             ( // upside or downside gap between the 1st candle and both the next 2 candles
 /* Generated */               ( es.realBodyGAPUP(i-1,i-2) && es.realBodyGAPUP(i,i-2) )
 /* Generated */               ||
-/* Generated */               ( es.realBodyGAPDOWN(i-1,i-2) && es.realBodyGAPDOWN(i,i-2) )
+/* Generated */               ( es.realBodyGapDown(i-1,i-2) && es.realBodyGapDown(i,i-2) )
 /* Generated */             ) &&
 /* Generated */             es.candleColor(i-1) == 1 &&                                                                 // 2nd: white
 /* Generated */             es.candleColor(i) == 1 &&                                                                   // 3rd: white

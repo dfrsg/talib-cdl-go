@@ -231,7 +231,7 @@
         if(                                                             
             es.candleColor(i-4) == -1 && es.candleColor(i-3) == -1 && es.candleColor(i-2) == -1 &&  // 3 black candlesticks
             inOpen[i-4] > es.Open(i-3) && es.Open(i-3) > es.Open(i-2) &&           // with consecutively lower opens
-            inClose[i-4] > es.Close(i-3) && es.Close(i-3) > es.Close(i-2) &&       // and closes
+            es.Close(i-4) > es.Close(i-3) && es.Close(i-3) > es.Close(i-2) &&       // and closes
             es.candleColor(i-1) == -1 &&                                        // 4th: black with an upper shadow
             es.upperShadow(i-1) > es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i-1 ) &&
             es.candleColor(i) == 1 &&                                           // 5th: white
@@ -351,7 +351,7 @@
 /* Generated */         if(                                                             
 /* Generated */             es.candleColor(i-4) == -1 && es.candleColor(i-3) == -1 && es.candleColor(i-2) == -1 &&  // 3 black candlesticks
 /* Generated */             inOpen[i-4] > es.Open(i-3) && es.Open(i-3) > es.Open(i-2) &&           // with consecutively lower opens
-/* Generated */             inClose[i-4] > es.Close(i-3) && es.Close(i-3) > es.Close(i-2) &&       // and closes
+/* Generated */             es.Close(i-4) > es.Close(i-3) && es.Close(i-3) > es.Close(i-2) &&       // and closes
 /* Generated */             es.candleColor(i-1) == -1 &&                                        // 4th: black with an upper shadow
 /* Generated */             es.upperShadow(i-1) > es.average(settingShadowVeryShort, shadowVeryShortPeriodTotal, i-1 ) &&
 /* Generated */             es.candleColor(i) == 1 &&                                           // 5th: white

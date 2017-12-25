@@ -264,7 +264,7 @@
             // 5th opens above (below) the prior close
             es.Open(i) * es.candleColor(i-4) > es.Close(i-1) * es.candleColor(i-4) &&
             // 5th closes above (below) the 1st close
-            es.Close(i) * es.candleColor(i-4) > inClose[i-4] * es.candleColor(i-4)
+            es.Close(i) * es.candleColor(i-4) > es.Close(i-4) * es.candleColor(i-4)
           )
             outInteger[outIdx++] = 100 * es.candleColor(i-4);
         else
@@ -414,7 +414,7 @@
 /* Generated */             // 5th opens above (below) the prior close
 /* Generated */             es.Open(i) * es.candleColor(i-4) > es.Close(i-1) * es.candleColor(i-4) &&
 /* Generated */             // 5th closes above (below) the 1st close
-/* Generated */             es.Close(i) * es.candleColor(i-4) > inClose[i-4] * es.candleColor(i-4)
+/* Generated */             es.Close(i) * es.candleColor(i-4) > es.Close(i-4) * es.candleColor(i-4)
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100 * es.candleColor(i-4);
 /* Generated */         else

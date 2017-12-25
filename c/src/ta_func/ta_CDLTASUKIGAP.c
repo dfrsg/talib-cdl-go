@@ -239,7 +239,7 @@
                 std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average(settingNear, nearPeriodTotal, i-1 )
             ) ||
             (
-                es.realBodyGAPDOWN(i-1,i-2) &&                              // downside gap
+                es.realBodyGapDown(i-1,i-2) &&                              // downside gap
                 es.candleColor(i-1) == -1 &&                                // 1st: black
                 es.candleColor(i) == 1 &&                                   // 2nd: white
                 es.Open(i) < es.Open(i-1) && es.Open(i) > es.Close(i-1) &&      //      that opens within the black rb
@@ -367,7 +367,7 @@
 /* Generated */                 std_fabs(es.realBody(i-1) - es.realBody(i)) < es.average(settingNear, nearPeriodTotal, i-1 )
 /* Generated */             ) ||
 /* Generated */             (
-/* Generated */                 es.realBodyGAPDOWN(i-1,i-2) &&                              // downside gap
+/* Generated */                 es.realBodyGapDown(i-1,i-2) &&                              // downside gap
 /* Generated */                 es.candleColor(i-1) == -1 &&                                // 1st: black
 /* Generated */                 es.candleColor(i) == 1 &&                                   // 2nd: white
 /* Generated */                 es.Open(i) < es.Open(i-1) && es.Open(i) > es.Close(i-1) &&      //      that opens within the black rb

@@ -272,7 +272,7 @@
         if( es.realBody(i-2) > es.average(settingBodyLong, bodyLongPeriodTotal, i-2 ) &&         // 1st: long
             es.candleColor(i-2) == -1 &&                                                            //           black
             es.realBody(i-1) <= es.average(settingBodyDoji, bodyDojiPeriodTotal, i-1 ) &&        // 2nd: doji
-            es.realBodyGAPDOWN(i-1,i-2) &&                                                          //           gapping down
+            es.realBodyGapDown(i-1,i-2) &&                                                          //           gapping down
             es.realBody(i) > es.average(settingBodyShort, bodyShortPeriodTotal, i ) &&           // 3rd: longer than short
             es.candleColor(i) == 1 &&                                                               //          white real body
             es.Close(i) > es.Close(i-2) + es.realBody(i-2) * optInPenetration                         //               closing well within 1st rb
@@ -415,7 +415,7 @@
 /* Generated */         if( es.realBody(i-2) > es.average(settingBodyLong, bodyLongPeriodTotal, i-2 ) &&         // 1st: long
 /* Generated */             es.candleColor(i-2) == -1 &&                                                            //           black
 /* Generated */             es.realBody(i-1) <= es.average(settingBodyDoji, bodyDojiPeriodTotal, i-1 ) &&        // 2nd: doji
-/* Generated */             es.realBodyGAPDOWN(i-1,i-2) &&                                                          //           gapping down
+/* Generated */             es.realBodyGapDown(i-1,i-2) &&                                                          //           gapping down
 /* Generated */             es.realBody(i) > es.average(settingBodyShort, bodyShortPeriodTotal, i ) &&           // 3rd: longer than short
 /* Generated */             es.candleColor(i) == 1 &&                                                               //          white real body
 /* Generated */             es.Close(i) > es.Close(i-2) + es.realBody(i-2) * optInPenetration                         //               closing well within 1st rb

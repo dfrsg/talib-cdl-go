@@ -239,7 +239,7 @@
                  math.Max(es.Open(i),es.Close(i)) < math.Max(es.Open(i-1),es.Close(i-1))                  // 3rd is not higher than 2nd
                )
                 outInteger[outIdx] = -100;
-            if ( es.realBodyGAPDOWN(i-1,i-2)                                                // 2nd gaps down
+            if ( es.realBodyGapDown(i-1,i-2)                                                // 2nd gaps down
                  &&
                  math.Min(es.Open(i),es.Close(i)) > math.Min(es.Open(i-1),es.Close(i-1))                  // 3rd is not lower than 2nd
                )
@@ -365,7 +365,7 @@
 /* Generated */                  math.Max(es.Open(i),es.Close(i)) < math.Max(es.Open(i-1),es.Close(i-1))                  // 3rd is not higher than 2nd
 /* Generated */                )
 /* Generated */                 outInteger[outIdx] = -100;
-/* Generated */             if ( es.realBodyGAPDOWN(i-1,i-2)                                                // 2nd gaps down
+/* Generated */             if ( es.realBodyGapDown(i-1,i-2)                                                // 2nd gaps down
 /* Generated */                  &&
 /* Generated */                  math.Min(es.Open(i),es.Close(i)) > math.Min(es.Open(i-1),es.Close(i-1))                  // 3rd is not lower than 2nd
 /* Generated */                )
