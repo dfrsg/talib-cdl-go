@@ -152,7 +152,7 @@
 /**** END GENCODE SECTION 3 - DO NOT DELETE THIS LINE ****/
 {
    /* Insert local variables here. */
-    double EqualPeriodTotal;
+    double equalPeriodTotal;
     int i, outIdx, EqualTrailingIdx, lookbackTotal;
 
 /**** START GENCODE SECTION 4 - DO NOT DELETE THIS LINE ****/
@@ -202,12 +202,12 @@
 
    /* Do the calculation using tight loops. */
    /* Add-up the initial period, except for the last value. */
-   EqualPeriodTotal = 0;
+   equalPeriodTotal = 0;
    EqualTrailingIdx = startIdx - settingEqual.avgPeriod;
 
    i = EqualTrailingIdx;
    while( i < startIdx ) {
-        EqualPeriodTotal += es.rangeOf(settingEqual, i-2 );
+        equalPeriodTotal += es.rangeOf(settingEqual, i-2 );
         i++;
    }
    i = startIdx;
@@ -229,8 +229,8 @@
             es.candleColor(i-1) == 1 &&                                                         // second white
             es.candleColor(i) == -1 &&                                                          // third black
             es.Low(i-1) > es.Close(i-2) &&                                                        // 2nd low > prior close
-            es.Close(i) <= es.Close(i-2) + es.average(settingEqual, EqualPeriodTotal, i-2 ) && // 1st and 3rd same close
-            es.Close(i) >= es.Close(i-2) - es.average(settingEqual, EqualPeriodTotal, i-2 )
+            es.Close(i) <= es.Close(i-2) + es.average(settingEqual, equalPeriodTotal, i-2 ) && // 1st and 3rd same close
+            es.Close(i) >= es.Close(i-2) - es.average(settingEqual, equalPeriodTotal, i-2 )
           )
             outInteger[outIdx++] = 100;
         else
@@ -238,7 +238,7 @@
         /* add the current range and subtract the first range: this is done after the pattern recognition 
          * when avgPeriod is not 0, that means "compare with the previous candles" (it excludes the current candle)
          */
-        EqualPeriodTotal += es.rangeOf(settingEqual, i-2 ) - es.rangeOf(settingEqual, EqualTrailingIdx-2 );
+        equalPeriodTotal += es.rangeOf(settingEqual, i-2 ) - es.rangeOf(settingEqual, EqualTrailingIdx-2 );
         i++;
         EqualTrailingIdx++;
    } while( i <= endIdx );
@@ -302,7 +302,7 @@
 /* Generated */                                   int           outInteger[] )
 /* Generated */ #endif
 /* Generated */ {
-/* Generated */     double EqualPeriodTotal;
+/* Generated */     double equalPeriodTotal;
 /* Generated */     int i, outIdx, EqualTrailingIdx, lookbackTotal;
 /* Generated */  #ifndef TA_FUNC_NO_RANGE_CHECK
 /* Generated */     if( startIdx < 0 )
@@ -327,11 +327,11 @@
 /* Generated */       VALUE_HANDLE_DEREF_TO_ZERO(outNBElement);
 /* Generated */       return ENUM_VALUE(RetCode,TA_SUCCESS,Success);
 /* Generated */    }
-/* Generated */    EqualPeriodTotal = 0;
+/* Generated */    equalPeriodTotal = 0;
 /* Generated */    EqualTrailingIdx = startIdx - settingEqual.avgPeriod;
 /* Generated */    i = EqualTrailingIdx;
 /* Generated */    while( i < startIdx ) {
-/* Generated */         EqualPeriodTotal += es.rangeOf(settingEqual, i-2 );
+/* Generated */         equalPeriodTotal += es.rangeOf(settingEqual, i-2 );
 /* Generated */         i++;
 /* Generated */    }
 /* Generated */    i = startIdx;
@@ -342,13 +342,13 @@
 /* Generated */             es.candleColor(i-1) == 1 &&                                                         // second white
 /* Generated */             es.candleColor(i) == -1 &&                                                          // third black
 /* Generated */             es.Low(i-1) > es.Close(i-2) &&                                                        // 2nd low > prior close
-/* Generated */             es.Close(i) <= es.Close(i-2) + es.average(settingEqual, EqualPeriodTotal, i-2 ) && // 1st and 3rd same close
-/* Generated */             es.Close(i) >= es.Close(i-2) - es.average(settingEqual, EqualPeriodTotal, i-2 )
+/* Generated */             es.Close(i) <= es.Close(i-2) + es.average(settingEqual, equalPeriodTotal, i-2 ) && // 1st and 3rd same close
+/* Generated */             es.Close(i) >= es.Close(i-2) - es.average(settingEqual, equalPeriodTotal, i-2 )
 /* Generated */           )
 /* Generated */             outInteger[outIdx++] = 100;
 /* Generated */         else
 /* Generated */             outInteger[outIdx++] = 0;
-/* Generated */         EqualPeriodTotal += es.rangeOf(settingEqual, i-2 ) - es.rangeOf(settingEqual, EqualTrailingIdx-2 );
+/* Generated */         equalPeriodTotal += es.rangeOf(settingEqual, i-2 ) - es.rangeOf(settingEqual, EqualTrailingIdx-2 );
 /* Generated */         i++;
 /* Generated */         EqualTrailingIdx++;
 /* Generated */    } while( i <= endIdx );
